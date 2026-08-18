@@ -1,0 +1,858 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fbfdfb;
+    color: #2c3e50;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+}
+
+
+header {
+    background-color: #b71c1c;
+    color: white;
+
+    padding: 20px 8%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+}
+
+
+.logo {
+    font-size: 30px;
+}
+
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+
+nav a:hover {
+    color: #c8e6c9;
+}
+
+.home {
+    height: 550px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)), url('hero_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding-top: 80px;
+    position: relative;
+}
+
+
+.home h2 {
+    font-size: 44px;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+.home p {
+    font-size: 20px;
+    color: #f0f4f1;
+    max-width: 650px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+.btn {
+    background-color: #2e7d32;
+    color: white;
+
+    padding: 14px 30px;
+
+    text-decoration: none;
+
+    border-radius: 6px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+    transition: all 0.3s ease;
+}
+
+
+.btn:hover {
+    background-color: #1b5e20;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(27, 94, 32, 0.4);
+}
+
+
+
+
+.features {
+    padding: 80px 8%;
+
+    background-image: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.96)), url('features_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.features h2 {
+    text-align: center;
+
+    font-size: 32px;
+
+    margin-bottom: 35px;
+
+    color: #b71c1c;
+}
+
+
+.feature-container {
+
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.card {
+    background-color: white;
+
+    padding: 25px;
+
+    border: 1px solid rgba(46, 125, 50, 0.15);
+
+    text-align: center;
+
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.card h3 {
+    color: #b71c1c;
+
+    margin-bottom: 10px;
+}
+
+
+.card p {
+    color: #555;
+    line-height: 1.5;
+}
+
+
+.card:hover {
+    background-color: white;
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(46, 125, 50, 0.12);
+    border-color: #2e7d32;
+}
+
+
+
+
+.about {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.8)), url('about_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    text-align: center;
+
+    padding: 80px 20px;
+}
+
+
+.about h2 {
+    color: #ffffff;
+
+    margin-bottom: 20px;
+    font-size: 32px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+.about p {
+    max-width: 650px;
+
+    margin: auto;
+
+    line-height: 1.7;
+
+    color: #f0f4f1;
+    font-size: 17px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+footer {
+    background-color: #2e7d32;
+
+    color: white;
+
+    padding: 35px 8% 20px;
+}
+
+
+.footer-section {
+
+
+    display: flex;
+    justify-content: space-between;
+
+    gap: 50px;
+
+    margin-bottom: 30px;
+}
+
+
+.footer-section div {
+    width: 45%;
+}
+
+
+.footer-section h3 {
+    margin-bottom: 10px;
+}
+
+
+.footer-section p {
+    margin-bottom: 5px;
+
+    line-height: 1.5;
+}
+
+
+.copyright {
+    text-align: center;
+
+    border-top: 1px solid white;
+
+    padding-top: 15px;
+}
+
+
+
+
+@media (max-width: 700px) {
+
+    header {
+        flex-direction: column;
+
+        padding: 15px;
+    }
+
+
+    nav {
+        margin-top: 10px;
+
+        gap: 12px;
+    }
+
+
+    .home {
+        padding-top: 120px;
+    }
+
+
+    .home h2 {
+        font-size: 30px;
+    }
+
+
+    .feature-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .footer-section {
+        flex-direction: column;
+    }
+
+
+    .footer-section div {
+        width: 100%;
+    }
+
+}
+
+
+
+
+
+.students {
+    padding: 80px 8%;
+    background-image: linear-gradient(rgba(241, 248, 242, 0.88), rgba(241, 248, 242, 0.92)), url('students_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.students h2 {
+    text-align: center;
+
+    color: #b71c1c;
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+
+.student-heading {
+    text-align: center;
+
+    color: #555;
+
+    margin-bottom: 35px;
+}
+
+
+
+.students-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+.student-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    flex: 1;
+}
+
+
+.quick-updates {
+    width: 320px;
+    background-color: white;
+    border: 1px solid rgba(46, 125, 50, 0.15);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quick-updates:hover {
+    box-shadow: 0 8px 24px rgba(46, 125, 50, 0.1);
+}
+
+.quick-updates h3 {
+    color: #b71c1c;
+    font-size: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(183, 28, 28, 0.15);
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+.updates-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.update-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+.update-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.update-icon {
+    font-size: 18px;
+    padding: 8px;
+    background-color: #f1f8f2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.update-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.update-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50;
+    
+    line-height: 1.4;
+    margin: 0 !important;
+}
+
+.update-time {
+    font-size: 11px;
+    color: #7f8c8d;
+}
+
+@media (max-width: 1024px) {
+    .students-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+    
+    .quick-updates {
+        width: 100%;
+        max-width: 600px;
+    }
+}
+
+
+
+
+.student-card {
+    background-color: white;
+
+    width: 280px;
+
+    padding: 25px;
+
+    border: 1px solid rgba(46, 125, 50, 0.15);
+
+    border-radius: 12px;
+
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+
+
+.student-photo {
+    width: 70px;
+    height: 70px;
+
+    background-color: #b71c1c;
+
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto 15px;
+
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(183, 28, 28, 0.25);
+}
+
+
+.student-card h3 {
+    color: #b71c1c;
+
+    margin-bottom: 15px;
+}
+
+
+.student-card p {
+    margin: 8px 0;
+
+    color: #444;
+}
+
+
+
+.view-btn {
+    display: inline-block;
+
+    background-color: #2e7d32;
+
+    color: white;
+
+    padding: 10px 22px;
+
+    margin-top: 15px;
+
+    text-decoration: none;
+
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+
+.view-btn:hover {
+    background-color: #1b5e20;
+    transform: scale(1.04);
+}
+
+
+.student-card:hover {
+    background-color: white;
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(46, 125, 50, 0.12);
+    border-color: #2e7d32;
+}
+
+.loading-body {
+    min-height: 100vh;
+    background: radial-gradient(circle at center, #ffffff 0%, #f4f8f5 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at center, #ffffff 0%, #f4f8f5 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: css-preloader-dismiss 0.5s cubic-bezier(0.4, 0, 0.2, 1) 2.5s forwards;
+}
+
+.preloader-content {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(46, 125, 50, 0.18);
+    border-radius: 24px;
+    padding: 40px 35px;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(46, 125, 50, 0.05);
+    animation: preloader-fade-in 0.4s ease-out;
+}
+
+.preloader-logo-wrapper {
+    position: relative;
+    width: 84px;
+    height: 84px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.preloader-logo-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(183, 28, 28, 0.4), rgba(46, 125, 50, 0.4));
+    border-radius: 50%;
+    filter: blur(12px);
+    animation: logo-glow-pulse 2s infinite alternate;
+}
+
+.preloader-logo-icon {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, #b71c1c 0%, #2e7d32 100%);
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(183, 28, 28, 0.25);
+    animation: logo-bounce 2s ease-in-out infinite;
+}
+
+.preloader-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #b71c1c;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+.preloader-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.progress-box {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.loader-status {
+    color: #2c3e50;
+}
+
+.loader-status::before {
+    content: "Initializing system...";
+    animation: css-status-text 2.5s steps(1) forwards;
+}
+
+.loader-percent {
+    color: #2e7d32;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+}
+
+.loader-percent::before {
+    content: "0%";
+    animation: css-percent-text 2.5s steps(1) forwards;
+}
+
+.progress-track {
+    width: 100%;
+    height: 10px;
+    background-color: rgba(46, 125, 50, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #b71c1c, #2e7d32);
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(46, 125, 50, 0.4);
+    animation: css-progress-fill 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: progress-shimmer 1.5s infinite;
+}
+
+
+.loader-info-card {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid rgba(46, 125, 50, 0.12);
+    border-radius: 14px;
+    padding: 15px 18px;
+    margin-bottom: 0;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.info-card-header {
+    margin-bottom: 6px;
+}
+
+.info-badge {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #2e7d32;
+    background-color: #e8f5e9;
+    padding: 3px 8px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.loader-tip {
+    font-size: 13px;
+    color: #4a5568;
+    line-height: 1.5;
+    margin: 0 !important;
+    min-height: 38px;
+}
+
+.loader-tip::before {
+    content: "SchoolPad helps institutions organize student profiles and academic records effortlessly.";
+    animation: css-tip-text 2.5s steps(1) forwards;
+}
+
+
+
+@keyframes css-preloader-dismiss {
+    0% {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+    99% {
+        opacity: 0;
+        visibility: visible;
+        transform: scale(1.03);
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: scale(1.03);
+    }
+}
+
+@keyframes css-progress-fill {
+    0% { width: 0%; }
+    25% { width: 30%; }
+    55% { width: 68%; }
+    85% { width: 90%; }
+    100% { width: 100%; }
+}
+
+@keyframes css-status-text {
+    0% { content: "Initializing system..."; }
+    25% { content: "Loading interface assets..."; }
+    55% { content: "Fetching student database..."; }
+    85% { content: "Configuring quick updates..."; }
+    96% { content: "Ready! Welcome to SchoolPad."; }
+}
+
+@keyframes css-percent-text {
+    0% { content: "0%"; }
+    12% { content: "18%"; }
+    25% { content: "30%"; }
+    42% { content: "54%"; }
+    55% { content: "68%"; }
+    72% { content: "82%"; }
+    85% { content: "90%"; }
+    100% { content: "100%"; }
+}
+
+@keyframes css-tip-text {
+    0% {
+        content: "SchoolPad helps institutions organize student profiles and academic records effortlessly.";
+    }
+    45% {
+        content: "Easily search and filter students by Roll Number, Name, or Course.";
+    }
+    75% {
+        content: "Real-time notifications keep staff updated on semester deadlines.";
+    }
+}
+
+@keyframes preloader-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes logo-glow-pulse {
+    0% {
+        transform: scale(0.85);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1.15);
+        opacity: 0.8;
+    }
+}
+
+@keyframes logo-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes progress-shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
