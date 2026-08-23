@@ -1,78 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SchoolPad - Student Timetable</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Class Timetable</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
 
-<body class="detail-page-body">
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-2 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center">
+        <img src="logo.png" alt="EduPixel Logo" class="h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform">
+    </a>
+    <nav class="flex gap-6"></nav>
+</header>
 
-    <header style="position: relative;">
-        <div class="brand-logo-container">
-            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
-            <h1 class="logo">SchoolPad</h1>
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge mb-1">Weekly Quest Schedule</span>
+            <h1 class="text-4xl text-primary font-bold uppercase">Class Timetable</h1>
+            <p class="text-on-surface-variant text-lg">Class timings, daily lecture slots, and classroom locations.</p>
         </div>
-        <nav>
-            <a href="profile.html">Profile</a>
-            <a href="circulars.html">Circulars</a>
-            <a href="academics.html">Academics</a>
-            <a href="#" onclick="logout(); return false;" class="nav-logout-btn">Logout</a>
-        </nav>
-    </header>
-
-    <div class="dashboard-banner" style="margin: 10px 8% 0; padding: 12px 22px;">
-        <h2 style="font-size: 20px;">Class Timetable <span class="badge-tag badge-student">Weekly Schedule</span></h2>
-        <p style="font-size: 13px;">Class timings, daily lecture slots, and classroom locations.</p>
+        <a href="academics.html" class="btn-pixel">&larr; Back to Academics</a>
     </div>
+</div>
 
-    <main class="detail-section-compact">
-        <a href="academics.html" class="back-btn" style="margin-bottom: 12px; padding: 6px 14px; font-size: 13px;">← Back to Academics</a>
-
-        <div class="detail-card-compact">
-            <h3 style="color: #C65D3A; font-size: 17px; margin-bottom: 10px; border-bottom: 2px solid #E8DED4; padding-bottom: 6px;">Weekly Schedule</h3>
-            <table class="compact-table">
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednesday</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>09:00 AM</strong></td>
-                        <td>Math (Hall 302)</td>
-                        <td>Physics (Lab 2)</td>
-                        <td>Computer (Hall 302)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>10:00 AM</strong></td>
-                        <td>English (Hall 305)</td>
-                        <td>Math (Hall 302)</td>
-                        <td>Physics (Lab 1)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>11:00 AM</strong></td>
-                        <td>Computer (Lab 1)</td>
-                        <td>English (Hall 305)</td>
-                        <td>Math (Hall 302)</td>
-                    </tr>
-                </tbody>
-            </table>
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6">
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
+            <h3 class="text-3xl font-bold text-primary uppercase">Weekly Lecture Schedule</h3>
+            <span class="pixel-badge pixel-badge-blue">Section 3-A</span>
         </div>
-    </main>
 
-    <footer id="contact" style="padding: 10px 8%;">
-        <p class="copyright" style="border-top: none; padding-top: 0; margin: 0; font-size: 12px;">
-            &copy; 2026 SchoolPad | Student Profile Management System
-        </p>
-    </footer>
+        <table class="pixel-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Time Slot</th>
+                    <th style="width: 26%;">Monday</th>
+                    <th style="width: 27%;">Tuesday</th>
+                    <th style="width: 27%;">Wednesday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-bold bg-surface-container-highest">09:00 AM - 10:00 AM</td>
+                    <td>
+                        <div class="font-bold text-primary">Mathematics III</div>
+                        <div class="text-xs text-on-surface-variant">Hall 302 (Prof. Raman)</div>
+                    </td>
+                    <td>
+                        <div class="font-bold text-secondary">Physics Lab</div>
+                        <div class="text-xs text-on-surface-variant">Lab 2 (Dr. Verma)</div>
+                    </td>
+                    <td>
+                        <div class="font-bold text-primary">Computer Science</div>
+                        <div class="text-xs text-on-surface-variant">Hall 302 (Prof. Gupta)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold bg-surface-container-highest">10:00 AM - 11:00 AM</td>
+                    <td>
+                        <div class="font-bold text-tertiary">Technical English</div>
+                        <div class="text-xs text-on-surface-variant">Hall 305 (Dr. Sarah)</div>
+                    </td>
+                    <td>
+                        <div class="font-bold text-primary">Mathematics III</div>
+                        <div class="text-xs text-on-surface-variant">Hall 302 (Prof. Raman)</div>
+                    </td>
+                    <td>
+                        <div class="font-bold text-secondary">Physics Lecture</div>
+                        <div class="text-xs text-on-surface-variant">Hall 101 (Dr. Verma)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold bg-surface-container-highest">11:00 AM - 12:00 PM</td>
+                    <td>
+                        <div class="font-bold text-primary">CS Data Lab</div>
+                        <div class="text-xs text-on-surface-variant">Computer Lab 1</div>
+                    </td>
+                    <td>
+                        <div class="font-bold text-tertiary">Technical English</div>
+                        <div class="text-xs text-on-surface-variant">Hall 305 (Dr. Sarah)</div>
+                    </td>
+                    <td>
+                        <div class="font-bold text-primary">Mathematics Tutorial</div>
+                        <div class="text-xs text-on-surface-variant">Hall 302 (Prof. Raman)</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 
-    <script src="auth.js"></script>
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
 </body>
-
 </html>

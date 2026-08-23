@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Multi-Filter Student Search</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-2 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center">
+        <img src="logo.png" alt="EduPixel Logo" class="h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform">
+    </a>
+    <nav class="flex gap-6"></nav>
+</header>
+
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge pixel-badge-blue mb-1">Faculty Search Engine</span>
+            <h1 class="text-4xl text-secondary font-bold uppercase">Multi-Option Student Search</h1>
+            <p class="text-on-surface-variant text-lg">Filter student dossiers simultaneously by Group / Class Section, Roll Number, and Grade CGPA.</p>
+        </div>
+        <a href="admin.html" class="btn-pixel btn-pixel-secondary">&larr; Back to Dashboard</a>
+    </div>
+</div>
+
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6">
+    <!-- Filter Controls Card -->
+    <div class="pixel-card bg-surface-container-low mb-8">
+        <h3 class="text-2xl font-bold text-secondary uppercase mb-4 border-b-2 border-on-surface pb-2">🔍 Search & Filter Criteria</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Filter 1: Group / Section -->
+            <div>
+                <label for="filter-group" class="block font-bold text-on-surface text-sm uppercase mb-1">Group / Class Section</label>
+                <select id="filter-group" class="pixel-input mb-0" onchange="applyFilters()">
+                    <option value="ALL">All Groups & Sections</option>
+                    <option value="10-A">Class 10 - Section A</option>
+                    <option value="10-B">Class 10 - Section B</option>
+                    <option value="11-A">Class 11 - Section A</option>
+                    <option value="12-A">Class 12 - Section A</option>
+                </select>
+            </div>
+
+            <!-- Filter 2: Roll Number -->
+            <div>
+                <label for="filter-roll" class="block font-bold text-on-surface text-sm uppercase mb-1">Roll Number / Name</label>
+                <input type="text" id="filter-roll" class="pixel-input mb-0" placeholder="e.g. 101, 005, Arjun..." oninput="applyFilters()">
+            </div>
+
+            <!-- Filter 3: Grade / CGPA -->
+            <div>
+                <label for="filter-grade" class="block font-bold text-on-surface text-sm uppercase mb-1">Grade / CGPA Tier</label>
+                <select id="filter-grade" class="pixel-input mb-0" onchange="applyFilters()">
+                    <option value="ALL">All Grade Tiers</option>
+                    <option value="9.0">Distinction (&gt;= 9.0 GPA)</option>
+                    <option value="8.0">First Class (&gt;= 8.0 GPA)</option>
+                    <option value="7.0">Second Class (&gt;= 7.0 GPA)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Table Card -->
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
+            <h3 class="text-3xl font-bold text-secondary uppercase">Filtered Student Dossiers</h3>
+            <span class="pixel-badge pixel-badge-blue" id="results-count">Showing 6 Students</span>
+        </div>
+
+        <table class="pixel-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Roll No.</th>
+                    <th style="width: 30%;">Student Name</th>
+                    <th style="width: 20%;">Group / Section</th>
+                    <th style="width: 15%;">GPA Grade</th>
+                    <th style="width: 20%;">Action</th>
+                </tr>
+            </thead>
+            <tbody id="student-search-body">
+                <tr data-group="10-A" data-roll="101" data-gpa="8.5" data-name="Arjun Sharma">
+                    <td class="font-bold">101</td>
+                    <td class="font-bold">Arjun Sharma</td>
+                    <td><span class="pixel-badge">Class 10-A</span></td>
+                    <td><span class="pixel-badge pixel-badge-gold">8.5 / 10</span></td>
+                    <td><a href="profile.html" class="btn-pixel py-1 text-xs">Inspect Profile</a></td>
+                </tr>
+                <tr data-group="10-A" data-roll="102" data-gpa="9.1" data-name="Riya Kapoor">
+                    <td class="font-bold">102</td>
+                    <td class="font-bold">Riya Kapoor</td>
+                    <td><span class="pixel-badge">Class 10-A</span></td>
+                    <td><span class="pixel-badge pixel-badge-gold">9.1 / 10</span></td>
+                    <td><a href="profile.html" class="btn-pixel py-1 text-xs">Inspect Profile</a></td>
+                </tr>
+                <tr data-group="10-B" data-roll="201" data-gpa="7.8" data-name="Rahul Sharma">
+                    <td class="font-bold">201</td>
+                    <td class="font-bold">Rahul Sharma</td>
+                    <td><span class="pixel-badge pixel-badge-blue">Class 10-B</span></td>
+                    <td><span class="pixel-badge">7.8 / 10</span></td>
+                    <td><a href="profile.html" class="btn-pixel py-1 text-xs">Inspect Profile</a></td>
+                </tr>
+                <tr data-group="10-B" data-roll="202" data-gpa="9.5" data-name="Priya Singh">
+                    <td class="font-bold">202</td>
+                    <td class="font-bold">Priya Singh</td>
+                    <td><span class="pixel-badge pixel-badge-blue">Class 10-B</span></td>
+                    <td><span class="pixel-badge pixel-badge-gold">9.5 / 10</span></td>
+                    <td><a href="profile.html" class="btn-pixel py-1 text-xs">Inspect Profile</a></td>
+                </tr>
+                <tr data-group="11-A" data-roll="301" data-gpa="8.9" data-name="Ananya Patel">
+                    <td class="font-bold">301</td>
+                    <td class="font-bold">Ananya Patel</td>
+                    <td><span class="pixel-badge">Class 11-A</span></td>
+                    <td><span class="pixel-badge pixel-badge-gold">8.9 / 10</span></td>
+                    <td><a href="profile.html" class="btn-pixel py-1 text-xs">Inspect Profile</a></td>
+                </tr>
+                <tr data-group="12-A" data-roll="401" data-gpa="9.3" data-name="Vikram Malhotra">
+                    <td class="font-bold">401</td>
+                    <td class="font-bold">Vikram Malhotra</td>
+                    <td><span class="pixel-badge pixel-badge-blue">Class 12-A</span></td>
+                    <td><span class="pixel-badge pixel-badge-gold">9.3 / 10</span></td>
+                    <td><a href="profile.html" class="btn-pixel py-1 text-xs">Inspect Profile</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+    function applyFilters() {
+        const groupVal = document.getElementById('filter-group').value;
+        const rollVal = document.getElementById('filter-roll').value.trim().toLowerCase();
+        const gradeVal = document.getElementById('filter-grade').value;
+
+        const rows = document.querySelectorAll('#student-search-body tr');
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+            const rowGroup = row.getAttribute('data-group');
+            const rowRoll = row.getAttribute('data-roll').toLowerCase();
+            const rowName = row.getAttribute('data-name').toLowerCase();
+            const rowGpa = parseFloat(row.getAttribute('data-gpa'));
+
+            let matchGroup = (groupVal === 'ALL' || rowGroup === groupVal);
+            let matchRoll = (!rollVal || rowRoll.includes(rollVal) || rowName.includes(rollVal));
+            let matchGrade = true;
+
+            if (gradeVal !== 'ALL') {
+                const minGpa = parseFloat(gradeVal);
+                matchGrade = (rowGpa >= minGpa);
+            }
+
+            if (matchGroup && matchRoll && matchGrade) {
+                row.style.display = '';
+                visibleCount++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        document.getElementById('results-count').textContent = 'Showing ' + visibleCount + ' Students';
+    }
+</script>
+</body>
+</html>

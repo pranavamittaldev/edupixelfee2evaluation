@@ -1,128 +1,308 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SchoolPad - Student Profile</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Student Portal Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
 
-<body>
+<!-- Header Navigation -->
+<header class="flex justify-between items-center px-4 md:px-gutter py-3 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50 gap-4">
+    <a href="index.html" class="flex items-center gap-2 md:gap-3 hover:opacity-90 transition-opacity shrink-0">
+        <img src="logo.png" alt="EduPixel Logo" class="h-9 md:h-11 w-auto object-contain shrink-0">
+        <span class="brand-logo-text text-xl md:text-2xl uppercase flex items-center shrink-0 whitespace-nowrap">
+            <span style="color: #366a19;">EDU</span><span style="color: #365e9f;">PIXEL</span>
+        </span>
+    </a>
+    <nav class="flex gap-3 md:gap-4 flex-wrap justify-end"></nav>
+</header>
 
-    <header>
-        <div class="brand-logo-container">
-            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
-            <h1 class="logo">SchoolPad</h1>
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge mb-1">Level 3 Scholar</span>
+            <h1 class="text-4xl text-primary font-bold uppercase">Welcome Back, <span id="display-student-name">Arjun Sharma</span>!</h1>
+            <p class="text-on-surface-variant text-lg">Central Student Portal — access your academics, fees, documents, career drives, and campus life.</p>
         </div>
-        <nav>
-            <a href="profile.html">Profile</a>
-            <a href="circulars.html">Circulars</a>
-            <a href="academics.html">Academics</a>
-            <a href="#" onclick="logout(); return false;" class="nav-logout-btn">Logout</a>
-        </nav>
-    </header>
+        <div class="flex gap-3">
+            <a href="student-academic-profile.html" class="btn-pixel">🎓 Academic Profile</a>
+            <a href="student-settings.html" class="btn-pixel btn-pixel-secondary">⚙️ Settings</a>
+        </div>
+    </div>
+</div>
 
-    <div class="dashboard-banner">
-        <h2>Welcome back, <span id="display-student-name">Arjun Sharma</span>! <span class="badge-tag badge-student">Student Profile</span></h2>
-        <p>View your academic records, personal information, and enrollment details.</p>
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6 space-y-8">
+
+    <!-- Top Identity Dossier Widget -->
+    <div class="pixel-card bg-surface-container-low flex flex-col md:flex-row gap-6 items-center">
+        <div class="w-20 h-20 bg-primary text-white text-3xl font-bold flex items-center justify-center pixel-border shrink-0" id="avatar-initials">
+            AS
+        </div>
+        <div class="flex-grow text-center md:text-left space-y-1">
+            <h2 class="text-3xl font-bold text-on-surface" id="profile-name">Arjun Sharma</h2>
+            <p class="text-secondary font-bold font-mono">B.Tech CSE — 3rd Semester (Roll No: 101)</p>
+            <div class="flex flex-wrap gap-2 justify-center md:justify-start pt-1">
+                <span class="pixel-badge text-xs">Status: Active</span>
+                <span class="pixel-badge pixel-badge-gold text-xs">CGPA: 8.5 / 10.0</span>
+                <span class="pixel-badge pixel-badge-blue text-xs">Attendance: 91%</span>
+            </div>
+        </div>
+        <div class="flex gap-2">
+            <a href="student-requests.html" class="btn-pixel text-xs py-2">Apply Leave</a>
+            <a href="student-fees.html" class="btn-pixel btn-pixel-secondary text-xs py-2">Pay Fees</a>
+        </div>
     </div>
 
-    <main class="student-section">
-        <div class="profile-grid">
-            <div class="profile-card profile-main-info">
-                <div class="profile-avatar" id="avatar-initials">AS</div>
-                <h3 id="profile-name">Arjun Sharma</h3>
-                <p class="profile-subtitle">B.Tech CSE - 3rd Semester</p>
-                <p><strong>Roll No:</strong> 101</p>
-                <p style="margin-top: 10px;"><strong>Academic Status:</strong> Active</p>
-                <p><strong>Current CGPA:</strong> 8.5 / 10.0</p>
-            </div>
+    <!-- Student Portal Modules Grid (18 Categories) -->
+    <div>
+        <h2 class="text-3xl font-bold text-primary uppercase mb-4 border-b-4 border-on-surface pb-2">🎮 Student Portal Modules</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            <div class="profile-card">
-                <h3 style="color: #C65D3A; margin-bottom: 15px; border-bottom: 2px solid #E8DED4; padding-bottom: 10px;">Academic & Personal Details</h3>
-                <table class="info-table">
-                    <tbody>
-                        <tr>
-                            <td class="label">Full Name</td>
-                            <td class="value" id="table-full-name">Arjun Sharma</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Roll Number</td>
-                            <td class="value">101</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Department</td>
-                            <td class="value">Computer Science & Engineering</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Degree Course</td>
-                            <td class="value">B.Tech CSE</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Current Semester</td>
-                            <td class="value">3rd Semester</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Email Address</td>
-                            <td class="value">arjun.sharma@schoolpad.edu</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Phone Number</td>
-                            <td class="value">+91 98765 43210</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Academic Advisor</td>
-                            <td class="value">Dr. Rajesh Kumar</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Blood Group</td>
-                            <td class="value">O+ Positive</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <!-- 1. Academic Profile -->
+            <a href="student-academic-profile.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-primary text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                        🎓
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-1">Academic Profile</h3>
+                    <p class="text-xs text-on-surface-variant">Personal Info, Academic History, Program Details, & Achievements.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-primary">Inspect Profile &rarr;</div>
+            </a>
+
+            <!-- 2. Academics & Subjects -->
+            <a href="academics.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-secondary text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                        📚
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-1">Academics Hub</h3>
+                    <p class="text-xs text-on-surface-variant">My Subjects, Timetable, Assignments, Exams, & Results.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-secondary">View Academics &rarr;</div>
+            </a>
+
+            <!-- 3. Attendance -->
+            <a href="attendance.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-primary-container text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                        🕐
+                    </div>
+                    <div class="flex justify-between items-center mb-1">
+                        <h3 class="text-2xl font-bold text-primary">Attendance</h3>
+                        <span class="pixel-badge text-xs">91% Overall</span>
+                    </div>
+                    <p class="text-xs text-on-surface-variant">Overall & Subject-wise attendance breakdown.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-primary">Attendance Matrix &rarr;</div>
+            </a>
+
+            <!-- 4. Fees & Payments -->
+            <a href="student-fees.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-gold-accent text-on-bg text-3xl flex items-center justify-center mb-3 pixel-border" style="background-color: #d4a73e;">
+                        💰
+                    </div>
+                    <div class="flex justify-between items-center mb-1">
+                        <h3 class="text-2xl font-bold text-on-bg">Fees & Payments</h3>
+                        <span class="pixel-badge pixel-badge-gold text-xs">Clear</span>
+                    </div>
+                    <p class="text-xs text-on-surface-variant">Fee details, payment history, pending fees, & receipts.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-on-bg">View Treasury &rarr;</div>
+            </a>
+
+            <!-- 5. Documents Vault -->
+            <a href="student-documents.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-secondary text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                        📄
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-1">Documents Vault</h3>
+                    <p class="text-xs text-on-surface-variant">My Documents, Upload Credentials, & Verification Status.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-secondary">Documents Vault &rarr;</div>
+            </a>
+
+            <!-- 6. Requests & Applications -->
+            <a href="student-requests.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-tertiary text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                        📝
+                    </div>
+                    <h3 class="text-2xl font-bold text-tertiary mb-1">Requests & Forms</h3>
+                    <p class="text-xs text-on-surface-variant">Apply for Certificates, Medical Leaves, & Profile Updates.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-tertiary">Apply Form &rarr;</div>
+            </a>
+
+            <!-- 7. Announcements & Circulars -->
+            <a href="circulars.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-error text-white text-3xl flex items-center justify-center mb-3 pixel-border" style="background-color: #ba1a1a;">
+                        📢
+                    </div>
+                    <h3 class="text-2xl font-bold text-on-surface mb-1">Announcements</h3>
+                    <p class="text-xs text-on-surface-variant">Campus circulars, exam notices, & guild news.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-error">Notice Board &rarr;</div>
+            </a>
+
+            <!-- 8. Academic Calendar -->
+            <a href="academic-calendar.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-gold-accent text-on-bg text-3xl flex items-center justify-center mb-3 pixel-border" style="background-color: #d4a73e;">
+                        📅
+                    </div>
+                    <h3 class="text-2xl font-bold text-on-bg mb-1">Calendar & Events</h3>
+                    <p class="text-xs text-on-surface-variant">Semester timeline, exam dates, & holiday schedules.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-on-bg">Event Timeline &rarr;</div>
+            </a>
+
+            <!-- 9. Achievements & Badges -->
+            <a href="certificates.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-primary text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                        🏆
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-1">Achievements</h3>
+                    <p class="text-xs text-on-surface-variant">Academic, Sports, Coding Competitions, & Certificates.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-primary">Trophies & Badges &rarr;</div>
+            </a>
+
+            <!-- 10. Campus Life & Clubs -->
+            <a href="student-campus.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-secondary text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                        🏫
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-1">Campus Life</h3>
+                    <p class="text-xs text-on-surface-variant">Clubs & Societies, Cultural Events, & Workshops.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-secondary">Clubs & Events &rarr;</div>
+            </a>
+
+            <!-- 11. Career & Placements -->
+            <a href="student-career.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-tertiary text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                        💼
+                    </div>
+                    <h3 class="text-2xl font-bold text-tertiary mb-1">Career & Jobs</h3>
+                    <p class="text-xs text-on-surface-variant">Placements, Internships, & Job Opportunities.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-tertiary">Career Hub &rarr;</div>
+            </a>
+
+            <!-- 12. Library Portal -->
+            <a href="student-library.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-primary-container text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                        📖
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-1">Academy Library</h3>
+                    <p class="text-xs text-on-surface-variant">Search Books, Issued Books, Due Dates, & Fines.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-primary">Library Catalog &rarr;</div>
+            </a>
+
+            <!-- 13. Transport Services -->
+            <a href="student-transport.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-secondary-container text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                        🚌
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-1">Transport</h3>
+                    <p class="text-xs text-on-surface-variant">Bus Details, Route Maps, & Pass Renewals.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-secondary">Bus Routes &rarr;</div>
+            </a>
+
+            <!-- 14. Hostel & Mess -->
+            <a href="student-hostel.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-gold-accent text-on-bg text-3xl flex items-center justify-center mb-3 pixel-border" style="background-color: #d4a73e;">
+                        🍽️
+                    </div>
+                    <h3 class="text-2xl font-bold text-on-bg mb-1">Hostel & Mess</h3>
+                    <p class="text-xs text-on-surface-variant">Hostel Room, Weekly Mess Menu, & Complaints.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-on-bg">Hostel Desk &rarr;</div>
+            </a>
+
+            <!-- 15. Help & Support -->
+            <a href="student-support.html" class="pixel-card bg-surface-container-lowest hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-error text-white text-3xl flex items-center justify-center mb-3 pixel-border" style="background-color: #ba1a1a;">
+                        💬
+                    </div>
+                    <h3 class="text-2xl font-bold text-on-surface mb-1">Help & Support</h3>
+                    <p class="text-xs text-on-surface-variant">Raise Complaints, Support Tickets, & FAQs.</p>
+                </div>
+                <div class="mt-4 text-xs font-mono font-bold text-error">Support Desk &rarr;</div>
+            </a>
+
         </div>
-    </main>
+    </div>
 
-    <footer id="contact">
-        <section class="footer-section">
-            <div>
-                <h3>About Us</h3>
-                <p>SchoolPad helps manage student profiles and academic information.</p>
-            </div>
-            <div>
-                <h3>Contact Us</h3>
-                <p>Email: schoolpad@example.com</p>
-                <p>Phone: +91 XXXXXXXXXX</p>
-            </div>
-        </section>
-        <p class="copyright">
-            &copy; 2026 SchoolPad | Student Profile Management System
-        </p>
-    </footer>
+</main>
 
-    <script src="auth.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const username = localStorage.getItem('username');
-            if (username) {
-                const nameDisplay = document.getElementById('display-student-name');
-                const profileName = document.getElementById('profile-name');
-                const tableName = document.getElementById('table-full-name');
-                const avatar = document.getElementById('avatar-initials');
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
 
-                if (nameDisplay) nameDisplay.textContent = username;
-                if (profileName) profileName.textContent = username;
-                if (tableName) tableName.textContent = username;
+<script src="auth.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const username = localStorage.getItem('username');
+        if (username) {
+            const nameDisplay = document.getElementById('display-student-name');
+            const profileName = document.getElementById('profile-name');
+            const avatar = document.getElementById('avatar-initials');
 
-                if (avatar) {
-                    const initials = username.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
-                    avatar.textContent = initials || 'AS';
-                }
+            if (nameDisplay) nameDisplay.textContent = username;
+            if (profileName) profileName.textContent = username;
+
+            if (avatar) {
+                const initials = username.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+                avatar.textContent = initials || 'AS';
             }
-        });
-    </script>
+        }
+    });
+</script>
 </body>
-
 </html>

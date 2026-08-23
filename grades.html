@@ -1,82 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SchoolPad - Student Grades</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Student Grades</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
 
-<body class="detail-page-body">
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-2 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center">
+        <img src="logo.png" alt="EduPixel Logo" class="h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform">
+    </a>
+    <nav class="flex gap-6"></nav>
+</header>
 
-    <header style="position: relative;">
-        <div class="brand-logo-container">
-            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
-            <h1 class="logo">SchoolPad</h1>
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge pixel-badge-gold mb-1">Cumulative CGPA: 8.5 / 10.0</span>
+            <h1 class="text-4xl text-primary font-bold uppercase">Grades Report</h1>
+            <p class="text-on-surface-variant text-lg">Semester grade point averages and subject performance breakdown.</p>
         </div>
-        <nav>
-            <a href="profile.html">Profile</a>
-            <a href="circulars.html">Circulars</a>
-            <a href="academics.html">Academics</a>
-            <a href="#" onclick="logout(); return false;" class="nav-logout-btn">Logout</a>
-        </nav>
-    </header>
-
-    <div class="dashboard-banner" style="margin: 10px 8% 0; padding: 12px 22px;">
-        <h2 style="font-size: 20px;">Grades Report <span class="badge-tag badge-student">CGPA: 8.5 / 10.0</span></h2>
-        <p style="font-size: 13px;">Semester grade point averages and subject performance breakdown.</p>
+        <a href="academics.html" class="btn-pixel">&larr; Back to Academics</a>
     </div>
+</div>
 
-    <main class="detail-section-compact">
-        <a href="academics.html" class="back-btn" style="margin-bottom: 12px; padding: 6px 14px; font-size: 13px;">← Back to Academics</a>
-
-        <div class="detail-card-compact">
-            <h3 style="color: #C65D3A; font-size: 17px; margin-bottom: 10px; border-bottom: 2px solid #E8DED4; padding-bottom: 6px;">Subject Grade Breakdown</h3>
-            <table class="compact-table">
-                <thead>
-                    <tr>
-                        <th>Subject</th>
-                        <th>Grade</th>
-                        <th>Grade Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Mathematics</td>
-                        <td><span class="badge-tag badge-student">A</span></td>
-                        <td>9.0</td>
-                    </tr>
-                    <tr>
-                        <td>Physics</td>
-                        <td><span class="badge-tag badge-student">B+</span></td>
-                        <td>8.0</td>
-                    </tr>
-                    <tr>
-                        <td>English</td>
-                        <td><span class="badge-tag badge-student">A</span></td>
-                        <td>8.5</td>
-                    </tr>
-                    <tr>
-                        <td>Computer Science</td>
-                        <td><span class="badge-tag badge-student">A+</span></td>
-                        <td>10.0</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div style="margin-top: 10px; text-align: right; font-size: 13px; font-weight: 600; color: #668B6A;">
-                Cumulative CGPA: 8.5 / 10.0 (First Class w/ Distinction)
-            </div>
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6">
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
+            <h3 class="text-3xl font-bold text-primary uppercase">Subject Grade Breakdown</h3>
+            <span class="pixel-badge">Semester 3</span>
         </div>
-    </main>
 
-    <footer id="contact" style="padding: 10px 8%;">
-        <p class="copyright" style="border-top: none; padding-top: 0; margin: 0; font-size: 12px;">
-            &copy; 2026 SchoolPad | Student Profile Management System
-        </p>
-    </footer>
+        <table class="pixel-table">
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Subject Name</th>
+                    <th style="width: 25%;">Grade Awarded</th>
+                    <th style="width: 25%;">Grade Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-bold">Mathematics III (Discrete Structures)</td>
+                    <td><span class="pixel-badge">A</span></td>
+                    <td>9.0 / 10.0</td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Physics (Quantum & Semiconductor Electronics)</td>
+                    <td><span class="pixel-badge pixel-badge-blue">B+</span></td>
+                    <td>8.0 / 10.0</td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Technical English & Professional Communication</td>
+                    <td><span class="pixel-badge">A</span></td>
+                    <td>8.5 / 10.0</td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Computer Science & Data Structures</td>
+                    <td><span class="pixel-badge pixel-badge-gold">A+</span></td>
+                    <td>10.0 / 10.0</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <script src="auth.js"></script>
+        <div class="mt-6 p-4 bg-surface-container-low border-2 border-on-surface flex justify-between items-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span class="font-bold text-lg text-primary">Cumulative Status: First Class with Distinction</span>
+            <span class="pixel-badge pixel-badge-gold text-base">Overall CGPA: 8.5 / 10.0</span>
+        </div>
+    </div>
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
 </body>
-
 </html>

@@ -1,86 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SchoolPad - Academic Topics</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Academic Topics</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
 
-<body class="academics-body">
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-2 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center">
+        <img src="logo.png" alt="EduPixel Logo" class="h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform">
+    </a>
+    <nav class="flex gap-6"></nav>
+</header>
 
-    <header style="position: relative;">
-        <div class="brand-logo-container">
-            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
-            <h1 class="logo">SchoolPad</h1>
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <div>
+            <span class="pixel-badge mb-1">Select Academic Quest</span>
+            <h1 class="text-4xl text-primary font-bold uppercase">Academics Menu</h1>
+            <p class="text-on-surface-variant text-lg">Select a category below to inspect academic records and schedules.</p>
         </div>
-        <nav>
-            <a href="profile.html">Profile</a>
-            <a href="circulars.html">Circulars</a>
-            <a href="academics.html">Academics</a>
-            <a href="#" onclick="logout(); return false;" class="nav-logout-btn">Logout</a>
-        </nav>
-    </header>
-
-    <div class="dashboard-banner" style="margin: 12px 8% 0; padding: 14px 22px;">
-        <h2 style="font-size: 20px;">Academics Menu <span class="badge-tag badge-student">Select Topic</span></h2>
-        <p style="font-size: 13px;">Select an academic category below to view detailed records.</p>
     </div>
+</div>
 
-    <main class="academics-section-compact">
-        <div class="academics-grid-compact">
-            <!-- 1. Grades Topic Card -->
-            <a href="grades.html" class="academics-menu-card">
-                <div class="academics-icon-box">📊</div>
-                <h3>Grades</h3>
-                <p>Semester SGPA & CGPA</p>
-            </a>
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- 1. Grades Card -->
+        <a href="grades.html" class="pixel-card bg-surface-container-low hover:-translate-y-2 transition-transform flex flex-col justify-between">
+            <div>
+                <div class="w-16 h-16 bg-primary text-white text-3xl flex items-center justify-center mb-4 pixel-border">
+                    📊
+                </div>
+                <h2 class="text-3xl font-bold text-primary mb-2">Grades</h2>
+                <p class="text-on-surface-variant">Semester SGPA, cumulative CGPA, and subject grade breakdown.</p>
+            </div>
+            <div class="mt-6 font-mono text-sm font-bold text-primary flex items-center gap-1">
+                View Grades &rarr;
+            </div>
+        </a>
 
-            <!-- 2. Certificates Topic Card -->
-            <a href="certificates.html" class="academics-menu-card">
-                <div class="academics-icon-box">📜</div>
-                <h3>Certificates</h3>
-                <p>Issued records & letters</p>
-            </a>
+        <!-- 2. Certificates Card -->
+        <a href="certificates.html" class="pixel-card bg-surface-container-low hover:-translate-y-2 transition-transform flex flex-col justify-between">
+            <div>
+                <div class="w-16 h-16 bg-secondary text-white text-3xl flex items-center justify-center mb-4 pixel-border">
+                    📜
+                </div>
+                <h2 class="text-3xl font-bold text-secondary mb-2">Certificates</h2>
+                <p class="text-on-surface-variant">Issued digital records, official letters, and RPG achievement badges.</p>
+            </div>
+            <div class="mt-6 font-mono text-sm font-bold text-secondary flex items-center gap-1">
+                Inspect Badges &rarr;
+            </div>
+        </a>
 
-            <!-- 3. Subjects Topic Card -->
-            <a href="subjects.html" class="academics-menu-card">
-                <div class="academics-icon-box">📚</div>
-                <h3>Subjects</h3>
-                <p>Enrolled courses & credits</p>
-            </a>
+        <!-- 3. Subjects Card -->
+        <a href="subjects.html" class="pixel-card bg-surface-container-low hover:-translate-y-2 transition-transform flex flex-col justify-between">
+            <div>
+                <div class="w-16 h-16 bg-tertiary-container text-white text-3xl flex items-center justify-center mb-4 pixel-border">
+                    📚
+                </div>
+                <h2 class="text-3xl font-bold text-tertiary mb-2">Subjects</h2>
+                <p class="text-on-surface-variant">Enrolled courses, credit weightage, faculty roster, and syllabus progress.</p>
+            </div>
+            <div class="mt-6 font-mono text-sm font-bold text-tertiary flex items-center gap-1">
+                Course List &rarr;
+            </div>
+        </a>
 
-            <!-- 4. Timetable Topic Card -->
-            <a href="timetable.html" class="academics-menu-card">
-                <div class="academics-icon-box">📅</div>
-                <h3>Timetable</h3>
-                <p>Weekly lecture schedule</p>
-            </a>
+        <!-- 4. Timetable Card -->
+        <a href="timetable.html" class="pixel-card bg-surface-container-low hover:-translate-y-2 transition-transform flex flex-col justify-between">
+            <div>
+                <div class="w-16 h-16 bg-primary-container text-white text-3xl flex items-center justify-center mb-4 pixel-border">
+                    📅
+                </div>
+                <h2 class="text-3xl font-bold text-primary mb-2">Timetable</h2>
+                <p class="text-on-surface-variant">Weekly lecture schedule, lab slots, and classroom locations.</p>
+            </div>
+            <div class="mt-6 font-mono text-sm font-bold text-primary flex items-center gap-1">
+                Class Schedule &rarr;
+            </div>
+        </a>
 
-            <!-- 5. Attendance Topic Card -->
-            <a href="attendance.html" class="academics-menu-card">
-                <div class="academics-icon-box">📝</div>
-                <h3>Attendance</h3>
-                <p>Attendance percentage & records</p>
-            </a>
+        <!-- 5. Attendance Card -->
+        <a href="attendance.html" class="pixel-card bg-surface-container-low hover:-translate-y-2 transition-transform flex flex-col justify-between">
+            <div>
+                <div class="w-16 h-16 bg-secondary-container text-white text-3xl flex items-center justify-center mb-4 pixel-border">
+                    📝
+                </div>
+                <h2 class="text-3xl font-bold text-secondary mb-2">Attendance</h2>
+                <p class="text-on-surface-variant">Subject-wise attendance percentages, present logs, and alerts.</p>
+            </div>
+            <div class="mt-6 font-mono text-sm font-bold text-secondary flex items-center gap-1">
+                Attendance Matrix &rarr;
+            </div>
+        </a>
 
-            <!-- 6. Academic Calendar Topic Card -->
-            <a href="academic-calendar.html" class="academics-menu-card">
-                <div class="academics-icon-box">🗓️</div>
-                <h3>Academic Calendar</h3>
-                <p>Semester dates & exam events</p>
-            </a>
-        </div>
-    </main>
+        <!-- 6. Academic Calendar Card -->
+        <a href="academic-calendar.html" class="pixel-card bg-surface-container-low hover:-translate-y-2 transition-transform flex flex-col justify-between">
+            <div>
+                <div class="w-16 h-16 bg-gold-accent text-on-bg text-3xl flex items-center justify-center mb-4 pixel-border" style="background-color: #d4a73e;">
+                    🗓️
+                </div>
+                <h2 class="text-3xl font-bold text-on-bg mb-2">Calendar</h2>
+                <p class="text-on-surface-variant">Semester dates, examination schedules, holidays, and quest deadlines.</p>
+            </div>
+            <div class="mt-6 font-mono text-sm font-bold text-on-bg flex items-center gap-1">
+                Event Timeline &rarr;
+            </div>
+        </a>
 
-    <footer id="contact" style="padding: 10px 8%;">
-        <p class="copyright" style="border-top: none; padding-top: 0; margin: 0; font-size: 12px;">
-            &copy; 2026 SchoolPad | Student Profile Management System
-        </p>
-    </footer>
+    </div>
+</main>
 
-    <script src="auth.js"></script>
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
 </body>
-
 </html>

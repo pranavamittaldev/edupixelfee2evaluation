@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Academy Library</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-2 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center">
+        <img src="logo.png" alt="EduPixel Logo" class="h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform">
+    </a>
+    <nav class="flex gap-4 flex-wrap"></nav>
+</header>
+
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge pixel-badge-gold mb-1">Knowledge Archive</span>
+            <h1 class="text-4xl text-primary font-bold uppercase">Academy Library Portal</h1>
+            <p class="text-on-surface-variant text-lg">Search catalog books, view currently issued titles, return due dates, and fine details.</p>
+        </div>
+        <a href="profile.html" class="btn-pixel">&larr; Back to Dashboard</a>
+    </div>
+</div>
+
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6 space-y-8">
+
+    <!-- Book Search Card -->
+    <div class="pixel-card bg-surface-container-low">
+        <h3 class="text-2xl font-bold text-primary uppercase mb-2 border-b-2 border-on-surface pb-2">📖 Search Academy Catalog & E-Books</h3>
+        <div class="flex gap-4">
+            <input type="text" class="pixel-input mb-0" placeholder="Search by Book Title, Author, or ISBN (e.g. Introduction to Algorithms, Cormen)...">
+            <button onclick="alert('Searching catalog... 3 matches found.')" class="btn-pixel shrink-0">Search Catalog</button>
+        </div>
+    </div>
+
+    <!-- Currently Issued Books Table -->
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
+            <h3 class="text-3xl font-bold text-primary uppercase">Currently Issued Books</h3>
+            <span class="pixel-badge">2 Books Issued</span>
+        </div>
+
+        <table class="pixel-table">
+            <thead>
+                <tr>
+                    <th style="width: 40%;">Book Title & Author</th>
+                    <th style="width: 20%;">Issue Date</th>
+                    <th style="width: 20%;">Return Due Date</th>
+                    <th style="width: 20%;">Fine Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-bold">Introduction to Algorithms (4th Ed.) — T. Cormen</td>
+                    <td class="font-mono text-sm">10 August 2026</td>
+                    <td class="font-mono text-sm font-bold text-primary">28 August 2026</td>
+                    <td><span class="pixel-badge">NO FINE (Active)</span></td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Discrete Mathematics & Applications — K. Rosen</td>
+                    <td class="font-mono text-sm">05 August 2026</td>
+                    <td class="font-mono text-sm font-bold text-primary">25 August 2026</td>
+                    <td><span class="pixel-badge">NO FINE (Active)</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
+</body>
+</html>

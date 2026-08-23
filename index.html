@@ -1,290 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>SchoolPad</title>
-
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Student Management</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
 
-<body>
+<!-- Top Navigation -->
+<header class="flex justify-between items-center px-4 md:px-gutter py-3 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50 gap-4">
+    <a href="index.html" class="flex items-center gap-2 md:gap-3 hover:opacity-90 transition-opacity shrink-0">
+        <img src="logo.png" alt="EduPixel Logo" class="h-9 md:h-11 w-auto object-contain shrink-0">
+        <span class="brand-logo-text text-xl md:text-2xl uppercase flex items-center shrink-0 whitespace-nowrap">
+            <span style="color: #366a19;">EDU</span><span style="color: #365e9f;">PIXEL</span>
+        </span>
+    </a>
+    
+    <!-- Navigation (Managed dynamically by auth.js) -->
+    <nav class="flex gap-3 md:gap-4 flex-wrap justify-end"></nav>
+</header>
 
-
-
-
-    <header>
-
-        <div class="brand-logo-container">
-            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
-            <h1 class="logo">SchoolPad</h1>
-        </div>
-
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#features">Features</a>
-            <a href="login.html">Sign Up</a>
-        </nav>
-
-    </header>
-
-
-
-    <main>
-
-
-        <section class="home" id="home">
-
-            <h2>Student Profile Management System</h2>
-
-            <p>
-                A simple platform to manage student profiles
-                and academic information.
+<main class="flex-grow flex flex-col items-center" id="home">
+    <!-- Hero Section (Matches Wireframe Title & RPG Buttons) -->
+    <section class="w-full relative min-h-[440px] md:min-h-[640px] flex flex-col items-center justify-center overflow-hidden hero-bg-gradient" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyAwDeiR8e0p7acYmHXkvdPGRjnmaRcu5Hsz-1_h95K-otNmfoK9nhBM65wWwRXYCV2YUhR-Ac1QW3HwEhNp4c1JomiKVzHRl0_LYIfhGQS-LBvKI6EMcufIVjf5iaqIp9ISeJYqe4a0qO6NSX76lB2r6zs4ZdY9JAB8-Cz_OgyuJao3Ez3Fdwzp8MoH1SObD9oPD29JaWbp8livaRsE0N3F9Z5fS8sl4f8FhOdPB5rDNJmjjOfQ0LRR0AI2VEMiSv_1w'); background-size: cover; background-position: center center;">
+        <div class="z-10 text-center px-4 max-w-4xl p-6 flex flex-col items-center w-full">
+            <img src="logo.png" alt="EduPixel Logo" class="w-60 md:w-80 max-w-full mb-4 rounded-2xl border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:scale-105 transition-transform bg-surface p-3">
+            <h1 class="font-headline-lg text-3xl md:text-6xl text-white mb-2 tracking-wide pixel-text-shadow leading-tight md:text-7xl">
+                Student Profile Management System
+            </h1>
+            <p class="font-body-lg text-lg md:text-2xl text-white mb-6 tracking-wide pixel-text-shadow max-w-xl">
+                A simple platform to organize and manage student profiles and academic information.
             </p>
-
-            <a href="#features" class="btn">Get Started</a>
-
-        </section>
-
-
-
-        <section class="features" id="features">
-
-            <h2>Our Features</h2>
-
-            <div class="feature-container">
-
-                <article class="card">
-
-                    <h3>Add Student</h3>
-
-                    <p>
-                        Add new student profiles to the system.
-                    </p>
-
-                </article>
-
-
-                <article class="card">
-
-                    <h3>View Students</h3>
-
-                    <p>
-                        View all registered student profiles.
-                    </p>
-
-                </article>
-
-
-                <article class="card">
-
-                    <h3>Search Student</h3>
-
-                    <p>
-                        Search for students easily.
-                    </p>
-
-                </article>
-
-
-                <article class="card">
-
-                    <h3>Edit Profile</h3>
-
-                    <p>
-                        Update student profile information.
-                    </p>
-
-                </article>
-
-
-                <article class="card">
-
-                    <h3>Academic Details</h3>
-
-                    <p>
-                        Manage student academic information.
-                    </p>
-
-                </article>
-
-
-                <article class="card">
-
-                    <h3>Contact Details</h3>
-
-                    <p>
-                        Manage student contact information.
-                    </p>
-
-                </article>
-
+            <div class="flex flex-col sm:flex-row gap-4 w-full max-w-xs md:max-w-md items-stretch mt-2">
+                <a href="login.html" class="ornate-btn ornate-btn-green hover:-translate-y-1 transition-transform">
+                    <div class="ornate-corner corner-tl"></div>
+                    <div class="ornate-corner corner-tr"></div>
+                    <div class="ornate-corner corner-bl"></div>
+                    <div class="ornate-corner corner-br"></div>
+                    <div class="ornate-btn-inner px-6 py-3 pixel-border">
+                        <span class="text-xl md:text-3xl text-white tracking-widest pixel-text-shadow uppercase font-headline-lg">Student Login</span>
+                    </div>
+                </a>
+                <a href="login.html?role=admin" class="ornate-btn ornate-btn-blue hover:-translate-y-1 transition-transform">
+                    <div class="ornate-corner corner-tl"></div>
+                    <div class="ornate-corner corner-tr"></div>
+                    <div class="ornate-corner corner-bl"></div>
+                    <div class="ornate-corner corner-br"></div>
+                    <div class="ornate-btn-inner px-6 py-3 pixel-border">
+                        <span class="text-xl md:text-3xl text-white tracking-widest pixel-text-shadow uppercase font-headline-lg">Admin Login</span>
+                    </div>
+                </a>
             </div>
+            <!-- Carousel Indicator Dots (From Wireframe Diagram) -->
+            <div class="flex gap-2 mt-6">
+                <span class="w-3 h-3 bg-white border-2 border-on-bg rounded-full inline-block"></span>
+                <span class="w-3 h-3 bg-primary-fixed border-2 border-on-bg rounded-full inline-block"></span>
+                <span class="w-3 h-3 bg-white border-2 border-on-bg rounded-full inline-block opacity-60"></span>
+            </div>
+        </div>
+    </section>
 
-        </section>
-      
-
-<section class="students">
-
-    <h2>Student Profiles</h2>
-
-    <p class="student-heading">
-        View basic information of registered students.
-    </p>
-
-    <div class="students-layout">
-
-        <div class="student-container">
-
-
-            <article class="student-card">
-
-                <div class="student-photo">
-                    AS
-                </div>
-
-                <h3>Arjun Sharma</h3>
-
-                <p><strong>Roll No:</strong> 101</p>
-
-                <p><strong>Course:</strong> B.Tech CSE</p>
-
-                <p><strong>Semester:</strong> 3rd</p>
-
-                <p><strong>GPA:</strong> 8.5</p>
-
-                <a href="#" class="view-btn">View Profile</a>
-
-            </article>
-
-
-         
-
-            <article class="student-card">
-
-                <div class="student-photo">
-                    RK
-                </div>
-
-                <h3>Riya Kapoor</h3>
-
-                <p><strong>Roll No:</strong> 102</p>
-
-                <p><strong>Course:</strong> B.Tech CSE</p>
-
-                <p><strong>Semester:</strong> 3rd</p>
-
-                <p><strong>GPA:</strong> 9.1</p>
-
-                <a href="#" class="view-btn">View Profile</a>
-
-            </article>
-
-
-
-  
-
+    <!-- Section: Features Grid with Direct Role Logins -->
+    <section class="w-full max-w-5xl px-4 py-8" id="features">
+        <div class="text-center mb-8">
+            <h2 class="font-headline-md text-3xl md:text-4xl text-primary uppercase tracking-tight mb-1 border-b-4 border-primary inline-block pb-1">Our Features</h2>
+            <p class="text-on-surface-variant text-base mt-2">Explore academy tools — click any feature to jump directly to its portal sign-in.</p>
         </div>
 
-        <aside class="quick-updates">
+        <!-- 3x3 Feature Cards Grid -->
+        <div class="wireframe-features-grid">
+            
+            <!-- 1. Attendance Tracker (Student) -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">event_available</span>
+                <span class="wireframe-feature-title">Attendance Tracker</span>
+                <span class="pixel-badge text-[11px] py-0.5 px-2">🎓 Student Login</span>
+            </a>
 
-            <h3>🔔 Quick Updates</h3>
+            <!-- 2. Gradebook & SGPA (Student) -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">workspace_premium</span>
+                <span class="wireframe-feature-title">Gradebook & SGPA</span>
+                <span class="pixel-badge text-[11px] py-0.5 px-2">🎓 Student Login</span>
+            </a>
 
-            <div class="updates-list">
+            <!-- 3. Fee Portal (Student) -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">payments</span>
+                <span class="wireframe-feature-title">Fee Portal</span>
+                <span class="pixel-badge text-[11px] py-0.5 px-2">🎓 Student Login</span>
+            </a>
 
-                <div class="update-item">
-                    <span class="update-icon">📅</span>
-                    <div class="update-content">
-                        <p class="update-text">Semester registration closes in 2 days</p>
-                        <span class="update-time">10 mins ago</span>
-                    </div>
-                </div>
+            <!-- 4. Document Vault (Student) -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">folder_shared</span>
+                <span class="wireframe-feature-title">Document Vault</span>
+                <span class="pixel-badge text-[11px] py-0.5 px-2">🎓 Student Login</span>
+            </a>
 
-                <div class="update-item">
-                    <span class="update-icon">💾</span>
-                    <div class="update-content">
-                        <p class="update-text">Database scheduled backup pending</p>
-                        <span class="update-time">2 hours ago</span>
-                    </div>
-                </div>
+            <!-- 5. Leave Requests (Student) -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">assignment_turned_in</span>
+                <span class="wireframe-feature-title">Leave Requests</span>
+                <span class="pixel-badge text-[11px] py-0.5 px-2">🎓 Student Login</span>
+            </a>
 
-                <div class="update-item">
-                    <span class="update-icon">📥</span>
-                    <div class="update-content">
-                        <p class="update-text">34 New MCA profiles auto-imported</p>
-                        <span class="update-time">4 hours ago</span>
-                    </div>
-                </div>
+            <!-- 6. Announcements (Student) -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">campaign</span>
+                <span class="wireframe-feature-title">Announcements</span>
+                <span class="pixel-badge text-[11px] py-0.5 px-2">🎓 Student Login</span>
+            </a>
 
-            </div>
+            <!-- 7. LeetCode Leaderboard (Admin/Faculty) -->
+            <a href="login.html?role=admin" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon" style="color: var(--secondary-blue);">military_tech</span>
+                <span class="wireframe-feature-title">LeetCode Leaderboard</span>
+                <span class="pixel-badge pixel-badge-blue text-[11px] py-0.5 px-2">🛡️ Admin Login</span>
+            </a>
 
-        </aside>
+            <!-- 8. Leave Manager (Admin/Faculty) -->
+            <a href="login.html?role=admin" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon" style="color: var(--secondary-blue);">medical_services</span>
+                <span class="wireframe-feature-title">Leave Manager</span>
+                <span class="pixel-badge pixel-badge-blue text-[11px] py-0.5 px-2">🛡️ Admin Login</span>
+            </a>
 
+            <!-- 9. Attendance Roster (Admin/Faculty) -->
+            <a href="login.html?role=admin" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon" style="color: var(--secondary-blue);">groups</span>
+                <span class="wireframe-feature-title">Attendance Roster</span>
+                <span class="pixel-badge pixel-badge-blue text-[11px] py-0.5 px-2">🛡️ Admin Login</span>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Unified Platform Diagram Container -->
+    <section class="w-full max-w-5xl px-4 py-6 mb-8">
+        <div class="relative w-full aspect-[4/3] md:aspect-[2/1] bg-surface-container rounded-none pixel-border pixel-shadow p-6 flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBiwuuUMlusrEdB77KRxsQWeTk_Hr7mesj2qL6EebPLSTI6UG5pE_Ra88reV629VpcUCNnTHzDmz593xIQN3E_rm4VEoBIrqp1TgspbEyMz2wlbA_iJvYlrYstamYVArbjrcSjaBPxDQoiQeudzjPRN4H28R66MvwDKncXr-qGuiYsoU88bUiNHDfvKfMvMm0lMMJ8GpE3czyXURLpVRFUrk3tESFvcPmdg-QRgdMEePp5dHijcdbelTA');"></div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-8 text-center">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-2">
+            <img src="logo.png" alt="EduPixel Logo" class="h-9 w-auto object-contain bg-surface/10 p-1 rounded">
+            <span class="brand-logo-text text-2xl uppercase flex items-center">
+                <span style="color: #6ba34b;">EDU</span><span style="color: #91b6fe;">PIXEL</span>
+            </span>
+        </div>
+        <p class="text-inverse-on-surface font-body-md text-sm">© 2026 EduPixel Studios | Student Profile Management System</p>
+        <div class="flex gap-4 text-xs font-mono">
+            <a href="index.html#home" class="text-tertiary-fixed underline">Home</a>
+            <a href="index.html#features" class="text-tertiary-fixed underline">Features</a>
+            <a href="login.html" class="text-tertiary-fixed underline">Sign In</a>
+        </div>
     </div>
+</footer>
 
-</section>
-
-
-     
-
-        <section class="about" id="about">
-
-            <h2>About SchoolPad</h2>
-
-            <p>
-                SchoolPad is a Student Profile Management System
-                designed to organize and manage student information.
-                It provides an easy way to maintain student profiles
-                and academic details.
-            </p>
-
-        </section>
-
-    </main>
-
-
-
-    <footer id="contact">
-
-        <section class="footer-section">
-
-            <div>
-
-                <h3>About Us</h3>
-
-                <p>
-                    SchoolPad helps manage student profiles
-                    and academic information.
-                </p>
-
-
-
-            </div>
-
-
-            <div>
-
-                <h3>Contact Us</h3>
-
-                <p>Email: schoolpad@example.com</p>
-
-                <p>Phone: +91 XXXXXXXXXX</p>
-
-            </div>
-
-        </section>
-
-
-        <p class="copyright">
-            &copy; 2026 SchoolPad | Student Profile Management System
-        </p>
-
-    </footer>
-
-
-    <script src="auth.js"></script>
+<script src="auth.js"></script>
 </body>
-
 </html>

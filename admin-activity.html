@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Admin Activity Audit Log</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-2 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center gap-2 md:gap-3 hover:opacity-90 transition-opacity">
+        <img src="logo.png" alt="EduPixel Logo" class="h-9 md:h-11 w-auto object-contain">
+        <span class="brand-logo-text text-2xl md:text-3xl uppercase flex items-center gap-1.5">
+            <span><span style="color: #366a19;">EDU</span><span style="color: #365e9f;">PIXEL</span></span>
+            <span class="text-xs md:text-sm font-sans tracking-widest border-l-2 border-on-surface pl-2 ml-1" style="color: #365e9f;">PORTAL</span>
+        </span>
+    </a>
+    <nav class="flex gap-6"></nav>
+</header>
+
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge pixel-badge-blue mb-1">System Security Audit</span>
+            <h1 class="text-4xl text-secondary font-bold uppercase">Admin Activity Edit Log</h1>
+            <p class="text-on-surface-variant text-lg">Chronological audit log tracking administrative modifications, leave approvals, and grade entries.</p>
+        </div>
+        <a href="admin.html" class="btn-pixel btn-pixel-secondary">&larr; Back to Dashboard</a>
+    </div>
+</div>
+
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6">
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
+            <h3 class="text-3xl font-bold text-secondary uppercase">Administrative Activity Trail</h3>
+            <span class="pixel-badge pixel-badge-gold">Live System Log</span>
+        </div>
+
+        <table class="pixel-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Timestamp</th>
+                    <th style="width: 20%;">Admin / Faculty</th>
+                    <th style="width: 20%;">Action Category</th>
+                    <th style="width: 40%;">Activity Description & Target</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-mono text-xs">Aug 23, 2026 - 11:42 AM</td>
+                    <td class="font-bold">Dr. Rajesh Kumar</td>
+                    <td><span class="pixel-badge">Leave Approval</span></td>
+                    <td>Approved 3-day Medical Leave application for <strong>Arjun Sharma (Roll 101)</strong>.</td>
+                </tr>
+                <tr>
+                    <td class="font-mono text-xs">Aug 23, 2026 - 10:15 AM</td>
+                    <td class="font-bold">Dr. Rajesh Kumar</td>
+                    <td><span class="pixel-badge pixel-badge-blue">Timetable Edit</span></td>
+                    <td>Updated lecture hall allocation for CS Data Structures to <strong>Computer Lab 1</strong>.</td>
+                </tr>
+                <tr>
+                    <td class="font-mono text-xs">Aug 22, 2026 - 04:30 PM</td>
+                    <td class="font-bold">Dr. Rajesh Kumar</td>
+                    <td><span class="pixel-badge pixel-badge-gold">Attendance Marked</span></td>
+                    <td>Recorded daily class attendance roster for <strong>Class 10 - Section A</strong> (92% present).</td>
+                </tr>
+                <tr>
+                    <td class="font-mono text-xs">Aug 22, 2026 - 02:10 PM</td>
+                    <td class="font-bold">Dr. Rajesh Kumar</td>
+                    <td><span class="pixel-badge bg-error text-white">Escalation Ticket</span></td>
+                    <td>Dispatched escalation ticket to <strong>Dean of Academic Affairs</strong> regarding hall 302 projector.</td>
+                </tr>
+                <tr>
+                    <td class="font-mono text-xs">Aug 21, 2026 - 01:45 PM</td>
+                    <td class="font-bold">Dr. Rajesh Kumar</td>
+                    <td><span class="pixel-badge">Document Verified</span></td>
+                    <td>Verified Aadhar enrollment credential for <strong>Priya Singh (Roll 202)</strong>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
+</body>
+</html>

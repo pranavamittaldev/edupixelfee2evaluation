@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Campus Transport Services</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-2 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center">
+        <img src="logo.png" alt="EduPixel Logo" class="h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform">
+    </a>
+    <nav class="flex gap-4 flex-wrap"></nav>
+</header>
+
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge pixel-badge-blue mb-1">Campus Shuttle Services</span>
+            <h1 class="text-4xl text-primary font-bold uppercase">Transport & Bus Pass</h1>
+            <p class="text-on-surface-variant text-lg">Bus route schedules, stop details, and digital bus pass validity.</p>
+        </div>
+        <a href="profile.html" class="btn-pixel">&larr; Back to Dashboard</a>
+    </div>
+</div>
+
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6 space-y-8">
+
+    <!-- Bus Pass Status Card -->
+    <div class="pixel-card bg-surface-container-low flex flex-col md:flex-row justify-between items-center gap-6">
+        <div>
+            <span class="pixel-badge pixel-badge-blue text-xs mb-1">Bus Pass ID: BUS-402</span>
+            <h2 class="text-3xl font-bold text-secondary">Route 4: City Center &rarr; EduPixel Campus</h2>
+            <p class="text-on-surface-variant text-sm font-mono mt-1">Pickup Stop: Central Metro Gate | Morning Pickup: 07:45 AM | Evening Return: 05:15 PM</p>
+        </div>
+        <button onclick="alert('Digital Bus Pass Renewed till Dec 2026!')" class="btn-pixel btn-pixel-secondary shrink-0">Renew Bus Pass</button>
+    </div>
+
+    <!-- Bus Routes Matrix -->
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
+            <h3 class="text-3xl font-bold text-primary uppercase">Campus Bus Route Schedule</h3>
+            <span class="pixel-badge">4 Active Shuttle Routes</span>
+        </div>
+
+        <table class="pixel-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Route No.</th>
+                    <th style="width: 40%;">Stops Covered</th>
+                    <th style="width: 25%;">Pickup & Departure</th>
+                    <th style="width: 15%;">Bus Vehicle No.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-bold">Route 1 (North)</td>
+                    <td>North Station &rarr; Civil Lines &rarr; Campus</td>
+                    <td class="font-mono text-sm">07:30 AM / 05:00 PM</td>
+                    <td class="font-mono">PB-01-A-1024</td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Route 4 (Central)</td>
+                    <td>City Center &rarr; Central Metro &rarr; Campus</td>
+                    <td class="font-mono text-sm">07:45 AM / 05:15 PM</td>
+                    <td class="font-mono">PB-01-A-4021</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
+</body>
+</html>

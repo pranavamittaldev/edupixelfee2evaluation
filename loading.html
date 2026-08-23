@@ -1,22 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="2;url=index.html">
-    <title>SchoolPad - Loading</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Loading Academy</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Pixelify+Sans:wght@700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .loading-card {
+            background-color: var(--bg-surface);
+            border: 4px solid #1c1c13;
+            box-shadow: 10px 10px 0px 0px #1c1c13;
+        }
+
+        .progress-container {
+            border: 4px solid #1c1c13;
+            background-color: #e6e3d3;
+            height: 32px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #366a19;
+            width: 0%;
+            transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loading-subtext {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1c1c13;
+            min-height: 3.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s ease-in-out;
+        }
+    </style>
 </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center p-6 hero-bg-gradient text-center">
 
-<body class="splash-loading-body">
+    <div class="loading-card max-w-lg w-full p-8 rounded-2xl text-center">
+        <!-- Logo Emblem -->
+        <div class="flex flex-col items-center justify-center gap-1 mb-6">
+            <img src="logo.png" alt="EduPixel Logo" class="w-40 md:w-48 h-auto object-contain animate-pixel-bounce">
+            <span class="brand-logo-text text-4xl uppercase flex items-center mt-2">
+                <span style="color: #366a19;">EDU</span><span style="color: #365e9f;">PIXEL</span>
+            </span>
+        </div>
 
-    <div class="splash-loading-content">
-        <img src="logo.svg" alt="SchoolPad Logo" class="splash-logo-img">
-        <h1 class="splash-loading-text">Loading</h1>
-        <div class="css-circular-spinner"></div>
+        <!-- Dynamic Status Header & Percent Badge -->
+        <div class="flex justify-between items-center mb-3 px-1">
+            <span class="font-mono text-xs font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+                <span>Academy System Loading</span>
+            </span>
+            <span id="percentage-badge" class="font-mono text-xl font-extrabold text-primary bg-surface border-2 border-on-surface px-3 py-0.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded">
+                0%
+            </span>
+        </div>
+
+        <!-- Custom Pixel Progress Bar -->
+        <div class="progress-container mb-6">
+            <div id="progress-fill" class="progress-bar-fill"></div>
+        </div>
+
+        <!-- Content Under Loading Bar (Exact lines requested by user) -->
+        <div id="loading-subtext" class="loading-subtext bg-surface-container-high border-2 border-on-surface p-4 rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+            Welcome to EduPixel
+        </div>
     </div>
 
-</body>
+    <script>
+        const stops = [
+            { pct: 20, text: "Welcome to EduPixel", delay: 500 },
+            { pct: 45, text: "Organizing your academic journey...", delay: 1400 },
+            { pct: 89, text: "Everything is almost ready...", delay: 2500 },
+            { pct: 100, text: "Your journey continues here.", delay: 3500 }
+        ];
 
+        const fill = document.getElementById('progress-fill');
+        const pctBadge = document.getElementById('percentage-badge');
+        const subtext = document.getElementById('loading-subtext');
+
+        stops.forEach((stop) => {
+            setTimeout(() => {
+                fill.style.width = stop.pct + '%';
+                pctBadge.textContent = stop.pct + '%';
+                
+                subtext.style.opacity = '0';
+                setTimeout(() => {
+                    subtext.textContent = stop.text;
+                    subtext.style.opacity = '1';
+                }, 150);
+            }, stop.delay);
+        });
+
+        // Auto-redirect after 100% completes
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 4400);
+    </script>
+</body>
 </html>

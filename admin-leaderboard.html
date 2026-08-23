@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - LeetCode Coding Leaderboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-2 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center">
+        <img src="logo.png" alt="EduPixel Logo" class="h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform">
+    </a>
+    <nav class="flex gap-6"></nav>
+</header>
+
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge pixel-badge-gold mb-1">Competitive Programming Hall of Fame</span>
+            <h1 class="text-4xl text-secondary font-bold uppercase">Top Students LeetCode Leaderboard</h1>
+            <p class="text-on-surface-variant text-lg">Recognize top student algorithmic coders, contest ratings, and problem solved milestones.</p>
+        </div>
+        <a href="admin.html" class="btn-pixel btn-pixel-secondary">&larr; Back to Dashboard</a>
+    </div>
+</div>
+
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6">
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
+            <h3 class="text-3xl font-bold text-secondary uppercase">Global Campus Coding Leaderboard</h3>
+            <span class="pixel-badge pixel-badge-gold">Live Synced Rating Data</span>
+        </div>
+
+        <table class="pixel-table">
+            <thead>
+                <tr>
+                    <th style="width: 12%;">Rank</th>
+                    <th style="width: 30%;">Coder Name & Roll</th>
+                    <th style="width: 20%;">LeetCode Rating</th>
+                    <th style="width: 18%;">Problems Solved</th>
+                    <th style="width: 20%;">Guild Title Badge</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rank 1 -->
+                <tr>
+                    <td class="font-bold text-center">
+                        <span class="text-2xl">🥇</span> <span class="pixel-badge pixel-badge-gold text-base">#1</span>
+                    </td>
+                    <td class="font-bold">
+                        <div>Riya Kapoor</div>
+                        <span class="pixel-badge text-xs">Roll 102 (Class 10-A)</span>
+                    </td>
+                    <td><span class="font-mono font-bold text-primary text-lg">2,150</span> (Top 0.8%)</td>
+                    <td class="font-mono font-bold">542 Problems</td>
+                    <td><span class="pixel-badge pixel-badge-gold">⚔️ LeetCode Knight</span></td>
+                </tr>
+
+                <!-- Rank 2 -->
+                <tr>
+                    <td class="font-bold text-center">
+                        <span class="text-2xl">🥈</span> <span class="pixel-badge pixel-badge-blue text-base">#2</span>
+                    </td>
+                    <td class="font-bold">
+                        <div>Vikram Malhotra</div>
+                        <span class="pixel-badge text-xs">Roll 401 (Class 12-A)</span>
+                    </td>
+                    <td><span class="font-mono font-bold text-secondary text-lg">1,980</span> (Top 2.1%)</td>
+                    <td class="font-mono font-bold">480 Problems</td>
+                    <td><span class="pixel-badge pixel-badge-blue">🛡️ LeetCode Guardian</span></td>
+                </tr>
+
+                <!-- Rank 3 -->
+                <tr>
+                    <td class="font-bold text-center">
+                        <span class="text-2xl">🥉</span> <span class="pixel-badge text-base">#3</span>
+                    </td>
+                    <td class="font-bold">
+                        <div>Arjun Sharma</div>
+                        <span class="pixel-badge text-xs">Roll 101 (Class 10-A)</span>
+                    </td>
+                    <td><span class="font-mono font-bold text-tertiary text-lg">1,865</span> (Top 4.5%)</td>
+                    <td class="font-mono font-bold">410 Problems</td>
+                    <td><span class="pixel-badge">🧙‍♂️ Algo Specialist</span></td>
+                </tr>
+
+                <!-- Rank 4 -->
+                <tr>
+                    <td class="font-bold text-center">#4</td>
+                    <td class="font-bold">
+                        <div>Priya Singh</div>
+                        <span class="pixel-badge text-xs">Roll 202 (Class 10-B)</span>
+                    </td>
+                    <td><span class="font-mono font-bold text-lg">1,790</span></td>
+                    <td class="font-mono font-bold">365 Problems</td>
+                    <td><span class="pixel-badge">⚡ DP Specialist</span></td>
+                </tr>
+
+                <!-- Rank 5 -->
+                <tr>
+                    <td class="font-bold text-center">#5</td>
+                    <td class="font-bold">
+                        <div>Ananya Patel</div>
+                        <span class="pixel-badge text-xs">Roll 301 (Class 11-A)</span>
+                    </td>
+                    <td><span class="font-mono font-bold text-lg">1,720</span></td>
+                    <td class="font-mono font-bold">330 Problems</td>
+                    <td><span class="pixel-badge">🌲 Graph Master</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
+</body>
+</html>

@@ -1,96 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SchoolPad - Sign In</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Sign In</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
 
-<body class="auth-body">
+<!-- Top Navigation -->
+<header class="flex justify-between items-center px-4 md:px-gutter py-3 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50 gap-4">
+    <a href="index.html" class="flex items-center gap-2 md:gap-3 hover:opacity-90 transition-opacity shrink-0">
+        <img src="logo.png" alt="EduPixel Logo" class="h-9 md:h-11 w-auto object-contain shrink-0">
+        <span class="brand-logo-text text-xl md:text-2xl uppercase flex items-center shrink-0 whitespace-nowrap">
+            <span style="color: #366a19;">EDU</span><span style="color: #365e9f;">PIXEL</span>
+        </span>
+    </a>
+    <nav class="flex gap-3 md:gap-4 flex-wrap justify-end"></nav>
+</header>
 
-    <header style="position: relative;">
-        <div class="brand-logo-container">
-            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
-            <h1 class="logo">SchoolPad</h1>
-        </div>
-        <nav>
-            <a href="index.html#home">Home</a>
-            <a href="index.html#features">Features</a>
-            <a href="login.html">Sign Up</a>
-        </nav>
-    </header>
-
-    <main class="auth-section">
-        <!-- Student Sign In Card (Default View) -->
-        <div class="auth-card" id="student-login-card">
-            <div class="auth-header">
-                <img src="logo.svg" alt="SchoolPad Logo" class="auth-logo-img">
-                <div>
-                    <span class="auth-badge">🎓 Student Portal</span>
-                </div>
-                <h2>Student Sign In</h2>
-                <p class="auth-subtitle">Enter your credentials to sign in</p>
-            </div>
-
-            <form class="auth-form" onsubmit="handleStudentLogin(event)">
-                <div class="form-group">
-                    <label for="student-username">Username</label>
-                    <input type="text" id="student-username" class="form-control" placeholder="Enter username" required autocomplete="username">
-                </div>
-
-                <div class="form-group">
-                    <label for="student-password">Password</label>
-                    <input type="password" id="student-password" class="form-control" placeholder="Enter password" required autocomplete="current-password">
-                </div>
-
-                <button type="submit" class="btn btn-block">Sign In</button>
-            </form>
-
-            <div class="auth-switch-box">
-                <button type="button" class="auth-switch-btn admin-switch-btn" onclick="showLoginTab('admin')">Admin Login</button>
-            </div>
+<main class="flex-grow flex items-center justify-center p-6 my-8">
+    <!-- Student Sign In Card -->
+    <div class="pixel-card bg-surface max-w-md w-full" id="student-login-card">
+        <div class="text-center mb-6 border-b-4 border-on-surface pb-4 flex flex-col items-center">
+            <img src="logo.png" alt="EduPixel Logo" class="w-48 md:w-56 mx-auto mb-3 object-contain">
+            <span class="pixel-badge mb-2">🎓 Student Portal</span>
+            <p class="text-on-surface-variant text-sm mt-1">Enter your RPG credentials to enter the academy.</p>
         </div>
 
-        <!-- Admin Sign In Card (Hidden initially) -->
-        <div class="auth-card" id="admin-login-card" style="display: none;">
-            <div class="auth-header">
-                <img src="logo.svg" alt="SchoolPad Logo" class="auth-logo-img">
-                <div>
-                    <span class="auth-badge admin-badge">🛡️ Admin Portal</span>
-                </div>
-                <h2>Admin Sign In</h2>
-                <p class="auth-subtitle">Enter administrative credentials</p>
+        <form class="space-y-4" onsubmit="handleStudentLogin(event)">
+            <div>
+                <label for="student-username" class="block font-bold text-on-surface uppercase text-sm">Username</label>
+                <input type="text" id="student-username" class="pixel-input" placeholder="e.g. Arjun Sharma" required autocomplete="username" value="Arjun Sharma">
             </div>
 
-            <form class="auth-form" onsubmit="handleAdminLogin(event)">
-                <div class="form-group">
-                    <label for="admin-username">Username</label>
-                    <input type="text" id="admin-username" class="form-control" placeholder="Enter admin username" required autocomplete="username">
-                </div>
-
-                <div class="form-group">
-                    <label for="admin-password">Password</label>
-                    <input type="password" id="admin-password" class="form-control" placeholder="Enter admin password" required autocomplete="current-password">
-                </div>
-
-                <button type="submit" class="btn btn-block">Sign In</button>
-            </form>
-
-            <div class="auth-switch-box">
-                <button type="button" class="auth-switch-btn" onclick="showLoginTab('student')">Student Login</button>
+            <div>
+                <label for="student-password" class="block font-bold text-on-surface uppercase text-sm">Password</label>
+                <input type="password" id="student-password" class="pixel-input" placeholder="••••••••" required autocomplete="current-password" value="password123">
             </div>
+
+            <button type="submit" class="btn-pixel w-full py-3 text-xl">Sign In to Student Portal</button>
+        </form>
+
+        <div class="mt-6 pt-4 border-t-2 border-on-surface text-center">
+            <button type="button" class="btn-pixel btn-pixel-secondary w-full text-sm" onclick="showLoginTab('admin')">
+                🛡️ Switch to Admin Login
+            </button>
         </div>
-    </main>
+    </div>
 
-    <footer id="contact" style="padding: 15px 8%;">
-        <p class="copyright" style="border-top: none; padding-top: 0; margin: 0;">
-            &copy; 2026 SchoolPad | Student Profile Management System
-        </p>
-    </footer>
+    <!-- Admin Sign In Card (Hidden initially) -->
+    <div class="pixel-card bg-surface max-w-md w-full" id="admin-login-card" style="display: none;">
+        <div class="text-center mb-6 border-b-4 border-on-surface pb-4 flex flex-col items-center">
+            <img src="logo.png" alt="EduPixel Logo" class="w-48 md:w-56 mx-auto mb-3 object-contain">
+            <span class="pixel-badge pixel-badge-blue mb-2">🛡️ Admin Portal</span>
+            <p class="text-on-surface-variant text-sm mt-1">Faculty & Guildmaster credentials required.</p>
+        </div>
 
-    <script src="auth.js"></script>
+        <form class="space-y-4" onsubmit="handleAdminLogin(event)">
+            <div>
+                <label for="admin-username" class="block font-bold text-on-surface uppercase text-sm">Admin Username</label>
+                <input type="text" id="admin-username" class="pixel-input" placeholder="e.g. Dr. Rajesh Kumar" required autocomplete="username" value="Dr. Rajesh Kumar">
+            </div>
+
+            <div>
+                <label for="admin-password" class="block font-bold text-on-surface uppercase text-sm">Admin Password</label>
+                <input type="password" id="admin-password" class="pixel-input" placeholder="••••••••" required autocomplete="current-password" value="admin123">
+            </div>
+
+            <button type="submit" class="btn-pixel btn-pixel-secondary w-full py-3 text-xl">Sign In to Admin Portal</button>
+        </form>
+
+        <div class="mt-6 pt-4 border-t-2 border-on-surface text-center">
+            <button type="button" class="btn-pixel w-full text-sm" onclick="showLoginTab('student')">
+                🎓 Switch to Student Login
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+    // Check URL parameters for tab selection
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('role') === 'admin' || window.location.hash === '#admin') {
+            showLoginTab('admin');
+        }
+    });
+</script>
 </body>
-
 </html>
