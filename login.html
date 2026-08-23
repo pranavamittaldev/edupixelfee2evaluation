@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Sign In</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- Top Navigation -->
+<header class="flex justify-between items-center px-gutter py-4 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary font-bold text-3xl" data-icon="grid_view">grid_view</span>
+        <span class="font-headline-md text-3xl text-primary uppercase tracking-tighter">EduPixel</span>
+    </a>
+    <nav class="flex gap-6">
+        <a class="text-on-surface-variant hover:text-primary font-bold" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-primary font-bold" href="index.html#features">Features</a>
+        <a class="text-primary font-bold border-b-4 border-primary" href="login.html">Sign In</a>
+    </nav>
+</header>
+
+<main class="flex-grow flex items-center justify-center p-6 my-8">
+    <!-- Student Sign In Card -->
+    <div class="pixel-card bg-surface max-w-md w-full" id="student-login-card">
+        <div class="text-center mb-6 border-b-4 border-on-surface pb-4">
+            <span class="pixel-badge mb-2">🎓 Student Portal</span>
+            <h2 class="text-4xl text-primary font-bold uppercase mt-1">Student Sign In</h2>
+            <p class="text-on-surface-variant text-sm">Enter your RPG credentials to enter the academy.</p>
+        </div>
+
+        <form class="space-y-4" onsubmit="handleStudentLogin(event)">
+            <div>
+                <label for="student-username" class="block font-bold text-on-surface uppercase text-sm">Username</label>
+                <input type="text" id="student-username" class="pixel-input" placeholder="e.g. Arjun Sharma" required autocomplete="username" value="Arjun Sharma">
+            </div>
+
+            <div>
+                <label for="student-password" class="block font-bold text-on-surface uppercase text-sm">Password</label>
+                <input type="password" id="student-password" class="pixel-input" placeholder="••••••••" required autocomplete="current-password" value="password123">
+            </div>
+
+            <button type="submit" class="btn-pixel w-full py-3 text-xl">Sign In to Student Portal</button>
+        </form>
+
+        <div class="mt-6 pt-4 border-t-2 border-on-surface text-center">
+            <button type="button" class="btn-pixel btn-pixel-secondary w-full text-sm" onclick="showLoginTab('admin')">
+                🛡️ Switch to Admin Login
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Sign In Card (Hidden initially) -->
+    <div class="pixel-card bg-surface max-w-md w-full" id="admin-login-card" style="display: none;">
+        <div class="text-center mb-6 border-b-4 border-on-surface pb-4">
+            <span class="pixel-badge pixel-badge-blue mb-2">🛡️ Admin Portal</span>
+            <h2 class="text-4xl text-secondary font-bold uppercase mt-1">Admin Sign In</h2>
+            <p class="text-on-surface-variant text-sm">Faculty & Guildmaster credentials required.</p>
+        </div>
+
+        <form class="space-y-4" onsubmit="handleAdminLogin(event)">
+            <div>
+                <label for="admin-username" class="block font-bold text-on-surface uppercase text-sm">Admin Username</label>
+                <input type="text" id="admin-username" class="pixel-input" placeholder="e.g. Dr. Rajesh Kumar" required autocomplete="username" value="Dr. Rajesh Kumar">
+            </div>
+
+            <div>
+                <label for="admin-password" class="block font-bold text-on-surface uppercase text-sm">Admin Password</label>
+                <input type="password" id="admin-password" class="pixel-input" placeholder="••••••••" required autocomplete="current-password" value="admin123">
+            </div>
+
+            <button type="submit" class="btn-pixel btn-pixel-secondary w-full py-3 text-xl">Sign In to Admin Portal</button>
+        </form>
+
+        <div class="mt-6 pt-4 border-t-2 border-on-surface text-center">
+            <button type="button" class="btn-pixel w-full text-sm" onclick="showLoginTab('student')">
+                🎓 Switch to Student Login
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+    // Check URL parameters for tab selection
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('role') === 'admin' || window.location.hash === '#admin') {
+            showLoginTab('admin');
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="refresh" content="2;url=index.html">
+    <title>EduPixel - Loading Academy</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center p-6 hero-bg-gradient text-center">
+
+    <div class="pixel-card bg-surface max-w-md w-full p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        <div class="flex items-center justify-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-primary text-4xl font-bold animate-pixel-bounce">grid_view</span>
+            <h1 class="text-4xl text-primary font-bold uppercase tracking-tighter">EduPixel</h1>
+        </div>
+
+        <p class="text-on-surface-variant font-mono mb-6">Initialising RPG Academy Assets & Dossiers...</p>
+
+        <!-- Pixel Loading Bar -->
+        <div class="pixel-progress-bar mb-4">
+            <div class="pixel-progress-fill animate-pulse" style="width: 85%;"></div>
+        </div>
+
+        <span class="pixel-badge pixel-badge-gold text-sm animate-pulse">Entering System...</span>
+    </div>
+
+</body>
+</html>

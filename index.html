@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Student Management</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- Top Navigation -->
+<header class="flex justify-between items-center px-4 md:px-gutter py-3 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary font-bold text-3xl" data-icon="grid_view">grid_view</span>
+        <span class="font-headline-md text-2xl md:text-3xl text-primary uppercase tracking-tighter font-bold">EduPixel</span>
+    </a>
+    
+    <!-- Navigation (Managed dynamically by auth.js) -->
+    <nav class="flex gap-6"></nav>
+</header>
+
+<main class="flex-grow flex flex-col items-center" id="home">
+    <!-- Hero Section (Matches Wireframe Title & RPG Buttons) -->
+    <section class="w-full relative min-h-[440px] md:min-h-[640px] flex flex-col items-center justify-center overflow-hidden hero-bg-gradient" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyAwDeiR8e0p7acYmHXkvdPGRjnmaRcu5Hsz-1_h95K-otNmfoK9nhBM65wWwRXYCV2YUhR-Ac1QW3HwEhNp4c1JomiKVzHRl0_LYIfhGQS-LBvKI6EMcufIVjf5iaqIp9ISeJYqe4a0qO6NSX76lB2r6zs4ZdY9JAB8-Cz_OgyuJao3Ez3Fdwzp8MoH1SObD9oPD29JaWbp8livaRsE0N3F9Z5fS8sl4f8FhOdPB5rDNJmjjOfQ0LRR0AI2VEMiSv_1w'); background-size: cover; background-position: center center;">
+        <div class="z-10 text-center px-4 max-w-4xl p-6 flex flex-col items-center w-full">
+            <h1 class="font-headline-lg text-3xl md:text-6xl text-white mb-2 tracking-wide pixel-text-shadow leading-tight md:text-7xl">
+                Student Profile Management System
+            </h1>
+            <p class="font-body-lg text-lg md:text-2xl text-white mb-6 tracking-wide pixel-text-shadow max-w-xl">
+                A simple platform to organize and manage student profiles and academic information.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 w-full max-w-xs md:max-w-md items-stretch mt-2">
+                <a href="login.html" class="ornate-btn ornate-btn-green hover:-translate-y-1 transition-transform">
+                    <div class="ornate-corner corner-tl"></div>
+                    <div class="ornate-corner corner-tr"></div>
+                    <div class="ornate-corner corner-bl"></div>
+                    <div class="ornate-corner corner-br"></div>
+                    <div class="ornate-btn-inner px-6 py-3 pixel-border">
+                        <span class="text-xl md:text-3xl text-white tracking-widest pixel-text-shadow uppercase font-headline-lg">Student Login</span>
+                    </div>
+                </a>
+                <a href="login.html?role=admin" class="ornate-btn ornate-btn-blue hover:-translate-y-1 transition-transform">
+                    <div class="ornate-corner corner-tl"></div>
+                    <div class="ornate-corner corner-tr"></div>
+                    <div class="ornate-corner corner-bl"></div>
+                    <div class="ornate-corner corner-br"></div>
+                    <div class="ornate-btn-inner px-6 py-3 pixel-border">
+                        <span class="text-xl md:text-3xl text-white tracking-widest pixel-text-shadow uppercase font-headline-lg">Admin Login</span>
+                    </div>
+                </a>
+            </div>
+            <!-- Carousel Indicator Dots (From Wireframe Diagram) -->
+            <div class="flex gap-2 mt-6">
+                <span class="w-3 h-3 bg-white border-2 border-on-bg rounded-full inline-block"></span>
+                <span class="w-3 h-3 bg-primary-fixed border-2 border-on-bg rounded-full inline-block"></span>
+                <span class="w-3 h-3 bg-white border-2 border-on-bg rounded-full inline-block opacity-60"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: 3x2 Mobile Quick Features Grid (Matches Wireframe Reference Diagram) -->
+    <section class="w-full max-w-5xl px-4 py-8" id="features">
+        <div class="text-center mb-8">
+            <h2 class="font-headline-md text-3xl md:text-4xl text-primary uppercase tracking-tight mb-1 border-b-4 border-primary inline-block pb-1">Our Features</h2>
+            <p class="text-on-surface-variant text-base mt-2">Manage student records, track attendance, and inspect grades easily.</p>
+        </div>
+
+        <!-- 3x2 Grid Matching Attached Wireframe Diagram -->
+        <div class="wireframe-features-grid">
+            
+            <!-- 1. Add Student -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">person_add</span>
+                <span class="wireframe-feature-title">Add Student</span>
+            </a>
+
+            <!-- 2. View Students -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">groups</span>
+                <span class="wireframe-feature-title">View Students</span>
+            </a>
+
+            <!-- 3. Search Student -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">search</span>
+                <span class="wireframe-feature-title">Search Student</span>
+            </a>
+
+            <!-- 4. Edit Profile -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">edit_note</span>
+                <span class="wireframe-feature-title">Edit Profile</span>
+            </a>
+
+            <!-- 5. Academic Details -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">menu_book</span>
+                <span class="wireframe-feature-title">Academic Details</span>
+            </a>
+
+            <!-- 6. Contact Details -->
+            <a href="login.html" class="wireframe-feature-card">
+                <span class="material-symbols-outlined wireframe-feature-icon">call</span>
+                <span class="wireframe-feature-title">Contact Details</span>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Unified Platform Diagram Container -->
+    <section class="w-full max-w-5xl px-4 py-6 mb-8">
+        <div class="relative w-full aspect-[4/3] md:aspect-[2/1] bg-surface-container rounded-none pixel-border pixel-shadow p-6 flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBiwuuUMlusrEdB77KRxsQWeTk_Hr7mesj2qL6EebPLSTI6UG5pE_Ra88reV629VpcUCNnTHzDmz593xIQN3E_rm4VEoBIrqp1TgspbEyMz2wlbA_iJvYlrYstamYVArbjrcSjaBPxDQoiQeudzjPRN4H28R66MvwDKncXr-qGuiYsoU88bUiNHDfvKfMvMm0lMMJ8GpE3czyXURLpVRFUrk3tESFvcPmdg-QRgdMEePp5dHijcdbelTA');"></div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-8 text-center">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <span class="font-headline-sm text-2xl text-tertiary-fixed uppercase font-bold">EduPixel</span>
+        <p class="text-inverse-on-surface font-body-md text-sm">© 2026 EduPixel Studios | Student Profile Management System</p>
+        <div class="flex gap-4 text-xs font-mono">
+            <a href="index.html#home" class="text-tertiary-fixed underline">Home</a>
+            <a href="index.html#features" class="text-tertiary-fixed underline">Features</a>
+            <a href="login.html" class="text-tertiary-fixed underline">Sign In</a>
+        </div>
+    </div>
+</footer>
+
+<script src="auth.js"></script>
+</body>
+</html>

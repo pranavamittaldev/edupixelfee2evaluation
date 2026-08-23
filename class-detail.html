@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Class Attendance Roster</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .highlight-row {
+            background-color: #b6f391 !important;
+            outline: 3px solid #366a19;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-4 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary font-bold text-3xl" data-icon="grid_view">grid_view</span>
+        <span class="font-headline-md text-3xl text-secondary uppercase tracking-tighter">EduPixel Portal</span>
+    </a>
+    <nav class="flex gap-6">
+        <a class="text-on-surface-variant hover:text-secondary font-bold" href="admin-profile.html">Profile</a>
+        <a class="text-secondary font-bold border-b-4 border-secondary" href="admin-classes.html">Attendance Roster</a>
+        <a class="text-error font-bold hover:underline" href="#" onclick="logout(); return false;">Logout</a>
+    </nav>
+</header>
+
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge pixel-badge-blue mb-1">Student Attendance Roster</span>
+            <h1 class="text-4xl text-secondary font-bold uppercase"><span id="class-title">Class 10 - Section A</span></h1>
+            <p class="text-on-surface-variant text-lg">Class attendance records and instant roll number lookup for enrolled students.</p>
+        </div>
+        <a href="admin-classes.html" class="btn-pixel btn-pixel-secondary">&larr; Back to Class Selection</a>
+    </div>
+</div>
+
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6">
+    <!-- Roll Search Box -->
+    <div class="pixel-card bg-surface-container-low mb-6">
+        <label for="roll-search" class="block text-secondary font-bold uppercase mb-1">Search Student by Roll Number</label>
+        <div class="flex gap-4">
+            <input type="text" id="roll-search" class="pixel-input mb-0" placeholder="Enter Roll No. (e.g. 1, 15, 24)" oninput="searchByRollNo()">
+        </div>
+        <div id="search-msg" class="mt-2 text-error font-mono font-bold" style="display: none;">
+            ⚠️ No student found with this roll number in this section.
+        </div>
+    </div>
+
+    <!-- Student Table -->
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
+            <h3 class="text-3xl font-bold text-secondary uppercase" id="class-subtitle">Attendance Roster</h3>
+            <span class="pixel-badge pixel-badge-blue">25 Enrolled Students</span>
+        </div>
+
+        <table class="pixel-table" id="student-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Roll No.</th>
+                    <th style="width: 55%;">Student Name</th>
+                    <th style="width: 25%;">Attendance Record</th>
+                </tr>
+            </thead>
+            <tbody id="student-roster-body">
+                <tr data-roll="1"><td><strong>001</strong></td><td>Rahul Sharma</td><td><span class="pixel-badge">92%</span></td></tr>
+                <tr data-roll="2"><td><strong>002</strong></td><td>Aman Kumar</td><td><span class="pixel-badge pixel-badge-blue">87%</span></td></tr>
+                <tr data-roll="3"><td><strong>003</strong></td><td>Priya Singh</td><td><span class="pixel-badge pixel-badge-gold">95%</span></td></tr>
+                <tr data-roll="4"><td><strong>004</strong></td><td>Rohan Verma</td><td><span class="pixel-badge">78%</span></td></tr>
+                <tr data-roll="5"><td><strong>005</strong></td><td>Ananya Patel</td><td><span class="pixel-badge">91%</span></td></tr>
+                <tr data-roll="6"><td><strong>006</strong></td><td>Vikram Malhotra</td><td><span class="pixel-badge pixel-badge-blue">84%</span></td></tr>
+                <tr data-roll="7"><td><strong>007</strong></td><td>Sneha Reddy</td><td><span class="pixel-badge pixel-badge-gold">96%</span></td></tr>
+                <tr data-roll="8"><td><strong>008</strong></td><td>Arjun Das</td><td><span class="pixel-badge">89%</span></td></tr>
+                <tr data-roll="9"><td><strong>009</strong></td><td>Bhavna Joshi</td><td><span class="pixel-badge">93%</span></td></tr>
+                <tr data-roll="10"><td><strong>010</strong></td><td>Chirag Mehta</td><td><span class="pixel-badge pixel-badge-blue">82%</span></td></tr>
+                <tr data-roll="11"><td><strong>011</strong></td><td>Divya Nair</td><td><span class="pixel-badge">90%</span></td></tr>
+                <tr data-roll="12"><td><strong>012</strong></td><td>Eshwar Rao</td><td><span class="pixel-badge">88%</span></td></tr>
+                <tr data-roll="13"><td><strong>013</strong></td><td>Farhan Khan</td><td><span class="pixel-badge pixel-badge-gold">94%</span></td></tr>
+                <tr data-roll="14"><td><strong>014</strong></td><td>Gaurav Gupta</td><td><span class="pixel-badge">81%</span></td></tr>
+                <tr data-roll="15"><td><strong>015</strong></td><td>Harini Iyer</td><td><span class="pixel-badge pixel-badge-gold">97%</span></td></tr>
+                <tr data-roll="16"><td><strong>016</strong></td><td>Ishaan Saxena</td><td><span class="pixel-badge">86%</span></td></tr>
+                <tr data-roll="17"><td><strong>017</strong></td><td>Jahnavi Shah</td><td><span class="pixel-badge">92%</span></td></tr>
+                <tr data-roll="18"><td><strong>018</strong></td><td>Karthik Pillai</td><td><span class="pixel-badge pixel-badge-blue">85%</span></td></tr>
+                <tr data-roll="19"><td><strong>019</strong></td><td>Kavya Deshmukh</td><td><span class="pixel-badge">91%</span></td></tr>
+                <tr data-roll="20"><td><strong>020</strong></td><td>Lokesh Choudhary</td><td><span class="pixel-badge">79%</span></td></tr>
+                <tr data-roll="21"><td><strong>021</strong></td><td>Manish Tiwari</td><td><span class="pixel-badge">88%</span></td></tr>
+                <tr data-roll="22"><td><strong>022</strong></td><td>Neha Agarwal</td><td><span class="pixel-badge pixel-badge-gold">95%</span></td></tr>
+                <tr data-roll="23"><td><strong>023</strong></td><td>Omkar Bhat</td><td><span class="pixel-badge pixel-badge-blue">83%</span></td></tr>
+                <tr data-roll="24"><td><strong>024</strong></td><td>Pooja Hegde</td><td><span class="pixel-badge pixel-badge-gold">94%</span></td></tr>
+                <tr data-roll="25"><td><strong>025</strong></td><td>Quasim Syed</td><td><span class="pixel-badge">90%</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const className = urlParams.get('class');
+        if (className) {
+            const formattedName = 'Class ' + className.replace('-', ' - Section ');
+            document.getElementById('class-title').textContent = formattedName;
+            document.getElementById('class-subtitle').textContent = 'Attendance Roster for ' + formattedName;
+        }
+    });
+
+    function searchByRollNo() {
+        const input = document.getElementById('roll-search');
+        const searchMsg = document.getElementById('search-msg');
+        const rows = document.querySelectorAll('#student-roster-body tr');
+        const queryRaw = input ? input.value.trim() : '';
+
+        rows.forEach(row => row.classList.remove('highlight-row'));
+
+        if (!queryRaw) {
+            if (searchMsg) searchMsg.style.display = 'none';
+            return;
+        }
+
+        const queryNum = parseInt(queryRaw, 10);
+        let foundMatch = false;
+
+        rows.forEach(row => {
+            const rollAttr = row.getAttribute('data-roll');
+            const rollNum = parseInt(rollAttr, 10);
+            const rollText = row.querySelector('td:first-child').textContent.trim();
+            const rollTextNum = parseInt(rollText, 10);
+
+            if (!isNaN(queryNum) && (rollNum === queryNum || rollTextNum === queryNum)) {
+                foundMatch = true;
+                row.classList.add('highlight-row');
+                row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+
+        if (foundMatch) {
+            if (searchMsg) searchMsg.style.display = 'none';
+        } else {
+            if (searchMsg) searchMsg.style.display = 'block';
+        }
+    }
+</script>
+</body>
+</html>

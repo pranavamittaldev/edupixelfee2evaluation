@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Career & Placements</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-4 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary font-bold text-3xl" data-icon="grid_view">grid_view</span>
+        <span class="font-headline-md text-3xl text-primary uppercase tracking-tighter">EduPixel</span>
+    </a>
+    <nav class="flex gap-4 flex-wrap"></nav>
+</header>
+
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge pixel-badge-gold mb-1">Career & Guild Placements</span>
+            <h1 class="text-4xl text-primary font-bold uppercase">Placements, Internships & Jobs</h1>
+            <p class="text-on-surface-variant text-lg">Explore campus placement drives, summer internships, resume building, and career resources.</p>
+        </div>
+        <a href="profile.html" class="btn-pixel">&larr; Back to Dashboard</a>
+    </div>
+</div>
+
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6 space-y-8">
+
+    <!-- Placement Opportunities Grid -->
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
+            <h3 class="text-3xl font-bold text-primary uppercase">Active Internship & Job Openings</h3>
+            <span class="pixel-badge pixel-badge-gold">Verified Recruiters</span>
+        </div>
+
+        <table class="pixel-table">
+            <thead>
+                <tr>
+                    <th style="width: 35%;">Company & Role</th>
+                    <th style="width: 20%;">Package / Stipend</th>
+                    <th style="width: 25%;">Eligible Batch & Criteria</th>
+                    <th style="width: 20%;">Application Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-bold">
+                        <div>Google Software Engineering Intern</div>
+                        <span class="pixel-badge pixel-badge-blue text-xs">Summer Internship 2027</span>
+                    </td>
+                    <td class="font-mono font-bold text-primary">₹ 1,25,000 / Month</td>
+                    <td class="text-sm">B.Tech CSE (CGPA &gt;= 8.0)</td>
+                    <td><button onclick="alert('Application submitted for Google Internship!')" class="btn-pixel text-xs py-1 px-3">Apply Now</button></td>
+                </tr>
+                <tr>
+                    <td class="font-bold">
+                        <div>Microsoft Full Stack Developer</div>
+                        <span class="pixel-badge pixel-badge-gold text-xs">Full-Time Placement</span>
+                    </td>
+                    <td class="font-mono font-bold text-primary">₹ 28,00,000 / Year</td>
+                    <td class="text-sm">B.Tech CSE (Final Year)</td>
+                    <td><button onclick="alert('Application submitted for Microsoft Drive!')" class="btn-pixel text-xs py-1 px-3">Apply Now</button></td>
+                </tr>
+                <tr>
+                    <td class="font-bold">
+                        <div>Amazon SDE Summer Intern</div>
+                        <span class="pixel-badge text-xs">Internship Drive</span>
+                    </td>
+                    <td class="font-mono font-bold text-primary">₹ 1,10,000 / Month</td>
+                    <td class="text-sm">B.Tech CSE / MCA</td>
+                    <td><button onclick="alert('Application submitted for Amazon SDE Intern!')" class="btn-pixel text-xs py-1 px-3">Apply Now</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
+</body>
+</html>

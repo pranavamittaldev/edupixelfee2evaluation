@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Student Attendance</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-4 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary font-bold text-3xl" data-icon="grid_view">grid_view</span>
+        <span class="font-headline-md text-3xl text-primary uppercase tracking-tighter">EduPixel</span>
+    </a>
+    <nav class="flex gap-6">
+        <a class="text-on-surface-variant hover:text-primary font-bold" href="profile.html">Profile</a>
+        <a class="text-on-surface-variant hover:text-primary font-bold" href="circulars.html">Announcements</a>
+        <a class="text-primary font-bold border-b-4 border-primary" href="academics.html">Academics</a>
+        <a class="text-error font-bold hover:underline" href="#" onclick="logout(); return false;">Logout</a>
+    </nav>
+</header>
+
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge mb-1">Exam Eligible Status</span>
+            <h1 class="text-4xl text-primary font-bold uppercase">Attendance Matrix</h1>
+            <p class="text-on-surface-variant text-lg">Subject-wise attendance percentage and lecture eligibility summary.</p>
+        </div>
+        <a href="academics.html" class="btn-pixel">&larr; Back to Academics</a>
+    </div>
+</div>
+
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6">
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
+            <h3 class="text-3xl font-bold text-primary uppercase">Subject Attendance Breakdown</h3>
+            <span class="pixel-badge pixel-badge-gold">Overall: 91%</span>
+        </div>
+
+        <table class="pixel-table">
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Subject Name</th>
+                    <th style="width: 30%;">Attendance Progress</th>
+                    <th style="width: 20%;">Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-bold">Mathematics III</td>
+                    <td>
+                        <div class="pixel-progress-bar">
+                            <div class="pixel-progress-fill" style="width: 92%;"></div>
+                        </div>
+                    </td>
+                    <td><span class="pixel-badge">92%</span></td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Physics</td>
+                    <td>
+                        <div class="pixel-progress-bar">
+                            <div class="pixel-progress-fill" style="width: 87%;"></div>
+                        </div>
+                    </td>
+                    <td><span class="pixel-badge pixel-badge-blue">87%</span></td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Computer Science & Data Structures</td>
+                    <td>
+                        <div class="pixel-progress-bar">
+                            <div class="pixel-progress-fill" style="width: 95%;"></div>
+                        </div>
+                    </td>
+                    <td><span class="pixel-badge pixel-badge-gold">95%</span></td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Technical English</td>
+                    <td>
+                        <div class="pixel-progress-bar">
+                            <div class="pixel-progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </td>
+                    <td><span class="pixel-badge">90%</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="mt-6 p-4 bg-surface-container-low border-2 border-on-surface flex justify-between items-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span class="font-bold text-lg text-primary">Eligibility Status: 100% Qualified for Final Term Exams</span>
+            <span class="pixel-badge text-base">Overall Average: 91%</span>
+        </div>
+    </div>
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
+</body>
+</html>

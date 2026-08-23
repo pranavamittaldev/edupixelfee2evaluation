@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>EduPixel - Campus Life & Clubs</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdfae9",
+                    "primary": "#366a19",
+                    "secondary": "#365e9f",
+                    "background": "#fdfae9",
+                    "on-surface": "#1c1c13",
+                    "inverse-surface": "#313126",
+                    "inverse-on-surface": "#f4f1e1"
+            },
+            "fontFamily": {
+                    "headline-md": ["Harmond", "serif"],
+                    "body-md": ["Harmond", "serif"],
+                    "pixel": ["Harmond", "serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="flex justify-between items-center px-gutter py-4 w-full bg-surface border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-50">
+    <a href="index.html" class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary font-bold text-3xl" data-icon="grid_view">grid_view</span>
+        <span class="font-headline-md text-3xl text-primary uppercase tracking-tighter">EduPixel</span>
+    </a>
+    <nav class="flex gap-4 flex-wrap"></nav>
+</header>
+
+<!-- Banner -->
+<div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="pixel-badge pixel-badge-blue mb-1">Guild Societies & Culture</span>
+            <h1 class="text-4xl text-primary font-bold uppercase">Campus Life & Clubs</h1>
+            <p class="text-on-surface-variant text-lg">Join student clubs, participate in workshops, cultural fests, and college activities.</p>
+        </div>
+        <a href="profile.html" class="btn-pixel">&larr; Back to Dashboard</a>
+    </div>
+</div>
+
+<main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6 space-y-8">
+
+    <!-- Clubs & Societies Grid -->
+    <div>
+        <h2 class="text-3xl font-bold text-primary uppercase mb-4 border-b-4 border-on-surface pb-2">⚔️ Active Student Clubs & Societies</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Club 1 -->
+            <div class="pixel-card bg-surface-container-low">
+                <div class="w-14 h-14 bg-secondary text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                    💻
+                </div>
+                <h3 class="text-2xl font-bold text-secondary mb-1">Pixel Code Guild</h3>
+                <p class="text-xs text-on-surface-variant mb-3">Competitive programming, web design, & monthly hackathons.</p>
+                <button onclick="alert('Enrolled in Pixel Code Guild!')" class="btn-pixel btn-pixel-secondary w-full text-xs">Join Guild</button>
+            </div>
+
+            <!-- Club 2 -->
+            <div class="pixel-card bg-surface-container-low">
+                <div class="w-14 h-14 bg-gold-accent text-on-bg text-3xl flex items-center justify-center mb-3 pixel-border" style="background-color: #d4a73e;">
+                    ⚽
+                </div>
+                <h3 class="text-2xl font-bold text-on-bg mb-1">Sports & Athletics Club</h3>
+                <p class="text-xs text-on-surface-variant mb-3">Football, Cricket tournaments, & inter-college meets.</p>
+                <button onclick="alert('Enrolled in Sports Club!')" class="btn-pixel w-full text-xs">Join Club</button>
+            </div>
+
+            <!-- Club 3 -->
+            <div class="pixel-card bg-surface-container-low">
+                <div class="w-14 h-14 bg-primary text-white text-3xl flex items-center justify-center mb-3 pixel-border">
+                    🎭
+                </div>
+                <h3 class="text-2xl font-bold text-primary mb-1">Cultural & Drama Society</h3>
+                <p class="text-xs text-on-surface-variant mb-3">Annual fest performance, music, & theatrical plays.</p>
+                <button onclick="alert('Enrolled in Cultural Society!')" class="btn-pixel w-full text-xs">Join Society</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Upcoming Workshops & Events -->
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
+            <h3 class="text-3xl font-bold text-primary uppercase">Upcoming Campus Workshops</h3>
+            <span class="pixel-badge">Academic Session 2026</span>
+        </div>
+
+        <table class="pixel-table">
+            <thead>
+                <tr>
+                    <th style="width: 40%;">Event / Workshop Name</th>
+                    <th style="width: 25%;">Date & Time</th>
+                    <th style="width: 20%;">Venue</th>
+                    <th style="width: 15%;">Registration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-bold">AI & Machine Learning Bootcamp</td>
+                    <td class="font-mono text-sm">Sep 02, 2026 (10:00 AM)</td>
+                    <td>Main Auditorium</td>
+                    <td><span class="pixel-badge">OPEN</span></td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Web3 & Retro Game Dev Workshop</td>
+                    <td class="font-mono text-sm">Sep 15, 2026 (02:00 PM)</td>
+                    <td>Computer Lab 1</td>
+                    <td><span class="pixel-badge pixel-badge-gold">FREE PASS</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+<footer class="w-full bg-inverse-surface border-t-4 border-on-surface mt-auto py-6 text-center">
+    <p class="text-inverse-on-surface font-body-md">© 199X EduPixel Studios. Level Up Your Knowledge.</p>
+</footer>
+
+<script src="auth.js"></script>
+</body>
+</html>
