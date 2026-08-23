@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolPad - Student Circulars & Notices</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="brand-logo-container">
+            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
+            <h1 class="logo">SchoolPad</h1>
+        </div>
+        <nav>
+            <a href="profile.html">Profile</a>
+            <a href="circulars.html">Circulars</a>
+            <a href="academics.html">Academics</a>
+            <a href="#" onclick="logout(); return false;" class="nav-logout-btn">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-banner">
+        <h2>Official Circulars & Announcements <span class="badge-tag badge-student">Notices</span></h2>
+        <p>Stay informed with the latest academic circulars, exam notifications, and campus updates.</p>
+    </div>
+
+    <main class="student-section">
+        <div class="circulars-list">
+            <article class="circular-card">
+                <div class="circular-icon-box">📅</div>
+                <div class="circular-content">
+                    <div class="circular-meta">
+                        <span class="circular-tag urgent">Urgent Notice</span>
+                        <span class="circular-date">August 22, 2026</span>
+                    </div>
+                    <h3>Mid-Semester Examination Schedule & Guidelines</h3>
+                    <p>The Mid-Semester Examination schedule for 3rd semester CSE students has been published. Exams commence on September 5th. All students must bring valid ID cards.</p>
+                </div>
+            </article>
+
+            <article class="circular-card">
+                <div class="circular-icon-box">💳</div>
+                <div class="circular-content">
+                    <div class="circular-meta">
+                        <span class="circular-tag">Fees Department</span>
+                        <span class="circular-date">August 20, 2026</span>
+                    </div>
+                    <h3>Semester Tuition Fee Payment Deadline Extension</h3>
+                    <p>The final date for 3rd-semester tuition fee submission without late fine has been extended to August 30th. Payments can be submitted via the online student portal.</p>
+                </div>
+            </article>
+
+            <article class="circular-card">
+                <div class="circular-icon-box">🏆</div>
+                <div class="circular-content">
+                    <div class="circular-meta">
+                        <span class="circular-tag">Events</span>
+                        <span class="circular-date">August 18, 2026</span>
+                    </div>
+                    <h3>Annual Hackathon & Innovation Challenge Registration</h3>
+                    <p>Registrations are now open for the Annual SchoolPad Hackathon. Form teams of up to 4 members and submit project proposals by September 10th.</p>
+                </div>
+            </article>
+
+            <article class="circular-card">
+                <div class="circular-icon-box">📚</div>
+                <div class="circular-content">
+                    <div class="circular-meta">
+                        <span class="circular-tag">Library</span>
+                        <span class="circular-date">August 15, 2026</span>
+                    </div>
+                    <h3>Digital Library & E-Book Access Credentials</h3>
+                    <p>New e-book subscriptions for Computer Science reference material are now accessible. Check your email for login credentials.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <section class="footer-section">
+            <div>
+                <h3>About Us</h3>
+                <p>SchoolPad helps manage student profiles and academic information.</p>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: schoolpad@example.com</p>
+                <p>Phone: +91 XXXXXXXXXX</p>
+            </div>
+        </section>
+        <p class="copyright">
+            &copy; 2026 SchoolPad | Student Profile Management System
+        </p>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

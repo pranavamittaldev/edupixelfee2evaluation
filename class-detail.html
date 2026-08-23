@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolPad - Class Attendance Roster</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="brand-logo-container">
+            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
+            <h1 class="logo">SchoolPad Portal</h1>
+        </div>
+        <nav>
+            <a href="admin-profile.html">Profile</a>
+            <a href="admin-classes.html">Attendance</a>
+            <a href="#" onclick="logout(); return false;" class="nav-logout-btn">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-banner">
+        <h2><span id="class-title">Class 10 - Section A</span> Attendance <span class="badge-tag badge-admin">Student Roster</span></h2>
+        <p>Class attendance records and roll number search for enrolled students.</p>
+    </div>
+
+    <main class="student-section">
+        <a href="admin-classes.html" class="back-btn">← Back to Attendance</a>
+
+        <!-- Roll No Search Bar -->
+        <div class="search-container">
+            <label for="roll-search">Search by Roll No.</label>
+            <div class="search-input-wrapper">
+                <input type="text" id="roll-search" class="form-control" placeholder="Enter Roll No. (e.g. 01, 24)" oninput="searchByRollNo()">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+
+        <!-- No Match Search Message -->
+        <div id="search-msg" class="search-message" style="display: none;">
+            No student found with this roll number.
+        </div>
+
+        <div class="profile-card">
+            <h3 style="color: #C65D3A; margin-bottom: 15px; border-bottom: 2px solid #E8DED4; padding-bottom: 10px;" id="class-subtitle">Attendance Records for Class 10 - A</h3>
+            
+            <!-- 3 Exact Columns Table: Roll No. | Name | Attendance -->
+            <table class="timetable-table" id="student-table">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">Roll No.</th>
+                        <th style="width: 55%;">Name</th>
+                        <th style="width: 25%;">Attendance</th>
+                    </tr>
+                </thead>
+                <tbody id="student-roster-body">
+                    <tr data-roll="1">
+                        <td><strong>001</strong></td>
+                        <td>Rahul Sharma</td>
+                        <td>92%</td>
+                    </tr>
+                    <tr data-roll="2">
+                        <td><strong>002</strong></td>
+                        <td>Aman Kumar</td>
+                        <td>87%</td>
+                    </tr>
+                    <tr data-roll="3">
+                        <td><strong>003</strong></td>
+                        <td>Priya Singh</td>
+                        <td>95%</td>
+                    </tr>
+                    <tr data-roll="4">
+                        <td><strong>004</strong></td>
+                        <td>Rohan Verma</td>
+                        <td>78%</td>
+                    </tr>
+                    <tr data-roll="5">
+                        <td><strong>005</strong></td>
+                        <td>Ananya Patel</td>
+                        <td>91%</td>
+                    </tr>
+                    <tr data-roll="6">
+                        <td><strong>006</strong></td>
+                        <td>Vikram Malhotra</td>
+                        <td>84%</td>
+                    </tr>
+                    <tr data-roll="7">
+                        <td><strong>007</strong></td>
+                        <td>Sneha Reddy</td>
+                        <td>96%</td>
+                    </tr>
+                    <tr data-roll="8">
+                        <td><strong>008</strong></td>
+                        <td>Arjun Das</td>
+                        <td>89%</td>
+                    </tr>
+                    <tr data-roll="9">
+                        <td><strong>009</strong></td>
+                        <td>Bhavna Joshi</td>
+                        <td>93%</td>
+                    </tr>
+                    <tr data-roll="10">
+                        <td><strong>010</strong></td>
+                        <td>Chirag Mehta</td>
+                        <td>82%</td>
+                    </tr>
+                    <tr data-roll="11">
+                        <td><strong>011</strong></td>
+                        <td>Divya Nair</td>
+                        <td>90%</td>
+                    </tr>
+                    <tr data-roll="12">
+                        <td><strong>012</strong></td>
+                        <td>Eshwar Rao</td>
+                        <td>88%</td>
+                    </tr>
+                    <tr data-roll="13">
+                        <td><strong>013</strong></td>
+                        <td>Farhan Khan</td>
+                        <td>94%</td>
+                    </tr>
+                    <tr data-roll="14">
+                        <td><strong>014</strong></td>
+                        <td>Gaurav Gupta</td>
+                        <td>81%</td>
+                    </tr>
+                    <tr data-roll="15">
+                        <td><strong>015</strong></td>
+                        <td>Harini Iyer</td>
+                        <td>97%</td>
+                    </tr>
+                    <tr data-roll="16">
+                        <td><strong>016</strong></td>
+                        <td>Ishaan Saxena</td>
+                        <td>86%</td>
+                    </tr>
+                    <tr data-roll="17">
+                        <td><strong>017</strong></td>
+                        <td>Jahnavi Shah</td>
+                        <td>92%</td>
+                    </tr>
+                    <tr data-roll="18">
+                        <td><strong>018</strong></td>
+                        <td>Karthik Pillai</td>
+                        <td>85%</td>
+                    </tr>
+                    <tr data-roll="19">
+                        <td><strong>019</strong></td>
+                        <td>Kavya Deshmukh</td>
+                        <td>91%</td>
+                    </tr>
+                    <tr data-roll="20">
+                        <td><strong>020</strong></td>
+                        <td>Lokesh Choudhary</td>
+                        <td>79%</td>
+                    </tr>
+                    <tr data-roll="21">
+                        <td><strong>021</strong></td>
+                        <td>Manish Tiwari</td>
+                        <td>88%</td>
+                    </tr>
+                    <tr data-roll="22">
+                        <td><strong>022</strong></td>
+                        <td>Neha Agarwal</td>
+                        <td>95%</td>
+                    </tr>
+                    <tr data-roll="23">
+                        <td><strong>023</strong></td>
+                        <td>Omkar Bhat</td>
+                        <td>83%</td>
+                    </tr>
+                    <tr data-roll="24">
+                        <td><strong>024</strong></td>
+                        <td>Pooja Hegde</td>
+                        <td>94%</td>
+                    </tr>
+                    <tr data-roll="25">
+                        <td><strong>025</strong></td>
+                        <td>Quasim Syed</td>
+                        <td>90%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <section class="footer-section">
+            <div>
+                <h3>About Us</h3>
+                <p>SchoolPad helps manage student profiles and academic information.</p>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: schoolpad@example.com</p>
+                <p>Phone: +91 XXXXXXXXXX</p>
+            </div>
+        </section>
+        <p class="copyright">
+            &copy; 2026 SchoolPad | Student Profile Management System
+        </p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const className = urlParams.get('class');
+            if (className) {
+                const formattedName = 'Class ' + className.replace('-', ' - Section ');
+                document.getElementById('class-title').textContent = formattedName;
+                document.getElementById('class-subtitle').textContent = 'Attendance Records for ' + formattedName;
+            }
+        });
+
+        function searchByRollNo() {
+            const input = document.getElementById('roll-search');
+            const searchMsg = document.getElementById('search-msg');
+            const rows = document.querySelectorAll('#student-roster-body tr');
+            const queryRaw = input ? input.value.trim() : '';
+
+            rows.forEach(row => row.classList.remove('highlight-row'));
+
+            if (!queryRaw) {
+                if (searchMsg) searchMsg.style.display = 'none';
+                return;
+            }
+
+            const queryNum = parseInt(queryRaw, 10);
+            let foundMatch = false;
+
+            rows.forEach(row => {
+                const rollAttr = row.getAttribute('data-roll');
+                const rollNum = parseInt(rollAttr, 10);
+                const rollText = row.querySelector('td:first-child').textContent.trim();
+                const rollTextNum = parseInt(rollText, 10);
+
+                if (!isNaN(queryNum) && (rollNum === queryNum || rollTextNum === queryNum)) {
+                    foundMatch = true;
+                    row.classList.add('highlight-row');
+                    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            if (foundMatch) {
+                if (searchMsg) searchMsg.style.display = 'none';
+            } else {
+                if (searchMsg) searchMsg.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

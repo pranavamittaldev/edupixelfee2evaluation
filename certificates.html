@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolPad - Certificates</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="detail-page-body">
+
+    <header style="position: relative;">
+        <div class="brand-logo-container">
+            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
+            <h1 class="logo">SchoolPad</h1>
+        </div>
+        <nav>
+            <a href="profile.html">Profile</a>
+            <a href="circulars.html">Circulars</a>
+            <a href="academics.html">Academics</a>
+            <a href="#" onclick="logout(); return false;" class="nav-logout-btn">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-banner" style="margin: 10px 8% 0; padding: 12px 22px;">
+        <h2 style="font-size: 20px;">Issued Certificates <span class="badge-tag badge-gold">Student Records</span></h2>
+        <p style="font-size: 13px;">Official institution certificates, bonafide letters, and transcripts.</p>
+    </div>
+
+    <main class="detail-section-compact">
+        <a href="academics.html" class="back-btn" style="margin-bottom: 12px; padding: 6px 14px; font-size: 13px;">← Back to Academics</a>
+
+        <div class="detail-card-compact">
+            <h3 style="color: #C65D3A; font-size: 17px; margin-bottom: 10px; border-bottom: 2px solid #E8DED4; padding-bottom: 6px;">Certificate Records</h3>
+            <table class="compact-table">
+                <thead>
+                    <tr>
+                        <th>Certificate Name</th>
+                        <th>Date / Year</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Academic Excellence Certificate</td>
+                        <td>2026</td>
+                        <td><span class="badge-tag badge-gold">Issued</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sports Achievement Award</td>
+                        <td>2025</td>
+                        <td><span class="badge-tag badge-student">Verified</span></td>
+                    </tr>
+                    <tr>
+                        <td>Coding Competition Winner</td>
+                        <td>2026</td>
+                        <td><span class="badge-tag badge-gold">Issued</span></td>
+                    </tr>
+                    <tr>
+                        <td>Bonafide Student Letter</td>
+                        <td>2026</td>
+                        <td><span class="badge-tag badge-student">Available</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer id="contact" style="padding: 10px 8%;">
+        <p class="copyright" style="border-top: none; padding-top: 0; margin: 0; font-size: 12px;">
+            &copy; 2026 SchoolPad | Student Profile Management System
+        </p>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

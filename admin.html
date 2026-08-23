@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolPad - Teacher Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="brand-logo-container">
+            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
+            <h1 class="logo">SchoolPad Portal</h1>
+        </div>
+        <nav>
+            <a href="admin-profile.html">Profile</a>
+            <a href="admin-classes.html">Attendance</a>
+            <a href="#" onclick="logout(); return false;" class="nav-logout-btn">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-banner">
+        <h2>Teacher Portal <span class="badge-tag badge-admin">Faculty Account</span></h2>
+        <p>Manage your assigned classes, subject allocations, and student rosters.</p>
+    </div>
+
+    <main class="student-section">
+        <div class="class-grid">
+            <article class="class-card">
+                <div class="class-card-header">
+                    <div>
+                        <h3>Class 10 - Section A</h3>
+                        <p style="color: #668B6A; font-weight: 600; font-size: 14px; margin-top: 2px;">Subject: Mathematics</p>
+                    </div>
+                    <span class="class-badge">35 Students</span>
+                </div>
+                <ul class="class-info-list">
+                    <li>📍 <strong>Room Allocation:</strong> Room 201 (Academic Block B)</li>
+                    <li>⏰ <strong>Schedule:</strong> Mon, Wed, Fri (09:00 AM - 10:00 AM)</li>
+                    <li>👤 <strong>Class Teacher:</strong> Dr. Rajesh Kumar</li>
+                </ul>
+            </article>
+
+            <article class="class-card">
+                <div class="class-card-header">
+                    <div>
+                        <h3>Class 10 - Section B</h3>
+                        <p style="color: #668B6A; font-weight: 600; font-size: 14px; margin-top: 2px;">Subject: Mathematics</p>
+                    </div>
+                    <span class="class-badge">32 Students</span>
+                </div>
+                <ul class="class-info-list">
+                    <li>📍 <strong>Room Allocation:</strong> Room 204 (Academic Block B)</li>
+                    <li>⏰ <strong>Schedule:</strong> Tue, Thu (11:15 AM - 12:45 PM)</li>
+                    <li>👤 <strong>Class Teacher:</strong> Prof. Sunita Sharma</li>
+                </ul>
+            </article>
+
+            <article class="class-card">
+                <div class="class-card-header">
+                    <div>
+                        <h3>Class 12 - Section A</h3>
+                        <p style="color: #668B6A; font-weight: 600; font-size: 14px; margin-top: 2px;">Subject: Advanced Calculus</p>
+                    </div>
+                    <span class="class-badge">28 Students</span>
+                </div>
+                <ul class="class-info-list">
+                    <li>📍 <strong>Room Allocation:</strong> Room 301 (Science Block)</li>
+                    <li>⏰ <strong>Schedule:</strong> Mon, Wed (02:00 PM - 03:30 PM)</li>
+                    <li>👤 <strong>Class Teacher:</strong> Dr. Rajesh Kumar</li>
+                </ul>
+            </article>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <section class="footer-section">
+            <div>
+                <h3>About Us</h3>
+                <p>SchoolPad helps manage student profiles and academic information.</p>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: schoolpad@example.com</p>
+                <p>Phone: +91 XXXXXXXXXX</p>
+            </div>
+        </section>
+        <p class="copyright">
+            &copy; 2026 SchoolPad | Student Profile Management System
+        </p>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

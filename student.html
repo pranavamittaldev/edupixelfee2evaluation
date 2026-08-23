@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolPad - Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="brand-logo-container">
+            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
+            <h1 class="logo">SchoolPad</h1>
+        </div>
+        <nav>
+            <a href="profile.html">Profile</a>
+            <a href="circulars.html">Circulars</a>
+            <a href="academics.html">Academics</a>
+            <a href="#" onclick="logout(); return false;" class="nav-logout-btn">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-banner">
+        <h2>Welcome back, <span id="display-student-name">Student</span>! <span class="badge-tag badge-student">Student Account</span></h2>
+        <p>Manage your academic profile, view enrolled courses, and track campus notices below.</p>
+    </div>
+
+    <main class="student-section">
+        <div class="profile-grid">
+            <div class="profile-card profile-main-info">
+                <div class="profile-avatar" id="avatar-initials">AS</div>
+                <h3 id="profile-name">Arjun Sharma</h3>
+                <p class="profile-subtitle">B.Tech CSE - 3rd Semester</p>
+                <p><strong>Roll No:</strong> 101</p>
+                <p style="margin-top: 10px;"><strong>Academic Status:</strong> Active</p>
+                <p><strong>Current CGPA:</strong> 8.5 / 10.0</p>
+            </div>
+
+            <div class="profile-card">
+                <h3 style="color: #C65D3A; margin-bottom: 15px; border-bottom: 2px solid #E8DED4; padding-bottom: 10px;">Academic & Personal Details</h3>
+                <table class="info-table">
+                    <tbody>
+                        <tr>
+                            <td class="label">Full Name</td>
+                            <td class="value" id="table-full-name">Arjun Sharma</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Roll Number</td>
+                            <td class="value">101</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Department</td>
+                            <td class="value">Computer Science & Engineering</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Degree Course</td>
+                            <td class="value">B.Tech CSE</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Current Semester</td>
+                            <td class="value">3rd Semester</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Email Address</td>
+                            <td class="value">arjun.sharma@schoolpad.edu</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Phone Number</td>
+                            <td class="value">+91 98765 43210</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Academic Advisor</td>
+                            <td class="value">Dr. Rajesh Kumar</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <section class="footer-section">
+            <div>
+                <h3>About Us</h3>
+                <p>SchoolPad helps manage student profiles and academic information.</p>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: schoolpad@example.com</p>
+                <p>Phone: +91 XXXXXXXXXX</p>
+            </div>
+        </section>
+        <p class="copyright">
+            &copy; 2026 SchoolPad | Student Profile Management System
+        </p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const username = getUsername();
+            if (username && username !== 'Student' && username !== 'User') {
+                document.getElementById('display-student-name').textContent = username;
+                document.getElementById('profile-name').textContent = username;
+                document.getElementById('table-full-name').textContent = username;
+                const initials = username.split(' ').map(n => n[0]).join('').toUpperCase();
+                if (initials) {
+                    document.getElementById('avatar-initials').textContent = initials.substring(0, 2);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

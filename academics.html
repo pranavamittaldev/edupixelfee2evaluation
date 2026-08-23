@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolPad - Academic Topics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="academics-body">
+
+    <header style="position: relative;">
+        <div class="brand-logo-container">
+            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
+            <h1 class="logo">SchoolPad</h1>
+        </div>
+        <nav>
+            <a href="profile.html">Profile</a>
+            <a href="circulars.html">Circulars</a>
+            <a href="academics.html">Academics</a>
+            <a href="#" onclick="logout(); return false;" class="nav-logout-btn">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-banner" style="margin: 12px 8% 0; padding: 14px 22px;">
+        <h2 style="font-size: 20px;">Academics Menu <span class="badge-tag badge-student">Select Topic</span></h2>
+        <p style="font-size: 13px;">Select an academic category below to view detailed records.</p>
+    </div>
+
+    <main class="academics-section-compact">
+        <div class="academics-grid-compact">
+            <!-- 1. Grades Topic Card -->
+            <a href="grades.html" class="academics-menu-card">
+                <div class="academics-icon-box">📊</div>
+                <h3>Grades</h3>
+                <p>Semester SGPA & CGPA</p>
+            </a>
+
+            <!-- 2. Certificates Topic Card -->
+            <a href="certificates.html" class="academics-menu-card">
+                <div class="academics-icon-box">📜</div>
+                <h3>Certificates</h3>
+                <p>Issued records & letters</p>
+            </a>
+
+            <!-- 3. Subjects Topic Card -->
+            <a href="subjects.html" class="academics-menu-card">
+                <div class="academics-icon-box">📚</div>
+                <h3>Subjects</h3>
+                <p>Enrolled courses & credits</p>
+            </a>
+
+            <!-- 4. Timetable Topic Card -->
+            <a href="timetable.html" class="academics-menu-card">
+                <div class="academics-icon-box">📅</div>
+                <h3>Timetable</h3>
+                <p>Weekly lecture schedule</p>
+            </a>
+
+            <!-- 5. Attendance Topic Card -->
+            <a href="attendance.html" class="academics-menu-card">
+                <div class="academics-icon-box">📝</div>
+                <h3>Attendance</h3>
+                <p>Attendance percentage & records</p>
+            </a>
+
+            <!-- 6. Academic Calendar Topic Card -->
+            <a href="academic-calendar.html" class="academics-menu-card">
+                <div class="academics-icon-box">🗓️</div>
+                <h3>Academic Calendar</h3>
+                <p>Semester dates & exam events</p>
+            </a>
+        </div>
+    </main>
+
+    <footer id="contact" style="padding: 10px 8%;">
+        <p class="copyright" style="border-top: none; padding-top: 0; margin: 0; font-size: 12px;">
+            &copy; 2026 SchoolPad | Student Profile Management System
+        </p>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

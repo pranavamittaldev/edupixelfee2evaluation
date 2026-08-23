@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolPad - Class Attendance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="brand-logo-container">
+            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
+            <h1 class="logo">SchoolPad Portal</h1>
+        </div>
+        <nav>
+            <a href="admin-profile.html">Profile</a>
+            <a href="admin-classes.html">Attendance</a>
+            <a href="#" onclick="logout(); return false;" class="nav-logout-btn">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-banner">
+        <h2>Class Attendance <span class="badge-tag badge-admin">Class Selection</span></h2>
+        <p>Select an assigned class below to view its enrolled student attendance roster.</p>
+    </div>
+
+    <main class="student-section">
+        <div class="class-grid">
+            <!-- 1. Class 10-A Card -->
+            <a href="class-detail.html?class=10-A" class="academics-menu-card">
+                <div class="academics-icon-box">🏫</div>
+                <h3>Class 10 - Section A</h3>
+                <p>Click to view class attendance roster</p>
+            </a>
+
+            <!-- 2. Class 10-B Card -->
+            <a href="class-detail.html?class=10-B" class="academics-menu-card">
+                <div class="academics-icon-box">🏫</div>
+                <h3>Class 10 - Section B</h3>
+                <p>Click to view class attendance roster</p>
+            </a>
+
+            <!-- 3. Class 11-A Card -->
+            <a href="class-detail.html?class=11-A" class="academics-menu-card">
+                <div class="academics-icon-box">🏫</div>
+                <h3>Class 11 - Section A</h3>
+                <p>Click to view class attendance roster</p>
+            </a>
+
+            <!-- 4. Class 12-A Card -->
+            <a href="class-detail.html?class=12-A" class="academics-menu-card">
+                <div class="academics-icon-box">🏫</div>
+                <h3>Class 12 - Section A</h3>
+                <p>Click to view class attendance roster</p>
+            </a>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <section class="footer-section">
+            <div>
+                <h3>About Us</h3>
+                <p>SchoolPad helps manage student profiles and academic information.</p>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: schoolpad@example.com</p>
+                <p>Phone: +91 XXXXXXXXXX</p>
+            </div>
+        </section>
+        <p class="copyright">
+            &copy; 2026 SchoolPad | Student Profile Management System
+        </p>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

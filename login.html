@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolPad - Sign In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-body">
+
+    <header style="position: relative;">
+        <div class="brand-logo-container">
+            <img src="logo.svg" alt="SchoolPad Logo" class="nav-logo-img">
+            <h1 class="logo">SchoolPad</h1>
+        </div>
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#features">Features</a>
+            <a href="login.html">Sign Up</a>
+        </nav>
+    </header>
+
+    <main class="auth-section">
+        <!-- Student Sign In Card (Default View) -->
+        <div class="auth-card" id="student-login-card">
+            <div class="auth-header">
+                <img src="logo.svg" alt="SchoolPad Logo" class="auth-logo-img">
+                <div>
+                    <span class="auth-badge">🎓 Student Portal</span>
+                </div>
+                <h2>Student Sign In</h2>
+                <p class="auth-subtitle">Enter your credentials to sign in</p>
+            </div>
+
+            <form class="auth-form" onsubmit="handleStudentLogin(event)">
+                <div class="form-group">
+                    <label for="student-username">Username</label>
+                    <input type="text" id="student-username" class="form-control" placeholder="Enter username" required autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="student-password">Password</label>
+                    <input type="password" id="student-password" class="form-control" placeholder="Enter password" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn btn-block">Sign In</button>
+            </form>
+
+            <div class="auth-switch-box">
+                <button type="button" class="auth-switch-btn admin-switch-btn" onclick="showLoginTab('admin')">Admin Login</button>
+            </div>
+        </div>
+
+        <!-- Admin Sign In Card (Hidden initially) -->
+        <div class="auth-card" id="admin-login-card" style="display: none;">
+            <div class="auth-header">
+                <img src="logo.svg" alt="SchoolPad Logo" class="auth-logo-img">
+                <div>
+                    <span class="auth-badge admin-badge">🛡️ Admin Portal</span>
+                </div>
+                <h2>Admin Sign In</h2>
+                <p class="auth-subtitle">Enter administrative credentials</p>
+            </div>
+
+            <form class="auth-form" onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label for="admin-username">Username</label>
+                    <input type="text" id="admin-username" class="form-control" placeholder="Enter admin username" required autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" class="form-control" placeholder="Enter admin password" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn btn-block">Sign In</button>
+            </form>
+
+            <div class="auth-switch-box">
+                <button type="button" class="auth-switch-btn" onclick="showLoginTab('student')">Student Login</button>
+            </div>
+        </div>
+    </main>
+
+    <footer id="contact" style="padding: 15px 8%;">
+        <p class="copyright" style="border-top: none; padding-top: 0; margin: 0;">
+            &copy; 2026 SchoolPad | Student Profile Management System
+        </p>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>
