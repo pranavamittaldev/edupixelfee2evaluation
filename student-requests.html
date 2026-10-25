@@ -108,24 +108,7 @@
                 </tr>
             </thead>
             <tbody id="request-history-body">
-                <tr>
-                    <td class="font-bold">
-                        <div>REQ-8021</div>
-                        <span class="pixel-badge bg-error text-white text-xs">Medical Leave</span>
-                    </td>
-                    <td class="font-mono text-sm">22 August 2026</td>
-                    <td class="text-sm">Viral Fever & Doctor Prescription (3 Days Exemption)</td>
-                    <td><span class="pixel-badge pixel-badge-gold">PENDING APPROVAL</span></td>
-                </tr>
-                <tr>
-                    <td class="font-bold">
-                        <div>REQ-7450</div>
-                        <span class="pixel-badge text-xs">Bonafide Certificate</span>
-                    </td>
-                    <td class="font-mono text-sm">10 August 2026</td>
-                    <td class="text-sm">Bank Education Loan Passport Verification</td>
-                    <td><span class="pixel-badge">APPROVED & ISSUED</span></td>
-                </tr>
+                <!-- Dynamically rendered via EduPixelDB -->
             </tbody>
         </table>
     </div>
@@ -138,13 +121,87 @@
 
 <script src="auth.js"></script>
 <script>
+    function renderRequests() {
+        const tbody = document.getElementById('request-history-body');
+        if (!tbody) return;
+
+        const requests = EduPixelDB.getRequests();
+        const studentName = getUsername();
+
+        // Filter requests for current student (or show all demo student requests)
+        const userRequests = requests.filter(r => !r.studentName || r.studentName === studentName || r.studentName === 'Arjun Sharma');
+
+        if (userRequests.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-on-surface-variant font-mono">No requests submitted yet. Use the form above to submit an application.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = userRequests.map(r => {
+            let statusBadge = '<span class="pixel-badge pixel-badge-gold">PENDING APPROVAL</span>';
+            if (r.status === 'APPROVED') {
+                statusBadge = '<span class="pixel-badge bg-primary text-white">✓ APPROVED & ISSUED</span>';
+            } else if (r.status === 'REJECTED') {
+                statusBadge = '<span class="pixel-badge bg-error text-white">✗ APPLICATION REJECTED</span>';
+            }
+
+            return `
+                <tr>
+                    <td class="font-bold">
+                        <div class="text-primary">${r.id}</div>
+                        <span class="pixel-badge text-xs">${r.category}</span>
+                    </td>
+                    <td class="font-mono text-sm">${r.dateSubmitted}</td>
+                    <td class="text-sm">
+                        <div class="font-bold">${r.reason}</div>
+                        ${r.dates && r.dates !== 'N/A' ? `<div class="text-xs text-on-surface-variant font-mono mt-1">Dates: ${r.dates}</div>` : ''}
+                        ${r.adminNotes ? `<div class="text-xs text-secondary font-mono mt-1">Faculty Remarks: ${r.adminNotes}</div>` : ''}
+                    </td>
+                    <td>${statusBadge}</td>
+                </tr>
+            `;
+        }).join('');
+    }
+
     function submitRequest(event) {
         event.preventDefault();
         const type = document.getElementById('req-type').value;
-        alert('✓ Request (' + type + ') submitted successfully! Tracking number generated.');
+        const dates = document.getElementById('req-dates').value.trim();
+        const reason = document.getElementById('req-reason').value.trim();
+
+        if (!reason || !dates) {
+            showToast('Please fill in both dates and reason details.', 'warning', 'INCOMPLETE FORM');
+            return;
+        }
+
+        const newId = 'REQ-' + Math.floor(1000 + Math.random() * 9000);
+        const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        EduPixelDB.addRequest({
+            id: newId,
+            studentName: getUsername(),
+            roll: 'Roll 101 (10-A)',
+            category: type,
+            dates: dates,
+            reason: reason,
+            file: 'Submitted_Application_' + newId + '.pdf',
+            status: 'PENDING',
+            dateSubmitted: today
+        });
+
+        // Reset form
         document.getElementById('req-reason').value = '';
         document.getElementById('req-dates').value = '';
+
+        // Render table
+        renderRequests();
+
+        playRetroSound('success');
+        showToast(`✓ Request (${type}) submitted as [${newId}]! Live status is tracking in the log below.`, 'success', 'APPLICATION DISPATCHED');
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        renderRequests();
+    });
 </script>
 </body>
 </html>

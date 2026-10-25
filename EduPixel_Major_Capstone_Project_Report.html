@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPixel - Major Capstone Project Report | Chitkara University</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Harmond';
+            src: url('https://fonts.cdnfonts.com/s/72288/Harmond-FreeDisplay.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-surface: #fdfae9;
+            --on-bg: #1c1c13;
+            --primary-green: #366a19;
+            --secondary-blue: #365e9f;
+            --surface-card: #f1eede;
+            --gold-accent: #d4a73e;
+            --border-color: #1c1c13;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Space Grotesk', sans-serif;
+            background-color: var(--bg-surface);
+            color: var(--on-bg);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .report-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 4px solid var(--border-color);
+            box-shadow: 8px 8px 0px 0px var(--border-color);
+            padding: 60px 50px;
+        }
+
+        .header-banner {
+            text-align: center;
+            border-bottom: 4px solid var(--border-color);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Harmond', 'Space Grotesk', serif;
+            color: var(--on-bg);
+            margin-bottom: 12px;
+        }
+
+        .heading-1 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: var(--primary-green);
+            border-bottom: 3px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+        }
+
+        .heading-2 {
+            font-size: 1.6rem;
+            color: var(--secondary-blue);
+            margin-top: 28px;
+            margin-bottom: 14px;
+        }
+
+        .heading-3 {
+            font-size: 1.25rem;
+            color: var(--on-bg);
+            margin-top: 22px;
+            margin-bottom: 10px;
+        }
+
+        .heading-4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #444;
+            margin-top: 16px;
+        }
+
+        .para {
+            font-size: 1rem;
+            margin-bottom: 14px;
+            color: #2b2b2b;
+            text-align: justify;
+        }
+
+        .spacer {
+            height: 10px;
+        }
+
+        .section-divider {
+            border: none;
+            border-top: 4px solid var(--border-color);
+            margin: 40px 0;
+        }
+
+        /* Table Styling */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .pixel-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 3px solid var(--border-color);
+            font-size: 0.92rem;
+            background-color: var(--bg-surface);
+        }
+
+        .pixel-table th {
+            background-color: var(--primary-green);
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            padding: 10px 14px;
+            border: 2px solid var(--border-color);
+            text-align: left;
+        }
+
+        .pixel-table td {
+            padding: 10px 14px;
+            border: 2px solid var(--border-color);
+            color: #111;
+        }
+
+        .pixel-table tr:nth-child(even) {
+            background-color: #f5f2e1;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background-color: #1c1c13;
+            color: #85d064;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 18px 22px;
+            border: 3px solid var(--border-color);
+            box-shadow: 4px 4px 0px 0px var(--border-color);
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 0.88rem;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+
+        .inline-code {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #eae5cc;
+            color: #922b21;
+            padding: 2px 6px;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            font-size: 0.88rem;
+        }
+
+        /* Image Cards */
+        .img-card {
+            margin: 30px 0;
+            text-align: center;
+            background: var(--bg-surface);
+            border: 3px solid var(--border-color);
+            box-shadow: 6px 6px 0px 0px var(--border-color);
+            padding: 16px;
+        }
+
+        .img-card img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid var(--border-color);
+            border-radius: 2px;
+        }
+
+        .img-card .caption {
+            display: block;
+            margin-top: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--secondary-blue);
+            text-transform: uppercase;
+        }
+
+        /* Quotes & Notes */
+        .quote-box {
+            background-color: var(--surface-card);
+            border-left: 6px solid var(--gold-accent);
+            border-top: 2px solid var(--border-color);
+            border-right: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #333;
+        }
+
+        .report-list {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .report-list li {
+            margin-bottom: 6px;
+        }
+
+        .doc-link {
+            color: var(--secondary-blue);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        /* Print Controls Bar */
+        .print-bar {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--primary-green);
+            color: #fff;
+            padding: 10px 20px;
+            border: 3px solid var(--border-color);
+            box-shadow: 4px 4px 0px 0px var(--border-color);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .print-bar:hover {
+            background: #2a5213;
+        }
+
+        @media print {
+            .print-bar { display: none; }
+            body { padding: 0; background: #fff; }
+            .report-wrapper { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+            .heading-1 { page-break-before: always; }
+            .img-card, .code-block, .table-container { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-bar" onclick="window.print()">🖨️ Save as PDF / Print Report</button>
+    <div class="report-wrapper">
+        <h1 class="heading-1">DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING (CSE - AI & ML)</h1>
+<h2 class="heading-2">CHITKARA UNIVERSITY, PUNJAB</h2>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h1 class="heading-1">MAJOR CAPSTONE PROJECT REPORT</h1>
+<h3 class="heading-3">ACADEMIC YEAR 2025–2026</h3>
+<div class="spacer"></div>
+<h2 class="heading-2">STUDENT PROFILE MANAGEMENT SYSTEM</h2>
+<h3 class="heading-3">Project Name: <strong>EduPixel</strong></h3>
+<div class="spacer"></div>
+<p class="para"><em>An Integrated Web-Based Student Academic Profile, Attendance, Fee & Campus Management System</em></p>
+<div class="spacer"></div>
+<p class="para"><strong>Developed under the guidance of:</strong></p>
+<p class="para"><strong>Mr. Amitabh Shrivastava</strong>, Trainer, Department of CSE (AI & ML)</p>
+<div class="spacer"></div>
+<div class="table-container"><table class="pixel-table">
+  <tr><th>Project Attribute</th><th>Project Information Details</th></tr>
+  <tr><td><strong>PROJECT TITLE</strong></td><td>Student Profile Management System (EduPixel)</td></tr>
+  <tr><td><strong>DEPARTMENT & INSTITUTION</strong></td><td>Department of Computer Science & Engineering (AI & ML), Chitkara University</td></tr>
+  <tr><td><strong>PROJECT TEAM</strong></td><td>Team No. 19 \</td><td><strong>Team Leader:</strong> Pranava Mittal</td></tr>
+  <tr><td><strong>PROJECT TRAINER</strong></td><td>Mr. Amitabh Shrivastava, Trainer</td></tr>
+  <tr><td><strong>CORE TECHNOLOGIES</strong></td><td>HTML5, CSS3, Vanilla JavaScript (ES6+), VS Code, Git, GitHub</td></tr>
+  <tr><td><strong>ACADEMIC SESSION</strong></td><td>Academic Year 2025–2026</td></tr>
+</table></div>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">TEAM DECLARATION & ROSTER | CHITKARA UNIVERSITY</h2>
+<h3 class="heading-3">Candidate Declaration & Project Team Information</h3>
+<div class="spacer"></div>
+<p class="para">We, the members of Team No. 19 from the Department of Computer Science and Engineering (CSE - AI & ML), Chitkara University, hereby declare that the project report entitled <strong>'Student Profile Management System (EduPixel)'</strong> is a bonafide record of authentic project work carried out by us under the supervision of our trainer, <strong>Mr. Amitabh Shrivastava</strong>.</p>
+<div class="spacer"></div>
+<p class="para">We confirm that the web application, user interface components, and client-side logic presented herein represent our original work developed using standard HTML5, CSS3, and JavaScript, created using Visual Studio Code and tracked via Git and GitHub. All references to creative design inspirations (<em>Cofounder.co</em> and <em>Harmony Free Serif</em>) have been formally cited.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">Project Team Roster (Team No. 19)</h3>
+<div class="spacer"></div>
+<div class="table-container"><table class="pixel-table">
+  <tr><th>ID / Roll No.</th><th>Student Name</th><th>Email Address</th><th>Assigned Project Module & Area</th></tr>
+  <tr><td><strong>2510992516</strong></td><td><strong>Pranava Mittal</strong> <em>(Team Leader)</em></td><td><code class="inline-code">pranava2516.beai25@chitkara.edu.in</code></td><td>Architecture, Navigation & Core Dashboard</td></tr>
+  <tr><td><strong>2510992708</strong></td><td><strong>Naman Sharma</strong></td><td><code class="inline-code">naman2708.beai25@chitkara.edu.in</code></td><td>Attendance Engine & Class Rosters</td></tr>
+  <tr><td><strong>2510993513</strong></td><td><strong>Anmol Arora</strong></td><td><code class="inline-code">anmol3513.beai25@chitkara.edu.in</code></td><td>Student Search & Fee Ledger Management</td></tr>
+  <tr><td><strong>2510992539</strong></td><td><strong>Aditya Saini</strong></td><td><code class="inline-code">aditya2539.beai25@chitkara.edu.in</code></td><td>Leave Management & Mobile Navigation</td></tr>
+</table></div>
+<div class="spacer"></div>
+<p class="para"><br></p>
+<div class="spacer"></div>
+<div class="table-container"><table class="pixel-table">
+  <tr><th>TEAM LEADER SIGNATURE</th><th>PROJECT TRAINER VERIFICATION</th></tr>
+  <tr><td><br><strong>___________________________</strong><br><strong>Pranava Mittal</strong> (Roll No: 2510992516)<br>Team Leader, Team No. 19, CSE AI & ML</td><td><br><strong>___________________________</strong><br><strong>Mr. Amitabh Shrivastava</strong><br>Trainer, Chitkara University</td></tr>
+</table></div>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 03 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Acknowledgements & Institutional Context</h3>
+<h4 class="heading-4">Gratitude to Trainer Mr. Amitabh Shrivastava and Department of CSE AI & ML</h4>
+<div class="spacer"></div>
+<p class="para">We wish to express our profound gratitude to the <strong>Department of Computer Science and Engineering (CSE - AI & ML), Chitkara University</strong>, for providing the academic infrastructure, computing facilities, and learning environment that made the development of the 'Student Profile Management System (EduPixel)' possible.</p>
+<div class="spacer"></div>
+<p class="para">We extend our sincere and special thanks to our trainer, <strong>Mr. Amitabh Shrivastava</strong>, for his valuable guidance, technical mentorship, and constant encouragement throughout the development of this project. His practical insights on structuring user workflows, class attendance rosters, leave adjudication, and clean user interface practices were instrumental in the successful completion of this project.</p>
+<div class="spacer"></div>
+<p class="para">We also acknowledge the supportive peer learning environment within the CSE AIML department that facilitated constructive feedback during interface prototyping and responsive testing.</p>
+<div class="spacer"></div>
+<blockquote class="quote-box"><strong>ACADEMIC CREDITS & MENTORSHIP</strong></blockquote>
+<blockquote class="quote-box">Project developed by Team No. 19 (<em>Pranava Mittal, Naman Sharma, Anmol Arora, Aditya Saini</em>) under the mentorship of <strong>Mr. Amitabh Shrivastava</strong>, Trainer, Department of Computer Science and Engineering (CSE - AI & ML), Chitkara University.</blockquote>
+<div class="spacer"></div>
+<h3 class="heading-3">Creative Citations & Design References</h3>
+<p class="para">The team also acknowledges the creative design resources that inspired the visual and typographic presentation of this project:</p>
+<ul class="report-list">
+  <li><strong>Design & Grid Inspiration</strong>: <a href="https://cofounder.co/" target="_blank" rel="noopener">Cofounder.co</a> for its structured micro-borders, clean bounding boxes, and warm neutral background tone (<code class="inline-code">#FDFAE9</code>).</li>
+  <li><strong>Typography Inspiration</strong>: <a href="https://www.awwwards.com/inspiration/harmony-free-serif-typeface" target="_blank" rel="noopener">Harmony / Harmond Free Serif Typeface</a> showcased on Awwwards for its distinguished serif craftsmanship.</li>
+</ul>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 04 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Abstract & Table of Contents</h3>
+<h4 class="heading-4">Project Summary and Chapter Index</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">Abstract</h3>
+<p class="para">The <strong>'Student Profile Management System (EduPixel)'</strong> is a comprehensive, lightweight, and responsive web-based platform developed by Team No. 19 in the Department of Computer Science and Engineering (CSE - AI & ML) at Chitkara University. The platform unites academic profiles, course gradebooks, lecture attendance tracking, fee payment ledgers, bonafide document repositories, leave request queues, campus services, and coding leaderboards into an integrated 24-view environment. Built using standard HTML5, CSS3, and JavaScript without external runtime frameworks, the project provides a clean and student-friendly user experience inspired by the layout of <em>Cofounder.co</em> and the typography of the <em>Harmony Free Serif</em> typeface.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">Table of Contents</h3>
+<div class="spacer"></div>
+<div class="table-container"><table class="pixel-table">
+  <tr><th>Chapter</th><th>Title</th><th>Primary Topics Addressed</th><th>Section</th></tr>
+  <tr><td><strong>Chapter 01</strong></td><td>Introduction & Project Overview</td><td>Background, Motivation, Objectives & Operational Scope</td><td>Section 1</td></tr>
+  <tr><td><strong>Chapter 02</strong></td><td>Literature Survey & Existing System</td><td>Study of Traditional Records & Deficiencies Resolved</td><td>Section 2</td></tr>
+  <tr><td><strong>Chapter 03</strong></td><td>Design & Typographic Inspiration</td><td>References: Cofounder.co & Harmony Serif (Awwwards)</td><td>Section 3</td></tr>
+  <tr><td><strong>Chapter 04</strong></td><td>Software Requirements Specification</td><td>User Roles, Privilege Scopes & Functional Use Cases</td><td>Section 4</td></tr>
+  <tr><td><strong>Chapter 05</strong></td><td>Non-Functional Requirements</td><td>Usability, Accessibility & Responsive Breakpoints</td><td>Section 5</td></tr>
+  <tr><td><strong>Chapter 06</strong></td><td>Languages & Development Tools</td><td>HTML5, CSS3, JavaScript, VS Code, Git, GitHub</td><td>Section 6</td></tr>
+  <tr><td><strong>Chapter 07</strong></td><td>System Architecture & Data Flow</td><td>Client-Side Architecture & Web Storage Lifecycle</td><td>Section 7</td></tr>
+  <tr><td><strong>Chapter 08</strong></td><td>Role-Based Access Control</td><td>Student & Trainer Privilege Scopes (auth.js)</td><td>Section 8</td></tr>
+  <tr><td><strong>Chapter 09</strong></td><td>Module: Public & Authentication</td><td>Landing Page (index.html), Login & Transition Screen</td><td>Section 9</td></tr>
+  <tr><td><strong>Chapter 10</strong></td><td>Module: Student Profile & Grades</td><td>Student Dashboard, Academic Dossier & SGPA Tracker</td><td>Section 10</td></tr>
+  <tr><td><strong>Chapter 11</strong></td><td>Module: Attendance & Fee Portal</td><td>Subject Attendance Logs & Fee Breakdown Ledger</td><td>Section 11</td></tr>
+  <tr><td><strong>Chapter 12</strong></td><td>Module: Vault, Leaves & Campus</td><td>Document Repository, Applications & Campus Services</td><td>Section 12</td></tr>
+  <tr><td><strong>Chapter 13</strong></td><td>Module: Faculty/Trainer Center</td><td>Faculty Dashboard, Class Roster & Attendance Marker</td><td>Section 13</td></tr>
+  <tr><td><strong>Chapter 14</strong></td><td>Module: Student Search & Leaves</td><td>Multi-Filter Search Engine & Leave Adjudication Queue</td><td>Section 14</td></tr>
+  <tr><td><strong>Chapter 15</strong></td><td>Module: Leaderboard & Audit Logs</td><td>LeetCode Coding Practice, Escalations & Edit Logs</td><td>Section 15</td></tr>
+  <tr><td><strong>Chapter 16</strong></td><td>User Interface & Styling System</td><td>Custom CSS Tokens, Buttons, Badges & Data Tables</td><td>Section 16</td></tr>
+  <tr><td><strong>Chapter 17</strong></td><td>System Evaluation & Performance</td><td>Resource Efficiency, Page Rendering & Device Display</td><td>Section 17</td></tr>
+  <tr><td><strong>Chapter 18</strong></td><td>Security & Data Handling</td><td>Client-Side Storage Isolation & Input Validation</td><td>Section 18</td></tr>
+  <tr><td><strong>Chapter 19</strong></td><td>Testing & Quality Assurance</td><td>Functional Testing Matrix & Compatibility Verification</td><td>Section 19</td></tr>
+  <tr><td><strong>Chapter 20</strong></td><td>Future Enhancements & Scope</td><td>Conceptual Roadmap (Backend, Analytics, Payments, PWA)</td><td>Section 20</td></tr>
+  <tr><td><strong>Chapter 21</strong></td><td>Conclusion & Team Summary</td><td>Summary of Work Done & Team Member Contributions</td><td>Section 21</td></tr>
+  <tr><td><strong>Chapter 22</strong></td><td>References & Appendices</td><td>Citations, Web Standards Documentation & Glossary</td><td>Section 22</td></tr>
+</table></div>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 01 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Introduction & Project Overview</h3>
+<h4 class="heading-4">Background, Motivation, Objectives and Detailed Operational Scope</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">1.1 Academic Background & Context</h3>
+<p class="para">In modern higher education environments globally, universities and colleges manage a wide spectrum of academic and administrative workflows every day. These workflows span attendance logs across theoretical and practical laboratory sessions, mid-semester continuous evaluations, credit allocations, fee transaction ledgers, bonafide verification, medical leave requests, and career placement notices.</p>
+<div class="spacer"></div>
+<p class="para">Traditionally, many higher education institutions have operated with separate or paper-based systems: physical attendance registers, spreadsheet marks files maintained by individual instructors, and separate online fee portals. When students need to verify attendance eligibility or download official grade sheets, they often face delays navigating fragmented departmental offices.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">1.2 Motivation of Team No. 19</h3>
+<p class="para">As students in the Department of Computer Science and Engineering (CSE - AI & ML) at Chitkara University, the motivation of Team No. 19 is to design and develop <strong>'EduPixel'</strong>—a centralized, lightweight, and responsive web-based Student Profile Management System. By consolidating student records into an accessible client-side application, EduPixel empowers students to monitor their academic trajectory while giving trainers efficient digital tools to manage classroom cohorts without software complexity.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">1.3 Core Project Objectives</h3>
+<ul class="report-list">
+  <li><strong>Unified Academic Dossier</strong>: Provide students with a comprehensive identity profile showing enrolled courses, internal assessment marks, and SGPA calculations.</li>
+  <li><strong>Live Attendance Tracking</strong>: Calculate subject-wise attendance percentages and alert students when approaching the mandatory 75% examination threshold.</li>
+  <li><strong>1-Click Trainer Roster Marking</strong>: Equip trainers with digital class registers featuring 1-click status toggles (Present, Absent, On-Duty) and automatic tally counters.</li>
+  <li><strong>Transparent Leave Management</strong>: Provide formal workflows for submitting medical and on-duty leave applications with direct trainer review.</li>
+  <li><strong>Competitive Coding Motivation</strong>: Feature a live coding leaderboard showcasing LeetCode solve counts and contest ratings to foster technical excellence.</li>
+</ul>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 02 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Literature Survey & Existing System Analysis</h3>
+<h4 class="heading-4">Critical Evaluation of Traditional Campus Systems and Improvements Introduced</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">2.1 Review of Existing Campus Management Methods</h3>
+<p class="para">A comprehensive review of existing collegiate record-keeping workflows revealed substantial operational bottlenecks in traditional academic environments. Traditional workflows generally rely on three disconnected mediums:</p>
+<p class="para">1. <strong>Paper-Based Registers</strong>: Instructors manually call roll numbers and mark attendance in physical registers, which require manual monthly compilation and are prone to calculation errors.</p>
+<p class="para">2. <strong>Disconnected Spreadsheet Files</strong>: Department marks, credit calculations, and student contact records are kept in standalone spreadsheets that lack centralized synchronization.</p>
+<p class="para">3. <strong>Fragmented Online Portals</strong>: Universities often deploy separate legacy portals for examination registration, fee payments, and hostel bookings, forcing students to remember multiple login accounts.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">2.2 Deficiencies Identified in Existing Systems</h3>
+<ul class="report-list">
+  <li><strong>Calculation Inaccuracies</strong>: Manual tallying of lecture percentages frequently leads to discrepancies during end-semester examination eligibility checks.</li>
+  <li><strong>Lack of Real-Time Student Visibility</strong>: Students cannot easily check if their attendance in individual subjects is dropping below the 75% cutoff threshold until notices are published.</li>
+  <li><strong>Slow Administrative Turnaround</strong>: Submitting paper-based medical leave applications requires physical routing between class coordinators, mentors, and the department head.</li>
+  <li><strong>Poor Mobile Ergonomics</strong>: Most existing collegiate websites fail to render cleanly on smartphone viewports, causing horizontal overflow and illegible tables.</li>
+</ul>
+<div class="spacer"></div>
+<h3 class="heading-3">2.3 Concrete Improvements Introduced in EduPixel</h3>
+<p class="para">EduPixel resolves these challenges by introducing a single unified portal with 24 dedicated views, instant 1-click class roster marking for trainers, automatic attendance threshold calculations, centralized fee receipt ledgers, and responsive navigation optimized for both desktop and mobile smartphones.</p>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 03 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Design Philosophy & Typographic Inspiration</h3>
+<h4 class="heading-4">Creative References: Cofounder.co Layouts & Harmony Free Serif Typeface</h4>
+<div class="spacer"></div>
+<p class="para">The visual identity of EduPixel was thoughtfully created to provide an engaging, clear, and student-friendly user experience. The design unites two respected web design and typographic references:</p>
+<div class="spacer"></div>
+<h3 class="heading-3">3.1 Layout & Grid Inspiration: Cofounder.co</h3>
+<p class="para"><em>Citation URL: <a href="https://cofounder.co/" target="_blank" rel="noopener">https://cofounder.co/</a></em></p>
+<div class="spacer"></div>
+<p class="para">The layout discipline of EduPixel is inspired by Cofounder.co, known for its clean editorial bounding boxes, micro-borders, and structured whitespace. EduPixel translates these principles into collegiate UI components:</p>
+<ul class="report-list">
+  <li><strong>Solid Micro-Borders (<code class="inline-code">#1C1C13</code>)</strong>: Every card, module container, input field, and data table is bounded by crisp 2px to 4px solid borders, creating distinct visual sections without clutter.</li>
+  <li><strong>Warm Ivory Surface Canvas (<code class="inline-code">#FDFAE9</code>)</strong>: A gentle cream background reduces visual glare during extended study sessions and provides superior contrast for dark typography.</li>
+  <li><strong>Tactile Offset Shadows (<code class="inline-code">4px 4px 0px #1C1C13</code>)</strong>: Action buttons and cards feature solid drop shadows that translate (<code class="inline-code">-2px, -2px</code>) on hover, providing tactile visual feedback.</li>
+</ul>
+<div class="spacer"></div>
+<h3 class="heading-3">3.2 Typography Inspiration: Harmony / Harmond Free Serif</h3>
+<p class="para"><em>Citation URL: <a href="https://www.awwwards.com/inspiration/harmony-free-serif-typeface" target="_blank" rel="noopener">https://www.awwwards.com/inspiration/harmony-free-serif-typeface</a></em></p>
+<div class="spacer"></div>
+<p class="para">Showcased on Awwwards for its distinguished serif craftsmanship, the Harmony / Harmond Free Serif typeface inspired the heading typography of EduPixel:</p>
+<ul class="report-list">
+  <li><strong>Display & Headings (h1–h6)</strong>: Harmond / Harmony Serif gives academic titles a distinguished, structured appearance.</li>
+  <li><strong>User Interface & Buttons</strong>: Space Grotesk provides clear, geometric sans-serif legibility across menu bars, drawer links, and buttons.</li>
+  <li><strong>Tabular & Numerical Data</strong>: JetBrains Mono ensures strict column alignment for student roll numbers, GPAs, credit points, and fee amounts.</li>
+</ul>
+<div class="spacer"></div>
+<h3 class="heading-3">3.3 CSS Codebase Implementation (<code class="inline-code">style.css</code>)</h3>
+<pre class="code-block"><code class="language-css">/* Core Design Tokens &amp; Colors */
+:root {
+    --bg-surface: #fdfae9;
+    --on-bg: #1c1c13;
+    --primary-green: #366a19;
+    --primary-green-light: #6ba34b;
+    --secondary-blue: #365e9f;
+    --secondary-blue-light: #91b6fe;
+    --tertiary-brown: #7c5730;
+    --gold-accent: #d4a73e;
+    --surface-card: #f1eede;
+}
+
+/* Cofounder.co Micro-Borders &amp; Tactile Shadows */
+.pixel-border {
+    box-shadow: 4px 4px 0px 0px #1c1c13;
+    border: 4px solid #1c1c13;
+}
+
+.pixel-shadow {
+    box-shadow: 8px 8px 0px 0px #1c1c13;
+}
+
+/* Ornate RPG-Styled Action Buttons */
+.ornate-btn-inner {
+    border: 4px solid #1c1c13;
+    padding: 12px 24px;
+    box-shadow: 0px 4px 0px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.ornate-btn-green .ornate-btn-inner {
+    background: linear-gradient(to bottom, #5ba454 0%, #407b38 100%);
+}</code></pre>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 04 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Software Requirements Specification (SRS)</h3>
+<h4 class="heading-4">User Roles, Functional Modules and Use Case Specifications</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">4.1 User Roles & Privilege Matrix</h3>
+<p class="para">The system defines two primary user classes with distinct operational boundaries:</p>
+<p class="para">1. <strong>Student Role</strong>: Allows enrolled students to access their personal academic dossiers, view attendance status across subjects, check fee payment history, submit leave requests, and view campus notices.</p>
+<p class="para">2. <strong>Faculty / Trainer Role</strong>: Allows trainers and department faculty to mark daily class attendance, search student records across multiple criteria, approve or reject leave requests, and view department activity logs.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">4.2 Functional Requirements Specifications (FR Matrix)</h3>
+<div class="spacer"></div>
+<div class="table-container"><table class="pixel-table">
+  <tr><th>Req ID</th><th>Module Title</th><th>Source Code File</th><th>Functional Requirements Description</th></tr>
+  <tr><td><strong>FR-01</strong></td><td>User Authentication</td><td><a href="file:///d:/newprojectworknamansaini/fee3sem/login.html" class="doc-link" target="_blank">login.html</a></td><td>Dual-tab login interface for Student and Trainer accounts; stores role in <code class="inline-code">localStorage</code> and redirects to respective dashboard.</td></tr>
+  <tr><td><strong>FR-02</strong></td><td>Student Profile Dossier</td><td><a href="file:///d:/newprojectworknamansaini/fee3sem/profile.html" class="doc-link" target="_blank">profile.html</a></td><td>Renders student identity card (Roll No 101, CGPA 8.5, Attendance 91%) and personal/academic history.</td></tr>
+  <tr><td><strong>FR-03</strong></td><td>Subject Attendance Logs</td><td><a href="file:///d:/newprojectworknamansaini/fee3sem/attendance.html" class="doc-link" target="_blank">attendance.html</a></td><td>Displays per-subject lecture counts, conducted vs attended numbers, percentage progress bars, and 75% cutoff warnings.</td></tr>
+  <tr><td><strong>FR-04</strong></td><td>Fee Statements & Receipts</td><td><a href="file:///d:/newprojectworknamansaini/fee3sem/student-fees.html" class="doc-link" target="_blank">student-fees.html</a></td><td>Itemized breakdown of tuition, exam, and hostel fees, payment receipt downloads, and online payment simulation.</td></tr>
+  <tr><td><strong>FR-05</strong></td><td>Document Repository</td><td><a href="file:///d:/newprojectworknamansaini/fee3sem/student-documents.html" class="doc-link" target="_blank">student-documents.html</a></td><td>Secure digital vault for downloading verified bonafide certificates, ID card scans, and semester marksheets.</td></tr>
+  <tr><td><strong>FR-06</strong></td><td>Class Attendance Roster</td><td><a href="file:///d:/newprojectworknamansaini/fee3sem/admin-classes.html" class="doc-link" target="_blank">admin-classes.html</a>, <a href="file:///d:/newprojectworknamansaini/fee3sem/class-detail.html" class="doc-link" target="_blank">class-detail.html</a></td><td>Interactive class roster allowing trainers to mark Present, Absent, or On-Duty with live present/absent counters.</td></tr>
+  <tr><td><strong>FR-07</strong></td><td>Multi-Filter Student Search</td><td><a href="file:///d:/newprojectworknamansaini/fee3sem/admin-search.html" class="doc-link" target="_blank">admin-search.html</a></td><td>Search query engine to locate students by Roll Number, Name, Class Section, Blood Group, or CGPA spectrum.</td></tr>
+  <tr><td><strong>FR-08</strong></td><td>Leave Request & Approval</td><td><a href="file:///d:/newprojectworknamansaini/fee3sem/student-requests.html" class="doc-link" target="_blank">student-requests.html</a>, <a href="file:///d:/newprojectworknamansaini/fee3sem/admin-leaves.html" class="doc-link" target="_blank">admin-leaves.html</a></td><td>Student submission of medical leave with doctor notes and trainer approval/rejection queue with remarks.</td></tr>
+</table></div>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 05 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Non-Functional Requirements & Usability Guidelines</h3>
+<h4 class="heading-4">Usability, Universal Accessibility, Responsiveness and Design Guidelines</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">5.1 Usability & Cognitive Ergonomics</h3>
+<ul class="report-list">
+  <li><strong>Intuitive Navigation Architecture</strong>: Every student and trainer feature is accessible within 1 to 2 clicks from the main dashboard, minimizing deep menu nesting.</li>
+  <li><strong>Clear Visual Status Encoding</strong>: Color-coded badge tags provide instant feedback (e.g., Green for Active/Approved, Blue for Admin/Rosters, Gold for CGPA, Red for Cutoff Warnings).</li>
+  <li><strong>High Contrast & Readability</strong>: Text color (<code class="inline-code">#1C1C13</code>) on surface canvas (<code class="inline-code">#FDFAE9</code>) maintains high contrast, ensuring effortless reading in varied classroom lighting.</li>
+</ul>
+<div class="spacer"></div>
+<h3 class="heading-3">5.2 Responsive Layout Across Viewports</h3>
+<ul class="report-list">
+  <li><strong>Desktop Viewports (≥768px)</strong>: Displays a sticky horizontal top navigation bar with clear route indicators (<code class="inline-code">nav-active</code>) and immediate logout triggers.</li>
+  <li><strong>Handheld Smartphone Viewports (<768px)</strong>: Activates an off-canvas drawer menu (☰) with a smooth backdrop overlay and adds a persistent 4-tab bottom navigation bar for comfortable one-handed use.</li>
+</ul>
+<div class="spacer"></div>
+<h3 class="heading-3">5.3 Project Development Guidelines & Code Standards</h3>
+<p class="para">In strict adherence to academic project guidelines:</p>
+<ul class="report-list">
+  <li><strong>Zero Heavy Framework Overhead</strong>: Built entirely using semantic HTML5, modular CSS3, and native ES6 JavaScript without external UI build packages.</li>
+  <li><strong>Clean File Organization</strong>: Global design tokens are encapsulated in <a href="file:///d:/newprojectworknamansaini/fee3sem/style.css" class="doc-link" target="_blank">style.css</a>, and authentication and dynamic navigation logic are modularized in <a href="file:///d:/newprojectworknamansaini/fee3sem/auth.js" class="doc-link" target="_blank">auth.js</a>.</li>
+</ul>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 06 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Languages, Tools & Development Environment</h3>
+<h4 class="heading-4">Overview of HTML5, CSS3, JavaScript, Visual Studio Code, Git and GitHub</h4>
+<div class="spacer"></div>
+<p class="para">This college project was created and organized by Team No. 19 using standard web development languages and developer tools:</p>
+<div class="spacer"></div>
+<div class="table-container"><table class="pixel-table">
+  <tr><th>Tool / Technology</th><th>Functional Classification</th><th>Technical Utility & Role in Project</th></tr>
+  <tr><td><strong>Semantic HTML5</strong></td><td>Structural Markup</td><td>Provides semantic elements (<code class="inline-code"><header></code>, <code class="inline-code"><nav></code>, <code class="inline-code"><main></code>, <code class="inline-code"><section></code>, <code class="inline-code"><footer></code>), form input validation attributes, and accessible ARIA attributes.</td></tr>
+  <tr><td><strong>Modern CSS3</strong></td><td>Styling & Design System</td><td>Custom stylesheet (<code class="inline-code">style.css</code>) containing CSS custom properties (<code class="inline-code">--bg-surface</code>, <code class="inline-code">--primary-green</code>), CSS Grid layouts, and pixel border rules.</td></tr>
+  <tr><td><strong>Vanilla JavaScript (ES6+)</strong></td><td>Client-Side Logic</td><td>Standard browser JavaScript (<code class="inline-code">auth.js</code>) handling dynamic navigation rendering, mobile drawer toggles, search filtering, and <code class="inline-code">localStorage</code>.</td></tr>
+  <tr><td><strong>Visual Studio Code (VS Code)</strong></td><td>Code Editor / IDE</td><td>Primary IDE utilized for authoring HTML/CSS/JS files, multi-file workspace organization, and live server preview testing.</td></tr>
+  <tr><td><strong>Git Version Control</strong></td><td>Source Code Management</td><td>Distributed version control system used to track changes, create feature branches, and maintain atomic commit histories.</td></tr>
+  <tr><td><strong>GitHub Repository</strong></td><td>Remote Code Hosting</td><td>Online repository hosting used to back up project source files and facilitate project submission and review.</td></tr>
+  <tr><td><strong>Browser DevTools</strong></td><td>Testing & Debugging</td><td>Google Chrome and Firefox Developer Tools used for inspecting DOM elements, testing responsive screen sizes, and verifying <code class="inline-code">localStorage</code>.</td></tr>
+</table></div>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 07 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">System Architecture & Data Flow</h3>
+<h4 class="heading-4">Client-Side Architecture, Web Storage Persistence and Event Flow</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">7.1 Client-Side Web Architecture</h3>
+<p class="para">EduPixel is designed as a modular, client-side web application. The architecture consists of three interconnected layers:</p>
+<p class="para">1. <strong>View Layer</strong>: 24 independent HTML5 documents representing distinct student and trainer functions (student dashboard, academics, attendance, fees, faculty tools).</p>
+<p class="para">2. <strong>Style & Design Layer</strong>: Centralized stylesheet (<a href="file:///d:/newprojectworknamansaini/fee3sem/style.css" class="doc-link" target="_blank">style.css</a>) providing unified colors, typography, borders, and responsive rules across all views.</p>
+<p class="para">3. <strong>Controller & State Layer</strong>: Core JavaScript file (<a href="file:///d:/newprojectworknamansaini/fee3sem/auth.js" class="doc-link" target="_blank">auth.js</a>) that checks current user status, configures the appropriate navigation menus, and manages session data.</p>
+<div class="spacer"></div>
+<pre class="code-block"><code class="language-mermaid">graph TD
+    A[Browser View Layer: HTML5 Pages] --&gt;|User Actions &amp; Route Navigation| B[Controller &amp; State Layer: auth.js]
+    B --&gt;|Reads/Writes Session State| C[HTML5 Web Storage: localStorage]
+    B --&gt;|Applies Design Tokens &amp; Micro-Borders| D[Style &amp; Design Layer: style.css]
+    C --&gt;|Persists userRole &amp; username| A</code></pre>
+<div class="spacer"></div>
+<h3 class="heading-3">7.2 Local Storage Data Flow & Lifecycle</h3>
+<p class="para">To allow seamless demonstration without requiring a complex backend database server during academic evaluation, the project utilizes the HTML5 Web Storage API (<code class="inline-code">localStorage</code>):</p>
+<ul class="report-list">
+  <li><strong>Login Phase</strong>: When a student or trainer signs in on <code class="inline-code">login.html</code>, <code class="inline-code">userRole</code> ('student' or 'admin') and <code class="inline-code">username</code> are stored in <code class="inline-code">localStorage</code>.</li>
+  <li><strong>Page Load Phase</strong>: As each page loads, <code class="inline-code">renderNavbar()</code> reads <code class="inline-code">localStorage</code> to determine whether to display student links, trainer links, or a guest view.</li>
+  <li><strong>Logout Phase</strong>: Clicking 'Logout' clears the stored keys and returns the user safely to the public landing page (<code class="inline-code">index.html</code>).</li>
+</ul>
+<div class="spacer"></div>
+<blockquote class="quote-box"><strong>LIGHTWEIGHT STORAGE ARCHITECTURE</strong></blockquote>
+<blockquote class="quote-box">By directly utilizing standard DOM APIs and <code class="inline-code">localStorage</code>, EduPixel operates with zero external runtime dependencies and provides instantaneous navigation transitions.</blockquote>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 08 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Role-Based Access Control & Navigation Implementation</h3>
+<h4 class="heading-4">Managing Student and Trainer Privileges and Navigation Flows</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">8.1 Privilege Scopes & Access Boundaries</h3>
+<p class="para">Role-Based Access Control (RBAC) ensures users only see the options appropriate for their academic role:</p>
+<ul class="report-list">
+  <li><strong>Student Scope</strong>: Access is granted to <code class="inline-code">profile.html</code>, <code class="inline-code">academics.html</code>, <code class="inline-code">attendance.html</code>, <code class="inline-code">student-fees.html</code>, <code class="inline-code">student-documents.html</code>, <code class="inline-code">student-requests.html</code>, and <code class="inline-code">student-career.html</code>. Protected administrative rosters are inaccessible.</li>
+  <li><strong>Faculty / Trainer Scope</strong>: Access is granted to <code class="inline-code">admin.html</code>, <code class="inline-code">admin-profile.html</code>, <code class="inline-code">admin-classes.html</code>, <code class="inline-code">admin-search.html</code>, <code class="inline-code">admin-leaves.html</code>, <code class="inline-code">admin-leaderboard.html</code>, and <code class="inline-code">admin-activity.html</code>.</li>
+</ul>
+<div class="spacer"></div>
+<h3 class="heading-3">8.2 Dynamic Navigation Controller (<code class="inline-code">auth.js</code>)</h3>
+<pre class="code-block"><code class="language-javascript">// Get current logged-in role
+function getUserRole() {
+    return localStorage.getItem('userRole');
+}
+
+// Render dynamic navbar based on userRole
+function renderNavbar() {
+    const role = getUserRole();
+    const navElement = document.querySelector('header nav');
+    const path = window.location.pathname;
+    const page = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+
+    if (role === 'student') {
+        const isDashboard = (page === 'profile.html');
+        const isAttendance = (page === 'attendance.html');
+        const isFees = (page === 'student-fees.html');
+
+        navElement.innerHTML = `
+            &lt;a href="profile.html" class="${isDashboard ? 'nav-active' : ''}"&gt;Dashboard&lt;/a&gt;
+            &lt;a href="attendance.html" class="${isAttendance ? 'nav-active' : ''}"&gt;Attendance&lt;/a&gt;
+            &lt;a href="student-fees.html" class="${isFees ? 'nav-active' : ''}"&gt;Fees&lt;/a&gt;
+            &lt;a href="student-documents.html"&gt;Documents&lt;/a&gt;
+            &lt;a href="student-requests.html"&gt;Requests&lt;/a&gt;
+            &lt;a href="#" onclick="logout(); return false;" class="nav-logout-btn"&gt;Logout&lt;/a&gt;
+        `;
+    } else if (role === 'admin') {
+        navElement.innerHTML = `
+            &lt;a href="admin.html"&gt;Dashboard&lt;/a&gt;
+            &lt;a href="admin-classes.html"&gt;Attendance&lt;/a&gt;
+            &lt;a href="admin-search.html"&gt;Search&lt;/a&gt;
+            &lt;a href="admin-leaves.html"&gt;Leaves&lt;/a&gt;
+            &lt;a href="admin-leaderboard.html"&gt;LeetCode Rank&lt;/a&gt;
+            &lt;a href="#" onclick="logout(); return false;" class="nav-logout-btn"&gt;Logout&lt;/a&gt;
+        `;
+    }
+}</code></pre>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 09 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Module Details: Public Landing & Authentication</h3>
+<h4 class="heading-4">Exhaustive Breakdown of index.html, login.html and loading.html</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">9.1 Public Landing Page (<a href="file:///d:/newprojectworknamansaini/fee3sem/index.html" class="doc-link" target="_blank">index.html</a>)</h3>
+<p class="para">The landing page serves as the entry point of the application. It contains three major functional zones:</p>
+<ul class="report-list">
+  <li><strong>Sticky Brand Header</strong>: Features the EduPixel logo, brand name in bold Space Grotesk typography, and dynamic guest navigation.</li>
+  <li><strong>Hero Section</strong>: Presents the system title with two RPG-styled ornate action buttons: 'Student Login' (Pine Green button) and 'Admin Login' (Slate Blue button).</li>
+  <li><strong>3x3 Features Grid</strong>: Interactive feature cards presenting 9 primary portal tools (Attendance Tracker, Gradebook, Fee Portal, Document Vault, Leave Requests, Announcements, LeetCode Rank, Leave Manager, Attendance Roster) with direct role login links.</li>
+</ul>
+<div class="spacer"></div>
+<p class="para"><div class="img-card"><img src="screenshots/index_page_1787651620710.png" alt="EduPixel Public Landing Page" /><span class="caption">EduPixel Public Landing Page</span></div></p>
+<div class="spacer"></div>
+<h3 class="heading-3">9.2 Dual-Tab Authentication Portal (<a href="file:///d:/newprojectworknamansaini/fee3sem/login.html" class="doc-link" target="_blank">login.html</a>)</h3>
+<p class="para">Provides a clean dual-tab form where users switch between 'Student Login' and 'Faculty / Admin Login'. The form validates non-empty inputs, stores user credentials in <code class="inline-code">localStorage</code>, and routes users to <code class="inline-code">profile.html</code> or <code class="inline-code">admin.html</code>.</p>
+<div class="spacer"></div>
+<p class="para"><div class="img-card"><img src="screenshots/login_page_1787651634208.png" alt="EduPixel Login Portal" /><span class="caption">EduPixel Login Portal</span></div></p>
+<div class="spacer"></div>
+<h3 class="heading-3">9.3 Loading Transition Screen (<a href="file:///d:/newprojectworknamansaini/fee3sem/loading.html" class="doc-link" target="_blank">loading.html</a>)</h3>
+<p class="para">Displays an animated pixel progress bar that simulates session initialization and cache warming before redirecting to the user's dashboard.</p>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 10 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Module Details: Student Academic Profile & Gradebook</h3>
+<h4 class="heading-4">Deep Dive into profile.html, student-academic-profile.html, academics.html and grades.html</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">10.1 Student Central Dashboard (<a href="file:///d:/newprojectworknamansaini/fee3sem/profile.html" class="doc-link" target="_blank">profile.html</a>)</h3>
+<p class="para">The primary landing screen for authenticated students features:</p>
+<ul class="report-list">
+  <li><strong>Identity Dossier Banner</strong>: Displays student avatar initials ('AS'), student name ('Arjun Sharma'), Roll Number (101), Program (B.Tech CSE 3rd Sem), active status, CGPA badge (8.5 / 10.0), and overall attendance badge (91%).</li>
+  <li><strong>18-Module Launcher Grid</strong>: Categorized card grid providing direct shortcuts to Academic Profile, Gradebook, Fee Portal, Document Vault, Leave Requests, Campus Amenities, and Career Drives.</li>
+</ul>
+<div class="spacer"></div>
+<p class="para"><div class="img-card"><img src="screenshots/student_dashboard_1787651657563.png" alt="EduPixel Student Dashboard" /><span class="caption">EduPixel Student Dashboard</span></div></p>
+<div class="spacer"></div>
+<h3 class="heading-3">10.2 Comprehensive Academic Profile (<a href="file:///d:/newprojectworknamansaini/fee3sem/student-academic-profile.html" class="doc-link" target="_blank">student-academic-profile.html</a>)</h3>
+<p class="para">Maintains complete student biographical and institutional records: permanent address, guardian contact details, blood group, matriculation and intermediate scores, department registration numbers, and academic milestones.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">10.3 Academics, Subjects & SGPA Gradebook (<a href="file:///d:/newprojectworknamansaini/fee3sem/academics.html" class="doc-link" target="_blank">academics.html</a>, <a href="file:///d:/newprojectworknamansaini/fee3sem/grades.html" class="doc-link" target="_blank">grades.html</a>)</h3>
+<p class="para">Displays semester course curricula (Data Structures, Database Management, Operating Systems, Discrete Mathematics), credit distributions, internal assessment scores, end-semester grades, and SGPA calculations.</p>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 11 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Module Details: Student Attendance & Fee Management</h3>
+<h4 class="heading-4">Exhaustive Breakdown of attendance.html and student-fees.html</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">11.1 Attendance Tracking System (<a href="file:///d:/newprojectworknamansaini/fee3sem/attendance.html" class="doc-link" target="_blank">attendance.html</a>)</h3>
+<p class="para">The attendance module helps students monitor their lecture attendance:</p>
+<ul class="report-list">
+  <li><strong>Overall Attendance Gauge</strong>: Displays total attended lectures vs conducted lectures with visual percentage bars.</li>
+  <li><strong>Subject-Wise Breakdown</strong>: Shows individual course attendance (e.g., Data Structures: 94%, Operating Systems: 88%, Database Systems: 91%).</li>
+  <li><strong>75% Cutoff Indicator</strong>: Displays an alert warning when a subject's attendance nears the mandatory university examination eligibility cutoff.</li>
+</ul>
+<div class="spacer"></div>
+<p class="para"><div class="img-card"><img src="screenshots/student_attendance_1787651673817.png" alt="EduPixel Student Attendance Tracker" /><span class="caption">EduPixel Student Attendance Tracker</span></div></p>
+<div class="spacer"></div>
+<h3 class="heading-3">11.2 Comprehensive Student Fee Portal (<a href="file:///d:/newprojectworknamansaini/fee3sem/student-fees.html" class="doc-link" target="_blank">student-fees.html</a>)</h3>
+<p class="para">Provides a clear breakdown of college financial records:</p>
+<ul class="report-list">
+  <li><strong>Fee Schedule Ledger</strong>: Itemizes semester tuition fee, laboratory charges, library deposits, and hostel mess subscriptions.</li>
+  <li><strong>Transaction History</strong>: Tabular record showing transaction IDs, payment dates, payment modes (UPI, Card, NetBanking), and instant PDF receipt download triggers.</li>
+  <li><strong>Online Payment Simulator</strong>: Enables students to simulate settling pending dues with updated ledger records.</li>
+</ul>
+<div class="spacer"></div>
+<p class="para"><div class="img-card"><img src="screenshots/student_fees_1787651694140.png" alt="EduPixel Student Fee Portal" /><span class="caption">EduPixel Student Fee Portal</span></div></p>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 12 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Module Details: Documents Vault, Leaves & Campus Services</h3>
+<h4 class="heading-4">Deep Dive into student-documents.html, student-requests.html, student-career.html and campus utilities</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">12.1 Digital Document Vault (<a href="file:///d:/newprojectworknamansaini/fee3sem/student-documents.html" class="doc-link" target="_blank">student-documents.html</a>, <a href="file:///d:/newprojectworknamansaini/fee3sem/certificates.html" class="doc-link" target="_blank">certificates.html</a>)</h3>
+<p class="para">Provides a verified digital repository for student documents: college identity card scans, verified bonafide certificates, semester marksheet transcripts, and scholarship verification forms with instant download buttons.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">12.2 Leave & Formal Application Requests (<a href="file:///d:/newprojectworknamansaini/fee3sem/student-requests.html" class="doc-link" target="_blank">student-requests.html</a>)</h3>
+<p class="para">Enables students to submit official academic applications online:</p>
+<ul class="report-list">
+  <li><strong>Medical Leave</strong>: Submit illness notes with doctor prescription details.</li>
+  <li><strong>On-Duty (OD) Leave</strong>: Request attendance credit for participating in inter-college technical hackathons, coding contests, or sports.</li>
+  <li><strong>Live Status Tracker</strong>: Shows real-time status badges (Pending, Approved, Rejected) with trainer remarks.</li>
+</ul>
+<div class="spacer"></div>
+<h3 class="heading-3">12.3 Career & Campus Services (<a href="file:///d:/newprojectworknamansaini/fee3sem/student-career.html" class="doc-link" target="_blank">student-career.html</a>, <a href="file:///d:/newprojectworknamansaini/fee3sem/student-campus.html" class="doc-link" target="_blank">student-campus.html</a>)</h3>
+<p class="para">Consolidates campus placement drives, eligible job vacancies, interview schedules, digital library seat reservations, weekly hostel mess menus, and college bus route timetables into clear views.</p>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 13 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Module Details: Faculty/Trainer Administration & Attendance Roster</h3>
+<h4 class="heading-4">Exhaustive Breakdown of admin.html, admin-profile.html, admin-classes.html and class-detail.html</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">13.1 Faculty/Trainer Command Center (<a href="file:///d:/newprojectworknamansaini/fee3sem/admin.html" class="doc-link" target="_blank">admin.html</a>)</h3>
+<p class="para">The administrative home page for trainers (Mr. Amitabh Shrivastava) provides an overview of department activities:</p>
+<ul class="report-list">
+  <li><strong>Institutional KPI Summary Cards</strong>: Total students enrolled (120), average department attendance (89.4%), pending leave applications (3), and urgent escalations (1).</li>
+  <li><strong>Administrative Tool Launcher</strong>: Direct shortcuts to class attendance rosters, student search, leave approvals, and activity logs.</li>
+</ul>
+<div class="spacer"></div>
+<p class="para"><div class="img-card"><img src="screenshots/admin_dashboard_1787651710594.png" alt="EduPixel Trainer Command Center" /><span class="caption">EduPixel Trainer Command Center</span></div></p>
+<div class="spacer"></div>
+<h3 class="heading-3">13.2 Interactive Class Attendance Roster (<a href="file:///d:/newprojectworknamansaini/fee3sem/admin-classes.html" class="doc-link" target="_blank">admin-classes.html</a>, <a href="file:///d:/newprojectworknamansaini/fee3sem/class-detail.html" class="doc-link" target="_blank">class-detail.html</a>)</h3>
+<p class="para">Replaces manual paper registers with an interactive digital roster:</p>
+<ul class="report-list">
+  <li><strong>Section & Course Selector</strong>: Filter by class section (CSE Section A, B, or C) and subject.</li>
+  <li><strong>1-Click Status Toggles</strong>: Each student card features instant Present, Absent, and On-Duty (OD) buttons with visual color states.</li>
+  <li><strong>Live Attendance Counters</strong>: Automatically recalculates total present and absent tallies dynamically as the trainer marks attendance.</li>
+</ul>
+<div class="spacer"></div>
+<p class="para"><div class="img-card"><img src="screenshots/admin_classes_1787651721438.png" alt="EduPixel Class Attendance Roster" /><span class="caption">EduPixel Class Attendance Roster</span></div></p>
+<div class="spacer"></div>
+<h3 class="heading-3">13.3 Class Roster Roll Search & Status Toggle Logic</h3>
+<pre class="code-block"><code class="language-javascript">// Instant Search by Student Roll Number in Class Roster
+function searchByRollNo() {
+    const input = document.getElementById('roll-search');
+    const rows = document.querySelectorAll('#student-roster-body tr');
+    const queryNum = parseInt(input.value.trim(), 10);
+
+    rows.forEach(row =&gt; row.classList.remove('highlight-row'));
+
+    if (!isNaN(queryNum)) {
+        rows.forEach(row =&gt; {
+            const rollNum = parseInt(row.getAttribute('data-roll'), 10);
+            if (rollNum === queryNum) {
+                row.classList.add('highlight-row');
+                row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+    }
+}</code></pre>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 14 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Module Details: Student Search & Leave Adjudication</h3>
+<h4 class="heading-4">Deep Dive into admin-search.html and admin-leaves.html</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">14.1 Multi-Filter Student Search Engine (<a href="file:///d:/newprojectworknamansaini/fee3sem/admin-search.html" class="doc-link" target="_blank">admin-search.html</a>)</h3>
+<p class="para">A high-speed search engine allowing trainers to filter student cohorts across 5 distinct parameters without page reloads:</p>
+<p class="para">1. <strong>Roll Number Search</strong>: Exact or partial match on university roll numbers.</p>
+<p class="para">2. <strong>Student Name Search</strong>: Case-insensitive substring matching.</p>
+<p class="para">3. <strong>Section / Batch Filter</strong>: Dropdown filtering across department sections (CSE-A, CSE-B, CSE-C).</p>
+<p class="para">4. <strong>Blood Group Filter</strong>: Essential for rapid campus medical contact.</p>
+<p class="para">5. <strong>CGPA Range Slider</strong>: Isolates high-achieving scholars or students requiring academic mentoring.</p>
+<div class="spacer"></div>
+<p class="para"><div class="img-card"><img src="screenshots/admin_search_1787651733475.png" alt="EduPixel Multi-Filter Student Search Engine" /><span class="caption">EduPixel Multi-Filter Student Search Engine</span></div></p>
+<div class="spacer"></div>
+<h3 class="heading-3">14.2 Client-Side Multi-Filter Search Code Snippet</h3>
+<pre class="code-block"><code class="language-javascript">function applyFilters() {
+    const groupVal = document.getElementById('filter-group').value;
+    const rollVal = document.getElementById('filter-roll').value.trim().toLowerCase();
+    const gradeVal = document.getElementById('filter-grade').value;
+    const rows = document.querySelectorAll('#student-search-body tr');
+    let visibleCount = 0;
+
+    rows.forEach(row =&gt; {
+        const rowGroup = row.getAttribute('data-group');
+        const rowRoll = row.getAttribute('data-roll').toLowerCase();
+        const rowName = row.getAttribute('data-name').toLowerCase();
+        const rowGpa = parseFloat(row.getAttribute('data-gpa'));
+
+        let matchGroup = (groupVal === 'ALL' || rowGroup === groupVal);
+        let matchRoll = (!rollVal || rowRoll.includes(rollVal) || rowName.includes(rollVal));
+        let matchGrade = (gradeVal === 'ALL' || rowGpa &gt;= parseFloat(gradeVal));
+
+        if (matchGroup &amp;&amp; matchRoll &amp;&amp; matchGrade) {
+            row.style.display = '';
+            visibleCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+
+    document.getElementById('results-count').textContent = 'Showing ' + visibleCount + ' Students';
+}</code></pre>
+<div class="spacer"></div>
+<h3 class="heading-3">14.3 Leave Application Approval Queue (<a href="file:///d:/newprojectworknamansaini/fee3sem/admin-leaves.html" class="doc-link" target="_blank">admin-leaves.html</a>)</h3>
+<p class="para">An organized workflow inbox where trainers review student leave submissions, examine medical attachments, check attendance impact, and click 'Approve' or 'Reject' with optional remarks.</p>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 15 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Module Details: Coding Leaderboard, Escalations & Audit Logs</h3>
+<h4 class="heading-4">Analysis of admin-leaderboard.html, admin-escalations.html and admin-activity.html</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">15.1 Competitive Coding & LeetCode Leaderboard (<a href="file:///d:/newprojectworknamansaini/fee3sem/admin-leaderboard.html" class="doc-link" target="_blank">admin-leaderboard.html</a>)</h3>
+<p class="para">To encourage students in the CSE AI & ML department to practice programming and data structures, this module displays a leaderboard showing student rankings based on solved problem counts (Easy, Medium, Hard) and coding contest ratings.</p>
+<div class="spacer"></div>
+<p class="para"><div class="img-card"><img src="screenshots/admin_leaderboard_1787651747257.png" alt="EduPixel LeetCode Coding Leaderboard" /><span class="caption">EduPixel LeetCode Coding Leaderboard</span></div></p>
+<div class="spacer"></div>
+<h3 class="heading-3">15.2 Grievance Escalation & Authority Matrix (<a href="file:///d:/newprojectworknamansaini/fee3sem/admin-escalations.html" class="doc-link" target="_blank">admin-escalations.html</a>)</h3>
+<p class="para">A structured routing pipeline enabling trainers to record and escalate serious student issues or infrastructure requirements to higher department authorities.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">15.3 Department Activity Log (<a href="file:///d:/newprojectworknamansaini/fee3sem/admin-activity.html" class="doc-link" target="_blank">admin-activity.html</a>)</h3>
+<p class="para">Maintains a chronological record of administrative actions such as attendance submissions and leave approvals with precise timestamps and user identifiers for transparency.</p>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 16 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">User Interface & Styling System</h3>
+<h4 class="heading-4">Custom CSS Design Tokens, Color Palette, Buttons and Responsive Components</h4>
+<div class="spacer"></div>
+<p class="para">The project styling is implemented in <a href="file:///d:/newprojectworknamansaini/fee3sem/style.css" class="doc-link" target="_blank">style.css</a>, creating a consistent visual appearance across all 24 HTML views:</p>
+<div class="spacer"></div>
+<div class="table-container"><table class="pixel-table">
+  <tr><th>CSS Styling Element</th><th>Code Implementation & Token</th><th>Visual Purpose & Component Role</th></tr>
+  <tr><td><strong>CSS Variables</strong></td><td><code class="inline-code">:root { --bg-surface: #fdfae9; --primary-green: #366a19; }</code></td><td>Centralizes the color scheme for easy adjustments and theme consistency.</td></tr>
+  <tr><td><strong>Pixel Borders</strong></td><td><code class="inline-code">.pixel-border { box-shadow: 4px 4px 0px #1c1c13; border: 4px solid #1c1c13; }</code></td><td>Gives cards and containers crisp, well-defined boundaries inspired by Cofounder.co.</td></tr>
+  <tr><td><strong>Action Buttons</strong></td><td><code class="inline-code">.btn-pixel { background: var(--primary-green); color: white; padding: 10px 20px; }</code></td><td>Provides tactile, easy-to-click buttons with hover movement effects.</td></tr>
+  <tr><td><strong>Status Badges</strong></td><td><code class="inline-code">.pixel-badge { padding: 2px 8px; font-family: monospace; }</code></td><td>Highlights CGPA status, active enrollment, and attendance percentages.</td></tr>
+  <tr><td><strong>Responsive Tables</strong></td><td><code class="inline-code">.pixel-table { width: 100%; border: 4px solid #1c1c13; overflow-x: auto; }</code></td><td>Ensures tabular marks and attendance data remain scrollable on mobile viewports.</td></tr>
+</table></div>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 17 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">System Evaluation & Performance Characteristics</h3>
+<h4 class="heading-4">Evaluation of Page Loading, Resource Utilization and Display Consistency</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">17.1 Evaluation Methodology</h3>
+<p class="para">To evaluate the system, Team No. 19 tested the project files under local browser environments and emulated mobile viewports. Observations were made regarding file sizes, rendering speed, and user interaction responsiveness.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">17.2 Observed Performance Characteristics</h3>
+<ul class="report-list">
+  <li><strong>Lightweight Payload</strong>: The core CSS (<code class="inline-code">style.css</code>) is under 14 KB and the core JavaScript (<code class="inline-code">auth.js</code>) is under 16 KB, allowing pages to load swiftly in standard web browsers.</li>
+  <li><strong>Fast Client-Side Rendering</strong>: Because the system uses standard HTML and CSS without heavy client-side frameworks, browser rendering is smooth and immediate.</li>
+  <li><strong>Efficient Memory Footprint</strong>: Browser tab memory utilization remains low due to straightforward DOM structures and native event listeners.</li>
+</ul>
+<div class="spacer"></div>
+<h3 class="heading-3">17.3 Cross-Device Display Consistency</h3>
+<p class="para">Testing across standard desktop resolutions (1920x1080, 1366x768) and mobile viewports (375x667, 414x896) confirmed that navigation menus, data tables, and cards adjust cleanly without horizontal clipping.</p>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 18 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Security, Data Handling & Input Validation</h3>
+<h4 class="heading-4">Session Management, Storage Handling and Client-Side Checks</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">18.1 Client-Side Session Storage</h3>
+<p class="para">The application maintains session state locally in the user's browser using <code class="inline-code">localStorage</code>. Safe getter functions (<code class="inline-code">getUserRole()</code>, <code class="inline-code">getUsername()</code>) verify the existence of stored values before configuring portal links.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">18.2 Input Validation & Sanitization</h3>
+<p class="para">Form inputs on the login page and search filters validate user input to ensure required fields are not submitted blank, preventing navigation errors.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">18.3 Clean Code Organization</h3>
+<p class="para">By avoiding unvetted external scripts or third-party plugins, the codebase remains self-contained, easy to audit, and free from external script dependencies.</p>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 19 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Software Testing & Quality Assurance</h3>
+<h4 class="heading-4">Functional Testing Matrix, UI Validation and Test Results</h4>
+<div class="spacer"></div>
+<p class="para">Manual functional testing was performed by Team No. 19 on each module to ensure all links, buttons, and storage operations function as expected:</p>
+<div class="spacer"></div>
+<div class="table-container"><table class="pixel-table">
+  <tr><th>Test Case ID</th><th>Test Scenario Description</th><th>Execution Steps & Verification</th><th>Status</th></tr>
+  <tr><td><strong>TC-01</strong></td><td>Student Login Flow</td><td>Enter student username, click login, verify redirect to <code class="inline-code">profile.html</code>.</td><td><strong>PASS</strong></td></tr>
+  <tr><td><strong>TC-02</strong></td><td>Admin Login Flow</td><td>Select Admin tab, enter trainer username, verify redirect to <code class="inline-code">admin.html</code>.</td><td><strong>PASS</strong></td></tr>
+  <tr><td><strong>TC-03</strong></td><td>Mobile Drawer Menu</td><td>Resize viewport to mobile (<768px), click hamburger menu ☰, verify drawer opens.</td><td><strong>PASS</strong></td></tr>
+  <tr><td><strong>TC-04</strong></td><td>Attendance Roster Toggle</td><td>Open <code class="inline-code">class-detail.html</code>, toggle student status between Present and Absent.</td><td><strong>PASS</strong></td></tr>
+  <tr><td><strong>TC-05</strong></td><td>Student Search Filter</td><td>Open <code class="inline-code">admin-search.html</code>, enter roll number and section, check filtered results.</td><td><strong>PASS</strong></td></tr>
+  <tr><td><strong>TC-06</strong></td><td>Logout & Session Reset</td><td>Click Logout from nav, verify <code class="inline-code">localStorage</code> keys are removed and <code class="inline-code">index.html</code> loads.</td><td><strong>PASS</strong></td></tr>
+</table></div>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 20 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Future Enhancements & Scope</h3>
+<h4 class="heading-4">Conceptual Stages for Future Development and Expansion</h4>
+<div class="spacer"></div>
+<p class="para">While the current project delivers a functional client-side system, the modular architecture provides a clear path for future enhancements during subsequent development phases:</p>
+<div class="spacer"></div>
+<ul class="report-list">
+  <li><strong>Phase 1: Database & Backend Server Integration</strong></li>
+<p class="para">Transition from browser <code class="inline-code">localStorage</code> to a centralized relational database (such as PostgreSQL or MySQL) supported by a backend server (Node.js/Express or Python) with secure password hashing and session tokens.</p>
+  <li><strong>Phase 2: Academic Performance Analytics & Trend Calculation</strong></li>
+<p class="para">Introduce statistical calculation modules to project expected semester SGPA based on internal test scores, identify attendance shortage risks in advance, and generate academic advisory reports for trainers and faculty.</p>
+  <li><strong>Phase 3: Online Fee Payment Gateway Integration</strong></li>
+<p class="para">Incorporate live digital payment gateway APIs (such as UPI and NetBanking) to allow direct online fee settlements, automated PDF receipt generation, and transaction confirmation emails.</p>
+  <li><strong>Phase 4: Progressive Web Application (PWA) Offline Support</strong></li>
+<p class="para">Add web service workers and manifest files to enable offline caching of schedules, timetables, and downloaded circulars on mobile devices without active internet connection.</p>
+  <li><strong>Phase 5: Multi-Department & Multi-College Scalability</strong></li>
+<p class="para">Expand the software configuration to support multiple departments and academic institutions with customizable subjects, grading rules, and administrative roles.</p>
+</ul>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 21 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">Conclusion & Team Project Summary</h3>
+<h4 class="heading-4">Summary of Work Done, Team 19 Contributions and Learning Outcomes</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">21.1 Summary of Work Done</h3>
+<p class="para">The <strong>'Student Profile Management System (EduPixel)'</strong> project developed by Team No. 19 successfully implemented an integrated, multi-page web platform for collegiate student management. Over 24 individual views were developed covering student dossiers, attendance tracking, fee statements, document archives, leave applications, class rosters, multi-filter search, and coding leaderboards.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">21.2 Detailed Team Member Contributions (Team No. 19)</h3>
+<ul class="report-list">
+  <li><strong>Pranava Mittal (Team Leader - 2510992516)</strong>: Led overall project architecture, authentication controllers (<a href="file:///d:/newprojectworknamansaini/fee3sem/auth.js" class="doc-link" target="_blank">auth.js</a>), student dashboard layout, and integration of design tokens.</li>
+  <li><strong>Naman Sharma (2510992708)</strong>: Designed the faculty and class attendance roster modules (<a href="file:///d:/newprojectworknamansaini/fee3sem/admin-classes.html" class="doc-link" target="_blank">admin-classes.html</a>, <a href="file:///d:/newprojectworknamansaini/fee3sem/class-detail.html" class="doc-link" target="_blank">class-detail.html</a>) and dynamic tally counters.</li>
+  <li><strong>Anmol Arora (2510993513)</strong>: Implemented the multi-filter student search engine (<a href="file:///d:/newprojectworknamansaini/fee3sem/admin-search.html" class="doc-link" target="_blank">admin-search.html</a>) and fee management ledger portal (<a href="file:///d:/newprojectworknamansaini/fee3sem/student-fees.html" class="doc-link" target="_blank">student-fees.html</a>).</li>
+  <li><strong>Aditya Saini (2510992539)</strong>: Developed the leave request workflows (<a href="file:///d:/newprojectworknamansaini/fee3sem/student-requests.html" class="doc-link" target="_blank">student-requests.html</a>, <a href="file:///d:/newprojectworknamansaini/fee3sem/admin-leaves.html" class="doc-link" target="_blank">admin-leaves.html</a>) and responsive mobile navigation drawer components.</li>
+</ul>
+<div class="spacer"></div>
+<h3 class="heading-3">21.3 Concluding Remarks</h3>
+<p class="para">The project meets its intended academic objectives and demonstrates that clean, functional, and visually appealing web applications can be constructed effectively using core web technologies under the guidance of our trainer, <strong>Mr. Amitabh Shrivastava</strong>.</p>
+<div class="spacer"></div>
+<hr class="section-divider" />
+<div class="spacer"></div>
+<h2 class="heading-2">CHAPTER 22 | CSE AIML MAJOR PROJECT REPORT</h2>
+<h3 class="heading-3">References & Appendices</h3>
+<h4 class="heading-4">Citations, Web Standards Documentation and Technical Glossary</h4>
+<div class="spacer"></div>
+<h3 class="heading-3">22.1 Design & Typographic References</h3>
+<p class="para">1. <strong>Cofounder.co</strong> — Editorial Layout and Micro-Border Web Design System.</p>
+<p class="para">Website: <a href="https://cofounder.co/" target="_blank" rel="noopener">https://cofounder.co/</a></p>
+<p class="para">2. <strong>Harmony / Harmond Free Serif Typeface</strong> — Awwwards Font Showcase.</p>
+<p class="para">Website: <a href="https://www.awwwards.com/inspiration/harmony-free-serif-typeface" target="_blank" rel="noopener">https://www.awwwards.com/inspiration/harmony-free-serif-typeface</a></p>
+<div class="spacer"></div>
+<h3 class="heading-3">22.2 Web Standards & Documentation References</h3>
+<p class="para">3. <strong>MDN Web Docs</strong>: HTML5 Semantic Elements & Structure Guidelines.</p>
+<p class="para">4. <strong>MDN Web Docs</strong>: CSS Grid Layout and Flexible Box Layout Modules.</p>
+<p class="para">5. <strong>MDN Web Docs</strong>: Web Storage API (<code class="inline-code">localStorage</code> and <code class="inline-code">sessionStorage</code>).</p>
+<p class="para">6. <strong>Visual Studio Code Documentation</strong>: Code Editing, Extensions and Workspace Setup.</p>
+<p class="para">7. <strong>Git Documentation</strong>: Distributed Version Control and Branching Workflows.</p>
+<div class="spacer"></div>
+<h3 class="heading-3">22.3 Glossary of Technical Terms</h3>
+<ul class="report-list">
+  <li><strong>SGPA</strong>: Semester Grade Point Average, representing a student's academic performance in a single semester.</li>
+  <li><strong>CGPA</strong>: Cumulative Grade Point Average, representing aggregate academic performance across all completed semesters.</li>
+  <li><strong>RBAC</strong>: Role-Based Access Control, a method of restricting system access to authorized user roles.</li>
+  <li><strong>DOM</strong>: Document Object Model, an application programming interface for HTML documents.</li>
+</ul>
+<div class="spacer"></div>
+    </div>
+</body>
+</html>

@@ -47,61 +47,153 @@
     <nav class="flex gap-3 md:gap-4 flex-wrap justify-end"></nav>
 </header>
 
-<main class="flex-grow flex items-center justify-center p-6 my-8">
-    <!-- Student Sign In Card -->
-    <div class="pixel-card bg-surface max-w-md w-full" id="student-login-card">
-        <div class="text-center mb-6 border-b-4 border-on-surface pb-4 flex flex-col items-center">
-            <img src="logo.png" alt="EduPixel Logo" class="w-48 md:w-56 mx-auto mb-3 object-contain">
-            <span class="pixel-badge mb-2">🎓 Student Portal</span>
-            <p class="text-on-surface-variant text-sm mt-1">Enter your RPG credentials to enter the academy.</p>
-        </div>
-
-        <form class="space-y-4" onsubmit="handleStudentLogin(event)">
+<main class="flex-grow flex flex-col items-center justify-center p-6 my-8">
+    <!-- Active Session Pill if already logged in via sessionStorage -->
+    <div id="active-session-banner" class="max-w-md w-full mb-4 pixel-card bg-surface-container-high border-2 border-primary" style="display: none;">
+        <div class="flex items-center justify-between gap-3">
             <div>
-                <label for="student-username" class="block font-bold text-on-surface uppercase text-sm">Username</label>
-                <input type="text" id="student-username" class="pixel-input" placeholder="e.g. Arjun Sharma" required autocomplete="username" value="Arjun Sharma">
+                <span class="pixel-badge pixel-badge-gold text-xs">⚡ Active Session (sessionStorage)</span>
+                <p class="text-sm font-bold mt-1" id="active-session-text">Logged in</p>
             </div>
-
-            <div>
-                <label for="student-password" class="block font-bold text-on-surface uppercase text-sm">Password</label>
-                <input type="password" id="student-password" class="pixel-input" placeholder="••••••••" required autocomplete="current-password" value="password123">
+            <div class="flex gap-2">
+                <a href="profile.html" id="active-session-portal-btn" class="btn-pixel text-xs py-1 px-3">Go to Portal &rarr;</a>
+                <button onclick="logout()" class="btn-pixel btn-pixel-secondary text-xs py-1 px-2" style="background: #ba1a1a; color: white;">Exit</button>
             </div>
-
-            <button type="submit" class="btn-pixel w-full py-3 text-xl">Sign In to Student Portal</button>
-        </form>
-
-        <div class="mt-6 pt-4 border-t-2 border-on-surface text-center">
-            <button type="button" class="btn-pixel btn-pixel-secondary w-full text-sm" onclick="showLoginTab('admin')">
-                🛡️ Switch to Admin Login
-            </button>
         </div>
     </div>
 
-    <!-- Admin Sign In Card (Hidden initially) -->
-    <div class="pixel-card bg-surface max-w-md w-full" id="admin-login-card" style="display: none;">
-        <div class="text-center mb-6 border-b-4 border-on-surface pb-4 flex flex-col items-center">
-            <img src="logo.png" alt="EduPixel Logo" class="w-48 md:w-56 mx-auto mb-3 object-contain">
-            <span class="pixel-badge pixel-badge-blue mb-2">🛡️ Admin Portal</span>
-            <p class="text-on-surface-variant text-sm mt-1">Faculty & Guildmaster credentials required.</p>
+    <!-- Auth Mode Switcher (Sign In vs Sign Up) -->
+    <div class="flex max-w-md w-full mb-4 border-2 border-on-surface bg-surface-container shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-1 gap-1">
+        <button id="tab-btn-signin" type="button" class="flex-1 py-2 font-bold uppercase text-sm border-2 border-on-surface bg-primary text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all" onclick="showAuthMode('signin')">
+            🔑 Sign In
+        </button>
+        <button id="tab-btn-signup" type="button" class="flex-1 py-2 font-bold uppercase text-sm border-2 border-transparent hover:border-on-surface text-on-surface transition-all" onclick="showAuthMode('signup')">
+            ✨ Sign Up
+        </button>
+    </div>
+
+    <!-- Sign In Container -->
+    <div id="signin-container" class="max-w-md w-full">
+        <!-- Student Sign In Card -->
+        <div class="pixel-card bg-surface w-full" id="student-login-card">
+            <div class="text-center mb-6 border-b-4 border-on-surface pb-4 flex flex-col items-center">
+                <img src="logo.png" alt="EduPixel Logo" class="w-48 md:w-56 mx-auto mb-3 object-contain">
+                <span class="pixel-badge mb-2">🎓 Student Portal</span>
+                <p class="text-on-surface-variant text-sm mt-1">Sign in with sessionStorage authentication.</p>
+                <div class="mt-2 text-xs font-mono bg-surface-container-highest px-3 py-1 border border-on-surface">
+                    Demo Student: <strong>Arjun Sharma</strong> | Key: <strong>password123</strong>
+                </div>
+            </div>
+
+            <form class="space-y-4" onsubmit="handleStudentLogin(event)">
+                <div>
+                    <label for="student-username" class="block font-bold text-on-surface uppercase text-sm">Username or Roll</label>
+                    <input type="text" id="student-username" class="pixel-input" placeholder="e.g. Arjun Sharma or 23BCS101" required autocomplete="username" value="Arjun Sharma">
+                </div>
+
+                <div>
+                    <label for="student-password" class="block font-bold text-on-surface uppercase text-sm">Password</label>
+                    <input type="password" id="student-password" class="pixel-input" placeholder="••••••••" required autocomplete="current-password" value="password123">
+                </div>
+
+                <button type="submit" class="btn-pixel w-full py-3 text-xl">Sign In with SessionStorage</button>
+            </form>
+
+            <div class="mt-6 pt-4 border-t-2 border-on-surface space-y-2 text-center">
+                <button type="button" class="btn-pixel btn-pixel-secondary w-full text-sm" onclick="showLoginTab('admin')">
+                    🛡️ Switch to Admin Login
+                </button>
+                <p class="text-xs text-on-surface-variant pt-2">
+                    Need an account? <a href="javascript:void(0)" onclick="showAuthMode('signup')" class="font-bold underline text-primary">Create one here</a>
+                </p>
+            </div>
         </div>
 
-        <form class="space-y-4" onsubmit="handleAdminLogin(event)">
+        <!-- Admin Sign In Card (Hidden initially) -->
+        <div class="pixel-card bg-surface w-full" id="admin-login-card" style="display: none;">
+            <div class="text-center mb-6 border-b-4 border-on-surface pb-4 flex flex-col items-center">
+                <img src="logo.png" alt="EduPixel Logo" class="w-48 md:w-56 mx-auto mb-3 object-contain">
+                <span class="pixel-badge pixel-badge-blue mb-2">🛡️ Admin Portal</span>
+                <p class="text-on-surface-variant text-sm mt-1">Faculty & Guildmaster credentials required.</p>
+                <div class="mt-2 text-xs font-mono bg-surface-container-highest px-3 py-1 border border-on-surface">
+                    Demo Admin: <strong>Dr. Rajesh Kumar</strong> | Key: <strong>admin123</strong>
+                </div>
+            </div>
+
+            <form class="space-y-4" onsubmit="handleAdminLogin(event)">
+                <div>
+                    <label for="admin-username" class="block font-bold text-on-surface uppercase text-sm">Admin Username</label>
+                    <input type="text" id="admin-username" class="pixel-input" placeholder="e.g. Dr. Rajesh Kumar" required autocomplete="username" value="Dr. Rajesh Kumar">
+                </div>
+
+                <div>
+                    <label for="admin-password" class="block font-bold text-on-surface uppercase text-sm">Admin Password</label>
+                    <input type="password" id="admin-password" class="pixel-input" placeholder="••••••••" required autocomplete="current-password" value="admin123">
+                </div>
+
+                <button type="submit" class="btn-pixel btn-pixel-secondary w-full py-3 text-xl">Sign In to Admin Portal</button>
+            </form>
+
+            <div class="mt-6 pt-4 border-t-2 border-on-surface space-y-2 text-center">
+                <button type="button" class="btn-pixel w-full text-sm" onclick="showLoginTab('student')">
+                    🎓 Switch to Student Login
+                </button>
+                <p class="text-xs text-on-surface-variant pt-2">
+                    Need an account? <a href="javascript:void(0)" onclick="showAuthMode('signup')" class="font-bold underline text-primary">Create one here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Card (Hidden initially) -->
+    <div class="pixel-card bg-surface max-w-md w-full" id="signup-card" style="display: none;">
+        <div class="text-center mb-6 border-b-4 border-on-surface pb-4 flex flex-col items-center">
+            <img src="logo.png" alt="EduPixel Logo" class="w-48 md:w-56 mx-auto mb-3 object-contain">
+            <span class="pixel-badge pixel-badge-gold mb-2">✨ Quick Registration</span>
+            <p class="text-on-surface-variant text-sm mt-1">Create an account and start a session instantly.</p>
+        </div>
+
+        <form class="space-y-4" onsubmit="handleSignUp(event)">
             <div>
-                <label for="admin-username" class="block font-bold text-on-surface uppercase text-sm">Admin Username</label>
-                <input type="text" id="admin-username" class="pixel-input" placeholder="e.g. Dr. Rajesh Kumar" required autocomplete="username" value="Dr. Rajesh Kumar">
+                <label class="block font-bold text-on-surface uppercase text-xs mb-1">Select Role</label>
+                <div class="grid grid-cols-2 gap-2">
+                    <label class="flex items-center gap-2 p-2 border-2 border-on-surface bg-surface-container cursor-pointer font-bold text-sm">
+                        <input type="radio" name="signup-role" value="student" checked onchange="updateSignUpRoleUI('student')">
+                        🎓 Student
+                    </label>
+                    <label class="flex items-center gap-2 p-2 border-2 border-on-surface bg-surface-container cursor-pointer font-bold text-sm">
+                        <input type="radio" name="signup-role" value="admin" onchange="updateSignUpRoleUI('admin')">
+                        🛡️ Faculty / Admin
+                    </label>
+                </div>
             </div>
 
             <div>
-                <label for="admin-password" class="block font-bold text-on-surface uppercase text-sm">Admin Password</label>
-                <input type="password" id="admin-password" class="pixel-input" placeholder="••••••••" required autocomplete="current-password" value="admin123">
+                <label for="signup-name" class="block font-bold text-on-surface uppercase text-sm">Full Name</label>
+                <input type="text" id="signup-name" class="pixel-input" placeholder="e.g. Maya Patel" required autocomplete="name">
             </div>
 
-            <button type="submit" class="btn-pixel btn-pixel-secondary w-full py-3 text-xl">Sign In to Admin Portal</button>
+            <div>
+                <label for="signup-username" class="block font-bold text-on-surface uppercase text-sm">Username</label>
+                <input type="text" id="signup-username" class="pixel-input" placeholder="e.g. mayap" required autocomplete="username">
+            </div>
+
+            <div id="signup-extra-field">
+                <label for="signup-id" class="block font-bold text-on-surface uppercase text-sm" id="signup-id-label">Roll Number</label>
+                <input type="text" id="signup-id" class="pixel-input" placeholder="e.g. 23BCS205">
+            </div>
+
+            <div>
+                <label for="signup-password" class="block font-bold text-on-surface uppercase text-sm">Password</label>
+                <input type="password" id="signup-password" class="pixel-input" placeholder="••••••••" required autocomplete="new-password">
+            </div>
+
+            <button type="submit" class="btn-pixel w-full py-3 text-xl bg-primary text-white">Register &amp; Sign In</button>
         </form>
 
         <div class="mt-6 pt-4 border-t-2 border-on-surface text-center">
-            <button type="button" class="btn-pixel w-full text-sm" onclick="showLoginTab('student')">
-                🎓 Switch to Student Login
+            <button type="button" class="text-sm font-bold underline hover:opacity-80" onclick="showAuthMode('signin')">
+                Already registered? Back to Sign In &rarr;
             </button>
         </div>
     </div>
@@ -113,11 +205,27 @@
 
 <script src="auth.js"></script>
 <script>
-    // Check URL parameters for tab selection
+    // Check URL parameters and session state
     document.addEventListener('DOMContentLoaded', function() {
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('role') === 'admin' || window.location.hash === '#admin') {
+        if (urlParams.get('mode') === 'signup' || window.location.hash === '#signup') {
+            showAuthMode('signup');
+        } else if (urlParams.get('role') === 'admin' || window.location.hash === '#admin') {
             showLoginTab('admin');
+        }
+
+        // Check if session exists in sessionStorage (with fallback to localStorage)
+        const role = typeof getUserRole === 'function' ? getUserRole() : (sessionStorage.getItem('userRole') || localStorage.getItem('userRole'));
+        const username = typeof getUsername === 'function' ? getUsername() : (sessionStorage.getItem('username') || localStorage.getItem('username'));
+        if (role && username) {
+            const banner = document.getElementById('active-session-banner');
+            const sessionText = document.getElementById('active-session-text');
+            const portalBtn = document.getElementById('active-session-portal-btn');
+            if (banner && sessionText && portalBtn) {
+                banner.style.display = 'block';
+                sessionText.innerHTML = `Signed in as <span class="text-primary font-bold">${username}</span> (${role.toUpperCase()})`;
+                portalBtn.href = (role === 'admin' ? 'admin.html' : 'profile.html');
+            }
         }
     });
 </script>

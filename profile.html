@@ -288,7 +288,9 @@
 <script src="auth.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const username = localStorage.getItem('username');
+        const username = typeof getUsername === 'function' ? getUsername() : (sessionStorage.getItem('username') || localStorage.getItem('username'));
+        const user = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+
         if (username) {
             const nameDisplay = document.getElementById('display-student-name');
             const profileName = document.getElementById('profile-name');

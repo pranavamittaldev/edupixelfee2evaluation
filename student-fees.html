@@ -48,9 +48,9 @@
 <div class="bg-surface-container border-b-4 border-on-surface p-6 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
-            <span class="pixel-badge pixel-badge-gold mb-1">Treasury & Accounts</span>
+            <span class="pixel-badge pixel-badge-gold mb-1">Treasury & Bank Gateway</span>
             <h1 class="text-4xl text-primary font-bold uppercase">Fees & Payments Portal</h1>
-            <p class="text-on-surface-variant text-lg">Fee breakdown, online payment history, pending balance tracker, and fee receipts.</p>
+            <p class="text-on-surface-variant text-lg">Fee breakdown, asynchronous bank payment gateway (Promise API), and official receipts.</p>
         </div>
         <a href="profile.html" class="btn-pixel">&larr; Back to Dashboard</a>
     </div>
@@ -59,15 +59,38 @@
 <main class="flex-grow max-w-6xl w-full mx-auto p-6 my-6 space-y-8">
 
     <!-- Account Status Summary Card -->
-    <div class="pixel-card bg-surface-container-low flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="pixel-card bg-surface-container-low flex flex-col md:flex-row justify-between items-center gap-6" id="fee-status-card">
         <div>
-            <span class="pixel-badge pixel-badge-gold text-xs">Current Semester Status</span>
-            <h2 class="text-3xl font-bold text-primary mt-1">Tuition & Campus Dues: ALL CLEAR</h2>
-            <p class="text-on-surface-variant text-sm font-mono mt-1">Semester 3 fee payment confirmed on Aug 10, 2026. No pending balance due.</p>
+            <span class="pixel-badge pixel-badge-gold text-xs" id="status-badge">Semester 3 — Pending Dues</span>
+            <h2 class="text-3xl font-bold text-on-bg mt-1" id="fee-status-heading">Computer Science Dues: ₹ 18,500.00 PENDING</h2>
+            <p class="text-on-surface-variant text-sm font-mono mt-1" id="fee-status-desc">Exam registration, advanced lab consumables & academic society fees due before semester final exams.</p>
         </div>
-        <div class="text-right">
-            <span class="text-xs font-mono text-outline block mb-1">Pending Amount</span>
-            <span class="pixel-badge pixel-badge-gold text-2xl px-4 py-1">₹ 0.00 DUE</span>
+        <div class="flex flex-col sm:flex-row items-end sm:items-center gap-4">
+            <div class="text-right">
+                <span class="text-xs font-mono text-outline block mb-1">Payable Balance</span>
+                <span class="pixel-badge pixel-badge-gold text-2xl px-4 py-1" id="pending-amount-pill">₹ 18,500.00 DUE</span>
+            </div>
+            <button onclick="openPaymentModal()" id="pay-now-btn" class="btn-pixel py-3 px-5 text-lg flex items-center gap-2 whitespace-nowrap">
+                <span>💳</span> Pay Online Now
+            </button>
+        </div>
+    </div>
+
+    <!-- Gateway Sandbox & Diagnostics Box -->
+    <div class="pixel-card bg-surface border-4 border-secondary p-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <div>
+                <span class="pixel-badge pixel-badge-blue text-xs">🛡️ Gateway Sandbox & Diagnostics</span>
+                <h4 class="text-xl font-bold text-secondary uppercase mt-1">Real-Time Asynchronous Payment Engine</h4>
+                <p class="text-xs text-on-surface-variant font-mono">Non-blocking asynchronous clearance with automatic ledger sync, encrypted tokens, and network fallback recovery.</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <label class="text-xs font-bold uppercase flex items-center gap-1 cursor-pointer bg-surface-container-highest px-3 py-2 border-2 border-on-surface hover:bg-surface-container transition-colors">
+                    <input type="checkbox" id="simulate-bank-failure" class="cursor-pointer">
+                    <span>Simulate Network Timeout</span>
+                </label>
+                <button onclick="resetFeeDues()" class="btn-pixel btn-pixel-secondary text-xs py-2 px-3">Reset Balance</button>
+            </div>
         </div>
     </div>
 
@@ -81,8 +104,8 @@
         <table class="pixel-table">
             <thead>
                 <tr>
-                    <th style="width: 45%;">Fee Component</th>
-                    <th style="width: 30%;">Amount (INR)</th>
+                    <th style="width: 50%;">Fee Component</th>
+                    <th style="width: 25%;">Amount (INR)</th>
                     <th style="width: 25%;">Payment Status</th>
                 </tr>
             </thead>
@@ -90,22 +113,22 @@
                 <tr>
                     <td class="font-bold">Tuition Fee (Computer Science Engineering)</td>
                     <td class="font-mono">₹ 45,000.00</td>
-                    <td><span class="pixel-badge">PAID</span></td>
+                    <td><span class="pixel-badge bg-primary text-white">✓ PAID</span></td>
                 </tr>
                 <tr>
                     <td class="font-bold">Computer & Software Lab Maintenance Fee</td>
                     <td class="font-mono">₹ 6,500.00</td>
-                    <td><span class="pixel-badge">PAID</span></td>
+                    <td><span class="pixel-badge bg-primary text-white">✓ PAID</span></td>
                 </tr>
-                <tr>
-                    <td class="font-bold">Digital Library & E-Book Access Fee</td>
-                    <td class="font-mono">₹ 2,000.00</td>
-                    <td><span class="pixel-badge">PAID</span></td>
+                <tr id="row-exam-fee">
+                    <td class="font-bold">Final Semester Exam Registration & Portal Lab Fee</td>
+                    <td class="font-mono font-bold text-primary">₹ 12,000.00</td>
+                    <td id="status-exam-fee"><span class="pixel-badge pixel-badge-gold">PENDING DUES</span></td>
                 </tr>
-                <tr>
-                    <td class="font-bold">Mid-Term Examination & Portal Evaluation Fee</td>
-                    <td class="font-mono">₹ 1,500.00</td>
-                    <td><span class="pixel-badge">PAID</span></td>
+                <tr id="row-society-fee">
+                    <td class="font-bold">Academic Guild & Hackathon Resource Allocation</td>
+                    <td class="font-mono font-bold text-primary">₹ 6,500.00</td>
+                    <td id="status-society-fee"><span class="pixel-badge pixel-badge-gold">PENDING DUES</span></td>
                 </tr>
             </tbody>
         </table>
@@ -115,7 +138,7 @@
     <div class="pixel-card bg-surface-container-lowest">
         <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
             <h3 class="text-3xl font-bold text-secondary uppercase">Payment History & Receipts</h3>
-            <span class="pixel-badge pixel-badge-blue">Official Bank Log</span>
+            <span class="pixel-badge pixel-badge-blue">Official Bank Ledger</span>
         </div>
 
         <table class="pixel-table">
@@ -128,21 +151,8 @@
                     <th style="width: 20%;">Official Receipt</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td class="font-mono font-bold text-xs">TXN-9081237</td>
-                    <td>10 August 2026</td>
-                    <td class="font-mono font-bold text-primary">₹ 55,000.00</td>
-                    <td><span class="pixel-badge text-xs">UPI Online</span></td>
-                    <td><button onclick="alert('Downloading Official Receipt TXN-9081237.pdf')" class="btn-pixel text-xs py-1 px-3">Download Receipt</button></td>
-                </tr>
-                <tr>
-                    <td class="font-mono font-bold text-xs">TXN-8871204</td>
-                    <td>15 January 2026</td>
-                    <td class="font-mono font-bold text-primary">₹ 55,000.00</td>
-                    <td><span class="pixel-badge pixel-badge-blue text-xs">Net Banking</span></td>
-                    <td><button onclick="alert('Downloading Official Receipt TXN-8871204.pdf')" class="btn-pixel text-xs py-1 px-3">Download Receipt</button></td>
-                </tr>
+            <tbody id="payment-history-tbody">
+                <!-- Dynamically loaded from localStorage -->
             </tbody>
         </table>
     </div>
@@ -154,5 +164,331 @@
 </footer>
 
 <script src="auth.js"></script>
+<script>
+    // =========================================================================
+    // JAVASCRIPT PROMISE: ASYNCHRONOUS BANK PAYMENT GATEWAY
+    // =========================================================================
+
+    /**
+     * Simulates an asynchronous bank payment gateway transaction using new Promise().
+     * 
+     * @param {number} amount - Amount in INR to process
+     * @param {string} method - 'UPI' | 'Net Banking' | 'Debit Card'
+     * @param {boolean} forceFailure - When true, triggers Promise reject() to demonstrate error handling
+     * @returns {Promise<Object>} Resolves with transaction receipt object or rejects with Error
+     */
+    function processBankTransaction(amount, method, forceFailure = false) {
+        // PROMISE CONSTRUCTOR: Takes an executor function with resolve and reject arguments
+        return new Promise((resolve, reject) => {
+            console.log("⚡ [PROMISE: PENDING] Initiating bank handshake for ₹" + amount);
+
+            // Simulate 2200ms network round-trip delay to Bank Central Server
+            setTimeout(() => {
+                if (forceFailure) {
+                    // PROMISE REJECTED STATE: Demonstrates .catch() / try-catch handling
+                    console.warn("❌ [PROMISE: REJECTED] Bank transaction declined");
+                    reject(new Error("Bank Gateway Error [ERR-503]: Insufficient funds or server timeout. Transaction declined by issuer bank."));
+                } else {
+                    // PROMISE FULFILLED / RESOLVED STATE: Returns success payload
+                    const txnNumber = "TXN-" + Math.floor(1000000 + Math.random() * 9000000);
+                    const now = new Date();
+                    const formattedDate = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+                    console.log("✓ [PROMISE: RESOLVED] Bank approved transaction " + txnNumber);
+                    resolve({
+                        transactionId: txnNumber,
+                        amount: amount,
+                        method: method,
+                        date: formattedDate,
+                        status: "PAID_SUCCESSFULLY",
+                        bankRef: "RBI-REF-" + Math.floor(100000 + Math.random() * 900000)
+                    });
+                }
+            }, 2200);
+        });
+    }
+
+    // Default initial transactions
+    function getStoredTransactions() {
+        const stored = localStorage.getItem('edupixel_fee_transactions');
+        if (stored) {
+            try { return JSON.parse(stored); } catch(e) {}
+        }
+        const initial = [
+            { transactionId: 'TXN-9081237', date: '10 August 2026', amount: 51500, method: 'UPI Online', status: 'PAID' },
+            { transactionId: 'TXN-8871204', date: '15 January 2026', amount: 55000, method: 'Net Banking', status: 'PAID' }
+        ];
+        localStorage.setItem('edupixel_fee_transactions', JSON.stringify(initial));
+        return initial;
+    }
+
+    function checkFeeStatus() {
+        const isPaid = localStorage.getItem('edupixel_semester3_dues_paid') === 'true';
+        const statusBadge = document.getElementById('status-badge');
+        const heading = document.getElementById('fee-status-heading');
+        const desc = document.getElementById('fee-status-desc');
+        const pill = document.getElementById('pending-amount-pill');
+        const payBtn = document.getElementById('pay-now-btn');
+        const statusExam = document.getElementById('status-exam-fee');
+        const statusSociety = document.getElementById('status-society-fee');
+
+        if (isPaid) {
+            if (statusBadge) statusBadge.className = 'pixel-badge pixel-badge-gold text-xs';
+            if (heading) {
+                heading.innerText = 'Tuition & Campus Dues: ALL CLEAR';
+                heading.className = 'text-3xl font-bold text-primary mt-1';
+            }
+            if (desc) desc.innerText = 'All Semester 3 dues cleared successfully. No pending balance due.';
+            if (pill) {
+                pill.innerText = '₹ 0.00 DUE';
+                pill.className = 'pixel-badge pixel-badge-gold text-2xl px-4 py-1';
+            }
+            if (payBtn) {
+                payBtn.disabled = true;
+                payBtn.innerHTML = '<span>✓</span> All Dues Paid';
+                payBtn.className = 'btn-pixel py-3 px-5 text-lg opacity-60 cursor-not-allowed';
+            }
+            if (statusExam) statusExam.innerHTML = '<span class="pixel-badge bg-primary text-white">✓ PAID</span>';
+            if (statusSociety) statusSociety.innerHTML = '<span class="pixel-badge bg-primary text-white">✓ PAID</span>';
+        } else {
+            if (statusBadge) statusBadge.className = 'pixel-badge bg-error text-white text-xs';
+            if (heading) {
+                heading.innerText = 'Computer Science Dues: ₹ 18,500.00 PENDING';
+                heading.className = 'text-3xl font-bold text-on-bg mt-1';
+            }
+            if (desc) desc.innerText = 'Exam registration, advanced lab consumables & academic society fees due before semester final exams.';
+            if (pill) {
+                pill.innerText = '₹ 18,500.00 DUE';
+                pill.className = 'pixel-badge bg-error text-white text-2xl px-4 py-1';
+            }
+            if (payBtn) {
+                payBtn.disabled = false;
+                payBtn.innerHTML = '<span>💳</span> Pay Online Now';
+                payBtn.className = 'btn-pixel py-3 px-5 text-lg flex items-center gap-2 whitespace-nowrap';
+            }
+            if (statusExam) statusExam.innerHTML = '<span class="pixel-badge pixel-badge-gold">PENDING DUES</span>';
+            if (statusSociety) statusSociety.innerHTML = '<span class="pixel-badge pixel-badge-gold">PENDING DUES</span>';
+        }
+    }
+
+    function renderTransactionHistory() {
+        const tbody = document.getElementById('payment-history-tbody');
+        if (!tbody) return;
+
+        const list = getStoredTransactions();
+        tbody.innerHTML = list.map(tx => `
+            <tr>
+                <td class="font-mono font-bold text-xs text-primary">${tx.transactionId}</td>
+                <td>${tx.date}</td>
+                <td class="font-mono font-bold text-primary">₹ ${tx.amount.toLocaleString('en-IN')}.00</td>
+                <td><span class="pixel-badge text-xs">${tx.method}</span></td>
+                <td>
+                    <button onclick="viewReceipt('${tx.transactionId}', ${tx.amount}, '${tx.method}', '${tx.date}')" class="btn-pixel text-xs py-1 px-3">
+                        View Receipt
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    // Modal to choose payment method and initiate Promise
+    function openPaymentModal() {
+        const isPaid = localStorage.getItem('edupixel_semester3_dues_paid') === 'true';
+        if (isPaid) {
+            showToast('All fees are already paid! No outstanding dues.', 'info');
+            return;
+        }
+
+        const modalHtml = `
+            <div id="payment-modal-body" class="space-y-4 text-left">
+                <div class="bg-surface-container-highest p-3 border-2 border-on-surface">
+                    <span class="text-xs uppercase font-mono block text-on-surface-variant">Outstanding Payment</span>
+                    <div class="text-3xl font-bold text-primary">₹ 18,500.00</div>
+                    <p class="text-xs text-on-surface-variant font-mono mt-1">Student: ${getUsername()} | CSE 3rd Sem</p>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-xs uppercase mb-1">Select Bank Payment Channel</label>
+                    <select id="payment-channel-select" class="pixel-input mb-0">
+                        <option value="UPI Instant (GooglePay / PhonePe / Paytm)">⚡ UPI Instant (VPA / QR)</option>
+                        <option value="Net Banking (HDFC / SBI / ICICI)">🏛️ Net Banking (Priority Clearance)</option>
+                        <option value="Debit / Credit Card">💳 Credit / Debit Card (Visa / MasterCard / RuPay)</option>
+                    </select>
+                </div>
+
+                <div class="bg-surface-container p-3 border border-on-surface text-xs font-mono">
+                    🔒 Protected with 256-bit SSL Banking Encryption. All transactions are logged in the student ledger.
+                </div>
+
+                <div id="payment-spinner-container" style="display: none;" class="text-center py-4 space-y-2">
+                    <div class="inline-block animate-spin font-bold text-3xl">⏳</div>
+                    <p class="font-bold text-secondary uppercase text-sm animate-pulse" id="payment-spinner-status">
+                        Contacting Inter-Bank Clearance Network...
+                    </p>
+                    <p class="text-xs text-on-surface-variant font-mono">Awaiting 256-Bit SSL Handshake & Token Authorization</p>
+                </div>
+            </div>
+        `;
+
+        showModal({
+            title: '💳 Central Bank Payment Gateway',
+            content: modalHtml,
+            confirmText: 'Authorize & Pay ₹18,500',
+            cancelText: 'Cancel',
+            onConfirm: function() {
+                // Execute Promise-based payment
+                handlePaymentExecution();
+                return false; // keep modal controlled until Promise finishes
+            }
+        });
+    }
+
+    /**
+     * Executes the Promise using Modern async/await with try-catch block!
+     */
+    async function handlePaymentExecution() {
+        const channelSelect = document.getElementById('payment-channel-select');
+        const channel = channelSelect ? channelSelect.value : 'UPI Instant';
+        const spinner = document.getElementById('payment-spinner-container');
+        const confirmBtn = document.getElementById('modal-confirm-btn');
+        const cancelBtn = document.getElementById('modal-cancel-btn');
+        const failureCheckbox = document.getElementById('simulate-bank-failure');
+        const shouldFail = failureCheckbox ? failureCheckbox.checked : false;
+
+        // 1. Enter PENDING State: Disable buttons & show loading
+        if (spinner) spinner.style.display = 'block';
+        if (confirmBtn) {
+            confirmBtn.disabled = true;
+            confirmBtn.className = 'btn-pixel text-sm py-2 px-4 opacity-50 cursor-not-allowed';
+            confirmBtn.innerText = 'Processing with Bank...';
+        }
+        if (cancelBtn) cancelBtn.style.display = 'none';
+
+        playRetroSound('click');
+        showToast('Initiating asynchronous bank connection...', 'info', 'PROMISE CREATED');
+
+        try {
+            // =================================================================
+            // CONSUMING THE PROMISE VIA AWAIT (Can also be used with .then())
+            // =================================================================
+            const result = await processBankTransaction(18500, channel, shouldFail);
+
+            // =================================================================
+            // 2. FULFILLED STATE (.then()): Payment was approved by the bank!
+            // =================================================================
+            closeModal();
+
+            // Save to localStorage
+            localStorage.setItem('edupixel_semester3_dues_paid', 'true');
+            const history = getStoredTransactions();
+            history.unshift(result);
+            localStorage.setItem('edupixel_fee_transactions', JSON.stringify(history));
+
+            // Log activity in EduPixelDB
+            if (typeof EduPixelDB !== 'undefined') {
+                EduPixelDB.logActivity('Fee Dues Paid', `Paid ₹18,500 via ${channel} (${result.transactionId})`, getUsername());
+            }
+
+            // Update UI
+            checkFeeStatus();
+            renderTransactionHistory();
+
+            // Play celebratory arcade coin sound!
+            playRetroSound('coin');
+            showToast(`✓ Payment approved! Transaction ID: ${result.transactionId}. Dues cleared to ₹0.00.`, 'success', 'PAYMENT SUCCESSFUL');
+
+            // Open digital receipt
+            setTimeout(() => {
+                viewReceipt(result.transactionId, result.amount, result.method, result.date);
+            }, 600);
+
+        } catch (error) {
+            // =================================================================
+            // 3. REJECTED STATE (.catch()): Bank transaction was declined!
+            // =================================================================
+            if (spinner) spinner.style.display = 'none';
+            if (confirmBtn) {
+                confirmBtn.disabled = false;
+                confirmBtn.className = 'btn-pixel text-sm py-2 px-4';
+                confirmBtn.innerText = 'Retry Payment';
+            }
+            if (cancelBtn) cancelBtn.style.display = 'inline-block';
+
+            playRetroSound('error');
+            showToast(error.message, 'error', 'PROMISE REJECTED');
+        }
+    }
+
+    // View Official Receipt in a Retro Pixel Card
+    function viewReceipt(txnId, amount, method, date) {
+        const student = getCurrentUser();
+        const content = `
+            <div class="bg-surface p-4 border-2 border-on-surface space-y-3 font-mono text-left">
+                <div class="flex justify-between items-start border-b-2 border-on-surface pb-3">
+                    <div>
+                        <div class="text-xl font-bold font-sans text-primary">EDUPIXEL ACADEMY</div>
+                        <div class="text-xs">Official Treasury e-Receipt</div>
+                    </div>
+                    <span class="pixel-badge bg-primary text-white text-xs">PAID & VERIFIED</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <div>
+                        <span class="text-on-surface-variant block">Receipt / TXN:</span>
+                        <strong class="text-primary">${txnId}</strong>
+                    </div>
+                    <div>
+                        <span class="text-on-surface-variant block">Date of Payment:</span>
+                        <strong>${date}</strong>
+                    </div>
+                    <div>
+                        <span class="text-on-surface-variant block">Student Name:</span>
+                        <strong>${student ? student.name : getUsername()}</strong>
+                    </div>
+                    <div>
+                        <span class="text-on-surface-variant block">Roll & Program:</span>
+                        <strong>${student ? student.roll : '23BCS101'} (CSE 3rd Sem)</strong>
+                    </div>
+                    <div>
+                        <span class="text-on-surface-variant block">Payment Mode:</span>
+                        <strong>${method}</strong>
+                    </div>
+                    <div>
+                        <span class="text-on-surface-variant block">Total Amount Paid:</span>
+                        <strong class="text-sm text-primary">₹ ${amount.toLocaleString('en-IN')}.00</strong>
+                    </div>
+                </div>
+
+                <div class="border-t-2 border-dashed border-on-surface pt-2 text-[10px] text-center text-on-surface-variant">
+                    ✓ Digitally Signed & Encrypted by EduPixel Treasury Controller.<br>
+                    No physical signature required. Valid for Income Tax 80E Rebate.
+                </div>
+            </div>
+        `;
+
+        showModal({
+            title: '📄 Official Payment Receipt',
+            content: content,
+            confirmText: 'Print Receipt',
+            cancelText: 'Close',
+            onConfirm: function() {
+                window.print();
+                return true;
+            }
+        });
+    }
+
+    // Reset dues for testing purposes
+    function resetFeeDues() {
+        localStorage.removeItem('edupixel_semester3_dues_paid');
+        checkFeeStatus();
+        showToast('Fee status reset: ₹18,500 dues are now pending again for testing.', 'info', 'RESET DUES');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        checkFeeStatus();
+        renderTransactionHistory();
+    });
+</script>
 </body>
 </html>

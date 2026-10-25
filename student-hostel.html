@@ -65,46 +65,107 @@
             <h2 class="text-3xl font-bold text-on-bg">Hostel Block B — Room 304</h2>
             <p class="text-on-surface-variant text-sm font-mono mt-1">Hostel Warden: Mr. R. P. Singh (+91 98111 22334) | Room Type: Double Seater AC</p>
         </div>
-        <button onclick="alert('Hostel complaint ticket submitted!')" class="btn-pixel btn-pixel-secondary text-xs py-2">Log Room Maintenance Request</button>
+        <button onclick="openHostelComplaintModal()" class="btn-pixel btn-pixel-secondary text-sm py-2 px-4 flex items-center gap-2">
+            <span>🔧</span> Log Room Maintenance Request
+        </button>
+    </div>
+
+    <!-- Active Hostel Tickets Tracker (Synced with localStorage) -->
+    <div class="pixel-card bg-surface-container-lowest">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 pb-3 border-b-4 border-on-surface">
+            <div>
+                <h3 class="text-3xl font-bold text-primary uppercase">My Maintenance Tickets</h3>
+                <p class="text-on-surface-variant text-xs font-mono">Live tracking synced across Student & Warden portals via LocalStorage</p>
+            </div>
+            <span class="pixel-badge pixel-badge-gold" id="hostel-ticket-badge">Loading...</span>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="pixel-table">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">Ticket ID & Category</th>
+                        <th style="width: 40%;">Issue Description</th>
+                        <th style="width: 20%;">Logged Date</th>
+                        <th style="width: 20%;">Current Status</th>
+                    </tr>
+                </thead>
+                <tbody id="hostel-tickets-body">
+                    <!-- Populated dynamically via JavaScript -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Weekly Mess Menu Table -->
     <div class="pixel-card bg-surface-container-lowest">
-        <div class="flex justify-between items-center mb-4 pb-3 border-b-4 border-on-surface">
-            <h3 class="text-3xl font-bold text-primary uppercase">Weekly Mess Menu Schedule</h3>
-            <span class="pixel-badge">100% Hygienic Food</span>
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 pb-3 border-b-4 border-on-surface">
+            <div>
+                <h3 class="text-3xl font-bold text-primary uppercase">Weekly Mess Menu Schedule</h3>
+                <p class="text-on-surface-variant text-xs font-mono">Current Mess: Block B Central Dining Hall</p>
+            </div>
+            <div class="flex gap-2">
+                <span class="pixel-badge pixel-badge-blue" id="today-day-indicator">Today's Menu Highlighted</span>
+                <span class="pixel-badge">100% Hygienic Food</span>
+            </div>
         </div>
 
-        <table class="pixel-table">
-            <thead>
-                <tr>
-                    <th style="width: 20%;">Day</th>
-                    <th style="width: 25%;">Breakfast (07:30 - 09:30 AM)</th>
-                    <th style="width: 30%;">Lunch (12:30 - 02:30 PM)</th>
-                    <th style="width: 25%;">Dinner (07:30 - 09:30 PM)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="font-bold bg-surface-container-highest">Monday</td>
-                    <td>Puri Bhaji, Tea & Milk</td>
-                    <td>Rajma Chawal, Roti, Salad, Curd</td>
-                    <td>Paneer Butter Masala, Roti, Kheer</td>
-                </tr>
-                <tr>
-                    <td class="font-bold bg-surface-container-highest">Tuesday</td>
-                    <td>Aloo Paratha, Curd, Coffee</td>
-                    <td>Kadi Pakoda, Steamed Rice, Roti</td>
-                    <td>Mix Veg, Dal Tadka, Roti, Ice Cream</td>
-                </tr>
-                <tr>
-                    <td class="font-bold bg-surface-container-highest">Wednesday</td>
-                    <td>Idli Sambar, Coconut Chutney</td>
-                    <td>Veg Biryani, Raita, Green Salad</td>
-                    <td>Shahi Paneer, Jeera Rice, Gulab Jamun</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="overflow-x-auto">
+            <table class="pixel-table" id="mess-menu-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Day</th>
+                        <th style="width: 25%;">Breakfast (07:30 - 09:30 AM)</th>
+                        <th style="width: 30%;">Lunch (12:30 - 02:30 PM)</th>
+                        <th style="width: 30%;">Dinner (07:30 - 09:30 PM)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-day="1">
+                        <td class="font-bold bg-surface-container-highest">Monday</td>
+                        <td>Puri Bhaji, Sprouts, Tea & Milk</td>
+                        <td>Rajma Chawal, Roti, Salad, Bundi Raita</td>
+                        <td>Paneer Butter Masala, Roti, Dal Tadka, Kheer</td>
+                    </tr>
+                    <tr data-day="2">
+                        <td class="font-bold bg-surface-container-highest">Tuesday</td>
+                        <td>Aloo Paratha, Curd, Pickles, Coffee</td>
+                        <td>Kadi Pakoda, Steamed Rice, Roti, Green Salad</td>
+                        <td>Mix Veg, Dal Makhani, Tandoori Roti, Ice Cream</td>
+                    </tr>
+                    <tr data-day="3">
+                        <td class="font-bold bg-surface-container-highest">Wednesday</td>
+                        <td>Idli Sambar, Coconut Chutney, Banana</td>
+                        <td>Veg Biryani, Mint Raita, Fresh Green Salad</td>
+                        <td>Shahi Paneer, Jeera Rice, Chapati, Gulab Jamun</td>
+                    </tr>
+                    <tr data-day="4">
+                        <td class="font-bold bg-surface-container-highest">Thursday</td>
+                        <td>Poha with Sev, Boiled Eggs / Milk, Tea</td>
+                        <td>Chole Bhature / Rice, Sirka Onion, Papad</td>
+                        <td>Malai Kofta, Dal Fry, Phulka, Fruit Custard</td>
+                    </tr>
+                    <tr data-day="5">
+                        <td class="font-bold bg-surface-container-highest">Friday</td>
+                        <td>Masala Dosa, Sambar, Tomato Chutney</td>
+                        <td>Dal Palak, Jeera Pulao, Roti, Cucumber Salad</td>
+                        <td>Kadai Paneer, Laccha Paratha, Dal Tadka, Rasgulla</td>
+                    </tr>
+                    <tr data-day="6">
+                        <td class="font-bold bg-surface-container-highest">Saturday</td>
+                        <td>Methi Thepla, Curd, Tea & Bread Butter</td>
+                        <td>Yellow Dal, Steamed Rice, Bhindi Masala, Roti</td>
+                        <td>Veg Pulao, Paneer Do Pyaza, Naan, Moong Halwa</td>
+                    </tr>
+                    <tr data-day="0">
+                        <td class="font-bold bg-surface-container-highest">Sunday (Special)</td>
+                        <td>Club Sandwich / Chole Kulche, Juice</td>
+                        <td>Dum Aloo Kashmiri, Peas Pulao, Poori, Raita</td>
+                        <td>Chef Special Butter Paneer, Jeera Rice, Jalebi</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </main>
@@ -114,5 +175,139 @@
 </footer>
 
 <script src="auth.js"></script>
+<script>
+    // Render hostel tickets from LocalStorage
+    function renderHostelTickets() {
+        const tbody = document.getElementById('hostel-tickets-body');
+        const badge = document.getElementById('hostel-ticket-badge');
+        if (!tbody) return;
+
+        const tickets = EduPixelDB.getHostelTickets();
+        if (badge) {
+            badge.innerText = `${tickets.length} Registered Tickets`;
+        }
+
+        if (tickets.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-on-surface-variant font-mono">No maintenance tickets logged yet. Everything is in order!</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = tickets.map(t => {
+            let statusBadge = '<span class="pixel-badge pixel-badge-gold">PENDING</span>';
+            if (t.status === 'RESOLVED') {
+                statusBadge = '<span class="pixel-badge bg-primary text-white">✓ RESOLVED</span>';
+            } else if (t.status === 'IN_PROGRESS') {
+                statusBadge = '<span class="pixel-badge pixel-badge-blue">⚡ IN PROGRESS</span>';
+            }
+
+            return `
+                <tr>
+                    <td class="font-bold">
+                        <div class="text-primary">${t.id}</div>
+                        <span class="pixel-badge text-xs">${t.category}</span>
+                    </td>
+                    <td class="text-sm">
+                        <div class="font-bold">${t.issue}</div>
+                        <div class="text-xs text-on-surface-variant font-mono mt-1">Priority: ${t.priority || 'Normal'} | ${t.room}</div>
+                    </td>
+                    <td class="font-mono text-sm">${t.date}</td>
+                    <td>${statusBadge}</td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    // Open Modal for Logging Hostel Maintenance Request
+    function openHostelComplaintModal() {
+        const content = `
+            <form id="hostel-complaint-form" class="space-y-4 text-left">
+                <div>
+                    <label class="block font-bold text-xs uppercase mb-1">Residence Room</label>
+                    <input type="text" class="pixel-input mb-0" value="Hostel Block B — Room 304" readonly>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-bold text-xs uppercase mb-1">Issue Category</label>
+                        <select id="modal-ticket-category" class="pixel-input mb-0">
+                            <option value="Plumbing / Washroom">🚿 Plumbing / Water Supply</option>
+                            <option value="Electrical / Lighting">💡 Electrical & Fan / Lights</option>
+                            <option value="AC / Cooling">❄️ AC & Ventilation</option>
+                            <option value="Furniture & Carpentry">🪑 Furniture / Bed / Door Lock</option>
+                            <option value="Wi-Fi & LAN Port">🌐 Internet & LAN Port</option>
+                            <option value="Cleanliness & Pest Control">🧹 Cleaning & Pest Control</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-xs uppercase mb-1">Urgency Level</label>
+                        <select id="modal-ticket-priority" class="pixel-input mb-0">
+                            <option value="Medium">⚡ Medium (Within 24 hrs)</option>
+                            <option value="High">🔥 High (Same day)</option>
+                            <option value="Critical">🚨 Critical Emergency</option>
+                            <option value="Low">🌱 Low (When available)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-xs uppercase mb-1">Describe the Problem in Detail</label>
+                    <textarea id="modal-ticket-desc" class="pixel-input mb-0" rows="3" placeholder="e.g. Geyser tripping switchboard when turned on..." required></textarea>
+                </div>
+            </form>
+        `;
+
+        showModal({
+            title: '🔧 Log Maintenance Ticket',
+            content: content,
+            confirmText: 'Submit Ticket',
+            cancelText: 'Cancel',
+            onConfirm: function() {
+                const category = document.getElementById('modal-ticket-category').value;
+                const priority = document.getElementById('modal-ticket-priority').value;
+                const desc = document.getElementById('modal-ticket-desc').value.trim();
+
+                if (!desc) {
+                    showToast('Please provide a brief description of the issue.', 'warning', 'FIELD REQUIRED');
+                    return false; // keep modal open
+                }
+
+                const newId = 'HST-' + Math.floor(1000 + Math.random() * 9000);
+                const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+                EduPixelDB.addHostelTicket({
+                    id: newId,
+                    room: 'Block B — Room 304',
+                    studentName: getUsername(),
+                    category: category,
+                    issue: desc,
+                    priority: priority,
+                    status: 'PENDING',
+                    date: today
+                });
+
+                renderHostelTickets();
+                showToast(`✓ Ticket ${newId} logged successfully! Warden dispatched notification.`, 'success', 'MAINTENANCE LOGGED');
+                return true;
+            }
+        });
+    }
+
+    // Highlight today's mess menu based on day of week
+    function highlightTodayMessMenu() {
+        const todayDay = new Date().getDay(); // 0 is Sunday, 1 is Monday, etc.
+        const row = document.querySelector(`tr[data-day="${todayDay}"]`);
+        if (row) {
+            row.style.outline = '4px solid #366a19';
+            row.style.boxShadow = 'inset 0 0 12px rgba(54, 106, 25, 0.2)';
+            const firstTd = row.querySelector('td');
+            if (firstTd) {
+                firstTd.innerHTML = `⭐ ${firstTd.innerText} <span class="pixel-badge text-xs bg-primary text-white ml-1">TODAY</span>`;
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        renderHostelTickets();
+        highlightTodayMessMenu();
+    });
+</script>
 </body>
 </html>
